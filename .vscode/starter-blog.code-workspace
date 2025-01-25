@@ -11,6 +11,10 @@
     {
       "path": "../backend",
       "name": "BACK-END (strapi)"
+    },
+    {
+      "path": "../frontend-next",
+      "name": "FRONT-END (next)"
     }
   ],
   "settings": {
@@ -20,8 +24,10 @@
       "dist": true,
       "build": true,
       "backend": true,
+      "frontend-next": true,
       ".vscode": true,
-      ".strapi": true
+      ".strapi": true,
+      ".next": true
     }
   }
 }
