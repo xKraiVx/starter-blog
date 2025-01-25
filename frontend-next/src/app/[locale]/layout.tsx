@@ -1,6 +1,6 @@
 import { routing } from "@/i18n/routing";
+import Providers from "@/providers/Providers";
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -46,9 +46,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <Providers messages={messages}>{children}</Providers>
       </body>
     </html>
   );
