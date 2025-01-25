@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "Workspace settings"
+    },
+    {
+      "path": "../",
+      "name": "Root"
+    },
+    {
+      "path": "../backend",
+      "name": "BACK-END (strapi)"
+    }
+  ],
+  "settings": {
+    "workbench.colorTheme": "Monokai",
+    "files.exclude": {
+      "node_modules": true,
+      "dist": true,
+      "build": true,
+      "backend": true,
+      ".vscode": true,
+      ".strapi": true
+    }
+  }
+}
