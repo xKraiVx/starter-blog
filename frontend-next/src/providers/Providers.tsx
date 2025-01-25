@@ -1,4 +1,4 @@
-import BlogThemeProvider from "@/providers/theme/default-theme/BlogThemeProvider";
+import BlogThemeProvider from "@/providers/blog-theme-provider/BlogThemeProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { JSX, PropsWithChildren } from "react";
