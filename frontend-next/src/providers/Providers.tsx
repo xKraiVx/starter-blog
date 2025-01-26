@@ -1,4 +1,5 @@
 import BlogThemeProvider from "@/providers/blog-theme-provider/BlogThemeProvider";
+import { ReactQueryProvider } from "@/providers/react-query-provider/ReactQueryProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { JSX, PropsWithChildren } from "react";
@@ -12,7 +13,7 @@ function Providers({ children, messages }: IProvidersProps): JSX.Element {
     <NextIntlClientProvider messages={messages}>
       <AppRouterCacheProvider options={{ key: "css" }}>
         <BlogThemeProvider options={{ key: "mui", prepend: true }}>
-          {children}
+          <ReactQueryProvider>{children}</ReactQueryProvider>
         </BlogThemeProvider>
       </AppRouterCacheProvider>
     </NextIntlClientProvider>

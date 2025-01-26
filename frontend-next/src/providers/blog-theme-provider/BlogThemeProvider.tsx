@@ -1,7 +1,7 @@
+import { overrideComponents } from "@/providers/blog-theme-provider/override-components";
+import { theme } from "@/providers/blog-theme-provider/useDefaultTheme";
 import { ThemeProvider } from "@mui/material/styles";
 import { PropsWithChildren } from "react";
-import { theme } from "@/providers/theme/default-theme/useDefaultTheme";
-import { overrideComponents } from "@/providers/theme/default-theme/override-components";
 interface Props extends PropsWithChildren {
   options: {
     key: string;

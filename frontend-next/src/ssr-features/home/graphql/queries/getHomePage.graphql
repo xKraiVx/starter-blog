@@ -1,0 +1,9 @@
+query GetHomePage($locale: I18NLocaleCode) {
+  homePage(locale: $locale) {
+    title
+    documentId
+    seo {
+      ...SeoForPage
+    }
+  }
+}

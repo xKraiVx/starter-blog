@@ -1,0 +1,15 @@
+fragment SeoForPage on ComponentSharedSeo {
+  canonicalURL
+  id
+  keywords
+  metaDescription
+  metaImage {
+    url
+    width
+    height
+    alternativeText
+  }
+  metaRobots
+  metaTitle
+  metaViewport
+}
