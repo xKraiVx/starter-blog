@@ -1,15 +1,15 @@
 import { ELocale } from "@/common/enums/locale.enum";
 import { ReactNode } from "react";
 
-interface IPageParams {
+interface IParams {
   locale: ELocale;
 }
-interface IPostPageParams extends IPageParams {
+interface IPostPageParams extends IParams {
   postSlug: string;
 }
 
 export interface IPageProps {
-  params: IPageParams;
+  params: Promise<IParams>;
 }
 
 export interface IPostPageProps {

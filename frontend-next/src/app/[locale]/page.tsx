@@ -11,9 +11,10 @@ import { IPageProps } from "@/common/types/general-props.type";
 export default async function Page({
   params,
 }: IPageProps): Promise<JSX.Element> {
+  const { locale } = await params;
   const data = await fetcher<GetHomePageQuery, GetHomePageQueryVariables>(
     GetHomePageDocument,
-    { locale: params.locale }
+    { locale }
   )();
 
   return <Home data={data} />;
