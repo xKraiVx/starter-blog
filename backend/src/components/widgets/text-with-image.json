@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_widgets_text_with_images",
+  "info": {
+    "displayName": "textWithImage"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Title"
+    },
+    "text": {
+      "type": "blocks"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "isImageOnLeftSide": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

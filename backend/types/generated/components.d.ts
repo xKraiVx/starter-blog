@@ -1,5 +1,21 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ComponentsGridItem extends Struct.ComponentSchema {
+  collectionName: 'components_components_grid_items';
+  info: {
+    description: '';
+    displayName: 'gridItem';
+  };
+  attributes: {
+    backgroundImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    description: Schema.Attribute.Blocks;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String & Schema.Attribute.DefaultTo<'title'>;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -75,14 +91,105 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface WidgetsCallToAction extends Struct.ComponentSchema {
+  collectionName: 'components_widgets_call_to_actions';
+  info: {
+    description: '';
+    displayName: 'callToAction';
+    icon: 'cursor';
+  };
+  attributes: {
+    backgroundImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    buttonText: Schema.Attribute.String;
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String & Schema.Attribute.DefaultTo<'title'>;
+  };
+}
+
+export interface WidgetsGrid extends Struct.ComponentSchema {
+  collectionName: 'components_widgets_grids';
+  info: {
+    description: '';
+    displayName: 'grid';
+    icon: 'dashboard';
+  };
+  attributes: {
+    desktopColumnCount: Schema.Attribute.Enumeration<
+      ['six', 'four', 'three', 'two', 'one']
+    > &
+      Schema.Attribute.DefaultTo<'three'>;
+    item: Schema.Attribute.Component<'components.grid-item', true>;
+    mobileColumnCount: Schema.Attribute.Enumeration<
+      ['six', 'four', 'three', 'two', 'one']
+    > &
+      Schema.Attribute.DefaultTo<'one'>;
+    tabletColumnCount: Schema.Attribute.Enumeration<
+      ['six', 'four', 'three', 'two', 'one']
+    > &
+      Schema.Attribute.DefaultTo<'two'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface WidgetsHero extends Struct.ComponentSchema {
+  collectionName: 'components_widgets_heroes';
+  info: {
+    description: '';
+    displayName: 'hero';
+    icon: 'house';
+  };
+  attributes: {
+    backgroundImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface WidgetsRecentPosts extends Struct.ComponentSchema {
+  collectionName: 'components_widgets_recent_posts';
+  info: {
+    displayName: 'recentPosts';
+    icon: 'clock';
+  };
+  attributes: {
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
+    postCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<3>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface WidgetsTextWithImage extends Struct.ComponentSchema {
+  collectionName: 'components_widgets_text_with_images';
+  info: {
+    displayName: 'textWithImage';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    isImageOnLeftSide: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    text: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Title'>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'components.grid-item': ComponentsGridItem;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'widgets.call-to-action': WidgetsCallToAction;
+      'widgets.grid': WidgetsGrid;
+      'widgets.hero': WidgetsHero;
+      'widgets.recent-posts': WidgetsRecentPosts;
+      'widgets.text-with-image': WidgetsTextWithImage;
     }
   }
 }

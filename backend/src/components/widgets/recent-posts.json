@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_widgets_recent_posts",
+  "info": {
+    "displayName": "recentPosts",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "postCount": {
+      "type": "integer",
+      "default": 3
+    }
+  }
+}

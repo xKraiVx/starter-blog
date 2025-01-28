@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_widgets_call_to_actions",
+  "info": {
+    "displayName": "callToAction",
+    "icon": "cursor",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "title"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
