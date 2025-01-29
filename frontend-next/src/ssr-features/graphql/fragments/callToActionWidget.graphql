@@ -1,0 +1,12 @@
+fragment CallToActionWidget on ComponentWidgetsCallToAction {
+  __typename
+  buttonText
+  description
+  id
+  title
+  backgroundImage {
+    size
+    url
+    alternativeText
+  }
+}

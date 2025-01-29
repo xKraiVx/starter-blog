@@ -5,5 +5,26 @@ query GetHomePage($locale: I18NLocaleCode) {
     seo {
       ...SeoForPage
     }
+    widgets {
+      ...WidgetsForHomePage
+    }
+  }
+}
+
+fragment WidgetsForHomePage on HomePageWidgetsDynamicZone {
+  ... on ComponentWidgetsHero {
+    ...HeroWidget
+  }
+  ... on ComponentWidgetsGrid {
+    ...GridWidget
+  }
+  ... on ComponentWidgetsCallToAction {
+    ...CallToActionWidget
+  }
+  ... on ComponentWidgetsRecentPosts {
+    ...RecentPostsWidget
+  }
+  ... on ComponentWidgetsTextWithImage {
+    ...TextWithImageWidget
   }
 }

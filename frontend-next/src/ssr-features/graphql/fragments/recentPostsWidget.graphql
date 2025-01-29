@@ -1,0 +1,14 @@
+fragment RecentPostsWidget on ComponentWidgetsRecentPosts {
+  __typename
+  title
+  postCount
+  id
+  articles {
+    ...ArticleForRecentPostsWidget
+  }
+}
+
+fragment ArticleForRecentPostsWidget on Article {
+  title
+  slug
+}

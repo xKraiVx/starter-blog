@@ -1,0 +1,11 @@
+fragment HeroWidget on ComponentWidgetsHero {
+  __typename
+  id
+  title
+  description
+  backgroundImage {
+    size
+    url
+    alternativeText
+  }
+}

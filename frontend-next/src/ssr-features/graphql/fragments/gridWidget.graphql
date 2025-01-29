@@ -1,0 +1,27 @@
+fragment GridWidget on ComponentWidgetsGrid {
+  __typename
+  id
+  desktopColumnCount
+  mobileColumnCount
+  tabletColumnCount
+  title
+  item {
+    ...GridItem
+  }
+}
+
+fragment GridItem on ComponentComponentsGridItem {
+  backgroundImage {
+    size
+    url
+    alternativeText
+  }
+  description
+  icon {
+    size
+    url
+    alternativeText
+  }
+  id
+  title
+}
