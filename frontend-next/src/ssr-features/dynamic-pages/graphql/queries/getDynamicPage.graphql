@@ -1,0 +1,35 @@
+query GetDynamicPage($filters: PageFiltersInput, $locale: I18NLocaleCode) {
+  pages(filters: $filters, locale: $locale) {
+    ...DynamicPageData
+  }
+}
+
+fragment DynamicPageData on Page {
+  title
+  slug
+  documentId
+  seo {
+    ...SeoForPage
+  }
+  widgets {
+    ...WidgetsForDynamicPage
+  }
+}
+
+fragment WidgetsForDynamicPage on PageWidgetsDynamicZone {
+  ... on ComponentWidgetsHero {
+    ...HeroWidget
+  }
+  ... on ComponentWidgetsGrid {
+    ...GridWidget
+  }
+  ... on ComponentWidgetsCallToAction {
+    ...CallToActionWidget
+  }
+  ... on ComponentWidgetsRecentPosts {
+    ...RecentPostsWidget
+  }
+  ... on ComponentWidgetsTextWithImage {
+    ...TextWithImageWidget
+  }
+}

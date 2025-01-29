@@ -8,7 +8,11 @@ interface IPostPageParams extends IParams {
   postSlug: string;
 }
 
-export interface IPageProps {
+export interface IPageProps<T = IParams> {
+  params: Promise<T>;
+}
+
+export interface IStaticParamsArguments {
   params: Promise<IParams>;
 }
 

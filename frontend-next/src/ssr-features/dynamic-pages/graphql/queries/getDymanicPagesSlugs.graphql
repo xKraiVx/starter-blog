@@ -1,0 +1,5 @@
+query DynamicPagesSlugs($locale: I18NLocaleCode) {
+  pages(locale: $locale) {
+    slug
+  }
+}

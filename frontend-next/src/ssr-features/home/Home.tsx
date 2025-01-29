@@ -15,8 +15,6 @@ function Home({ data }: IHomeProps): JSX.Element {
 
   const { homePage } = data;
 
-  console.log(homePage);
-
   return (
     <Box>
       <Image
