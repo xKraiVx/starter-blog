@@ -41,6 +41,8 @@ export default async function Page({
 }: IPageProps<IDynamicPageParams>): Promise<JSX.Element> {
   const { locale, slug } = await params;
 
+  console.log({ params });
+
   const { pages } = await fetcher<
     GetDynamicPageQuery,
     GetDynamicPageQueryVariables
