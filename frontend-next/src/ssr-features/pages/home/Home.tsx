@@ -1,4 +1,4 @@
-import { GetHomePageQuery } from "@/ssr-features/home/graphql/queries/getHomePage.generated";
+import { GetHomePageQuery } from "@/ssr-features/pages/home/graphql/queries/getHomePage.generated";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { notFound } from "next/navigation";

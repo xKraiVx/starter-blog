@@ -14,6 +14,7 @@ export type Scalars = {
   Float: { input: number; output: number; }
   AboutBlocksDynamicZoneInput: { input: any; output: any; }
   ArticleBlocksDynamicZoneInput: { input: any; output: any; }
+  BlogWidgetsDynamicZoneInput: { input: any; output: any; }
   DateTime: { input: any; output: any; }
   HomePageWidgetsDynamicZoneInput: { input: any; output: any; }
   I18NLocaleCode: { input: any; output: any; }
@@ -178,6 +179,34 @@ export type AuthorInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
+
+export type Blog = {
+  __typename?: 'Blog';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<Blog>>;
+  localizations_connection?: Maybe<BlogRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo?: Maybe<ComponentSharedSeo>;
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  widgets?: Maybe<Array<Maybe<BlogWidgetsDynamicZone>>>;
+};
+
+export type BlogInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  widgets?: InputMaybe<Array<Scalars['BlogWidgetsDynamicZoneInput']['input']>>;
+};
+
+export type BlogRelationResponseCollection = {
+  __typename?: 'BlogRelationResponseCollection';
+  nodes: Array<Blog>;
+};
+
+export type BlogWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
 
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -535,7 +564,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = About | Article | Author | Category | ComponentComponentsGridItem | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Global | HomePage | I18NLocale | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Global | HomePage | I18NLocale | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -711,6 +740,7 @@ export type Mutation = {
   deleteAbout?: Maybe<DeleteMutationResponse>;
   deleteArticle?: Maybe<DeleteMutationResponse>;
   deleteAuthor?: Maybe<DeleteMutationResponse>;
+  deleteBlog?: Maybe<DeleteMutationResponse>;
   deleteCategory?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
   deleteHomePage?: Maybe<DeleteMutationResponse>;
@@ -734,6 +764,7 @@ export type Mutation = {
   updateAbout?: Maybe<About>;
   updateArticle?: Maybe<Article>;
   updateAuthor?: Maybe<Author>;
+  updateBlog?: Maybe<Blog>;
   updateCategory?: Maybe<Category>;
   updateGlobal?: Maybe<Global>;
   updateHomePage?: Maybe<HomePage>;
@@ -817,6 +848,11 @@ export type MutationDeleteArticleArgs = {
 
 export type MutationDeleteAuthorArgs = {
   documentId: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteBlogArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -912,6 +948,13 @@ export type MutationUpdateArticleArgs = {
 export type MutationUpdateAuthorArgs = {
   data: AuthorInput;
   documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateBlogArgs = {
+  data: BlogInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1071,6 +1114,7 @@ export type Query = {
   author?: Maybe<Author>;
   authors: Array<Maybe<Author>>;
   authors_connection?: Maybe<AuthorEntityResponseCollection>;
+  blog?: Maybe<Blog>;
   categories: Array<Maybe<Category>>;
   categories_connection?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<Category>;
@@ -1150,6 +1194,12 @@ export type QueryAuthors_ConnectionArgs = {
   filters?: InputMaybe<AuthorFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryBlogArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
 

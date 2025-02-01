@@ -1,0 +1,34 @@
+query getBlogPage($locale: I18NLocaleCode) {
+  blog(locale: $locale) {
+    ...BlogPageData
+  }
+}
+
+fragment BlogPageData on Blog {
+  title
+  documentId
+  seo {
+    ...SeoForPage
+  }
+  widgets {
+    ...WidgetsForBlogPage
+  }
+}
+
+fragment WidgetsForBlogPage on BlogWidgetsDynamicZone {
+  ... on ComponentWidgetsHero {
+    ...HeroWidget
+  }
+  ... on ComponentWidgetsGrid {
+    ...GridWidget
+  }
+  ... on ComponentWidgetsCallToAction {
+    ...CallToActionWidget
+  }
+  ... on ComponentWidgetsRecentPosts {
+    ...RecentPostsWidget
+  }
+  ... on ComponentWidgetsTextWithImage {
+    ...TextWithImageWidget
+  }
+}

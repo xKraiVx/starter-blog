@@ -1,4 +1,4 @@
-import * as Types from '../../../../graphql/graphql-generated-types/types';
+import * as Types from '../../../../../graphql/graphql-generated-types/types';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 

@@ -1,4 +1,4 @@
-import { DynamicPageDataFragment } from "@/ssr-features/dynamic-pages/graphql/queries/getDynamicPage.generated";
+import { DynamicPageDataFragment } from "@/ssr-features/pages/dynamic-pages/graphql/queries/getDynamicPage.generated";
 import { Typography } from "@mui/material";
 import { notFound } from "next/navigation";
 import { JSX } from "react";

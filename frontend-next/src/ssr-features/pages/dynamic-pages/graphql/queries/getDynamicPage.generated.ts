@@ -1,11 +1,11 @@
-import * as Types from '../../../../graphql/graphql-generated-types/types';
+import * as Types from '../../../../../graphql/graphql-generated-types/types';
 
-import { SeoForPageFragmentDoc } from '../../../graphql/fragments/seoForPage.generated';
-import { HeroWidgetFragmentDoc } from '../../../graphql/fragments/heroWidget.generated';
-import { GridWidgetFragmentDoc } from '../../../graphql/fragments/gridWidget.generated';
-import { CallToActionWidgetFragmentDoc } from '../../../graphql/fragments/callToActionWidget.generated';
-import { RecentPostsWidgetFragmentDoc } from '../../../graphql/fragments/recentPostsWidget.generated';
-import { TextWithImageWidgetFragmentDoc } from '../../../graphql/fragments/textWithImageWidget.generated';
+import { SeoForPageFragmentDoc } from '../../../../graphql/fragments/seoForPage.generated';
+import { HeroWidgetFragmentDoc } from '../../../../graphql/fragments/heroWidget.generated';
+import { GridWidgetFragmentDoc } from '../../../../graphql/fragments/gridWidget.generated';
+import { CallToActionWidgetFragmentDoc } from '../../../../graphql/fragments/callToActionWidget.generated';
+import { RecentPostsWidgetFragmentDoc } from '../../../../graphql/fragments/recentPostsWidget.generated';
+import { TextWithImageWidgetFragmentDoc } from '../../../../graphql/fragments/textWithImageWidget.generated';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 function fetcher<TData, TVariables>(query: string, variables?: TVariables) {

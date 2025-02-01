@@ -2,8 +2,8 @@ import {
   GetHomePageDocument,
   GetHomePageQuery,
   GetHomePageQueryVariables,
-} from "@/ssr-features/home/graphql/queries/getHomePage.generated";
-import Home from "@/ssr-features/home/Home";
+} from "@/ssr-features/pages/home/graphql/queries/getHomePage.generated";
+import Home from "@/ssr-features/pages/home/Home";
 import { JSX } from "react";
 import fetcher from "@/graphql/fetcher";
 import { IPageProps } from "@/common/types/general-props.type";

@@ -23,8 +23,8 @@ declare module "@mui/material/Typography" {
   }
 }
 
-const BASE_FONT = "var(--font-roboto), sans-serif";
-const SECONDARY_FONT = "var(--font-press-start), sans-serif";
+const BASE_FONT = "var(--font-geist-sans), sans-serif";
+const SECONDARY_FONT = "var(--font-geist-sans), sans-serif";
 
 export const typography: TypographyOptions = {
   fontFamily: BASE_FONT,
