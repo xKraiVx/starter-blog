@@ -1,7 +1,6 @@
 import { ELocale } from "@/common/enums/locale.enum";
 import fetcher from "@/graphql/fetcher";
 import {
-  BlogPageDataFragment,
   GetBlogPageDocument,
   GetBlogPageQuery,
   GetBlogPageQueryVariables,
@@ -9,11 +8,11 @@ import {
 
 export const getBlogPage = async (
   locale: ELocale
-): Promise<BlogPageDataFragment | undefined | null> => {
+): Promise<GetBlogPageQuery> => {
   const data = await fetcher<GetBlogPageQuery, GetBlogPageQueryVariables>(
     GetBlogPageDocument,
     { locale }
   )();
 
-  return data.blog;
+  return data;
 };

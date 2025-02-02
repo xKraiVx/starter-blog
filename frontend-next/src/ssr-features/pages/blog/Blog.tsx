@@ -1,17 +1,22 @@
-import { BlogPageDataFragment } from "@/ssr-features/pages/blog/graphql/queries/getBlogPage.generated";
+import { GetBlogPageQuery } from "@/ssr-features/pages/blog/graphql/queries/getBlogPage.generated";
 import { Box, Typography } from "@mui/material";
 import { JSX } from "react";
 
 interface IBlogProps {
-  data: BlogPageDataFragment;
+  data: GetBlogPageQuery;
 }
 
 export default function Blog({ data }: IBlogProps): JSX.Element {
-  const { title } = data;
+  const { blog, articles } = data;
 
   return (
     <Box>
-      <Typography variant="h1">{title}</Typography>
+      {blog?.title && <Typography variant="h1">{blog.title}</Typography>}
+      {articles?.map((article) => (
+        <Box key={article?.slug}>
+          <Typography variant="h2">{article?.title}</Typography>
+        </Box>
+      ))}
     </Box>
   );
 }

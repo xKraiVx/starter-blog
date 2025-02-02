@@ -2,6 +2,9 @@ query getBlogPage($locale: I18NLocaleCode) {
   blog(locale: $locale) {
     ...BlogPageData
   }
+  articles(locale: $locale) {
+    ...ArticlesForBlogPage
+  }
 }
 
 fragment BlogPageData on Blog {
@@ -31,4 +34,9 @@ fragment WidgetsForBlogPage on BlogWidgetsDynamicZone {
   ... on ComponentWidgetsTextWithImage {
     ...TextWithImageWidget
   }
+}
+
+fragment ArticlesForBlogPage on Article {
+  title
+  slug
 }
