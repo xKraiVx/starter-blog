@@ -1,9 +1,12 @@
-query getBlogPage($locale: I18NLocaleCode) {
+query getBlogPage($locale: I18NLocaleCode, $pagination: PaginationArg) {
   blog(locale: $locale) {
     ...BlogPageData
   }
-  articles(locale: $locale) {
+  articles(locale: $locale, pagination: $pagination) {
     ...ArticlesForBlogPage
+  }
+  articles_connection(locale: $locale, pagination: $pagination) {
+    ...ArticlesConnectionForBlogPage
   }
 }
 
@@ -39,4 +42,10 @@ fragment WidgetsForBlogPage on BlogWidgetsDynamicZone {
 fragment ArticlesForBlogPage on Article {
   title
   slug
+}
+
+fragment ArticlesConnectionForBlogPage on ArticleEntityResponseCollection {
+  pageInfo {
+    total
+  }
 }

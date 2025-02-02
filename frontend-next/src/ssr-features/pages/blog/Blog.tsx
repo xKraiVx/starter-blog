@@ -7,7 +7,7 @@ interface IBlogProps {
 }
 
 export default function Blog({ data }: IBlogProps): JSX.Element {
-  const { blog, articles } = data;
+  const { blog, articles, articles_connection } = data;
 
   return (
     <Box>
@@ -17,6 +17,9 @@ export default function Blog({ data }: IBlogProps): JSX.Element {
           <Typography variant="h2">{article?.title}</Typography>
         </Box>
       ))}
+      <Typography>
+        Articles count {articles_connection?.pageInfo.total}
+      </Typography>
     </Box>
   );
 }
