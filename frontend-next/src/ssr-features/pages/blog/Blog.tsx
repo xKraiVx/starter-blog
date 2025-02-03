@@ -1,5 +1,6 @@
 import { GetBlogPageQuery } from "@/ssr-features/pages/blog/graphql/queries/getBlogPage.generated";
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
+import NextLink from "next/link";
 import { JSX } from "react";
 
 interface IBlogProps {
@@ -14,7 +15,9 @@ export default function Blog({ data }: IBlogProps): JSX.Element {
       {blog?.title && <Typography variant="h1">{blog.title}</Typography>}
       {articles?.map((article) => (
         <Box key={article?.slug}>
-          <Typography variant="h2">{article?.title}</Typography>
+          <NextLink href={`/blog/${article?.slug}`}>
+            <Typography variant="h2">{article?.title}</Typography>
+          </NextLink>
         </Box>
       ))}
       <Typography>

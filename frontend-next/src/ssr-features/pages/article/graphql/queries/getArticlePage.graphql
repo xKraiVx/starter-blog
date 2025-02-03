@@ -1,0 +1,10 @@
+query getArticlePage($locale: I18NLocaleCode, $filters: ArticleFiltersInput) {
+  articles(locale: $locale, filters: $filters) {
+    ...ArticleForArticlePage
+  }
+}
+
+fragment ArticleForArticlePage on Article {
+  slug
+  title
+}
