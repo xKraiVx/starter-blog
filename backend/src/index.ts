@@ -1,4 +1,4 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from "@strapi/strapi";
 
 export default {
   /**
@@ -7,7 +7,36 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register({ strapi }: { strapi: Core.Strapi }) {
+    const extensionService = strapi.plugin("graphql").service("extension");
+
+    extensionService.use(({ strapi }) => ({
+      typeDefs: `
+        type Query {
+          article(slug: String!, documentId: ID): Article
+        }
+      `,
+      resolvers: {
+        Query: {
+          article: {
+            resolve: async (parent, args, context) => {
+              const { toEntityResponse } = strapi.service(
+                "plugin::graphql.format"
+              ).returnTypes;
+
+              const data = await strapi.services["api::article.article"].find({
+                filters: { slug: args.slug },
+              });
+
+              const response = toEntityResponse(data.results[0]);
+
+              return response.value;
+            },
+          },
+        },
+      },
+    }));
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
