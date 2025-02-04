@@ -25,7 +25,7 @@ export default {
               ).returnTypes;
 
               const data = await strapi.services["api::article.article"].find({
-                filters: { slug: args.slug },
+                filters: { slug: args.slug, locale: args.locale || "en" },
               });
 
               const response = toEntityResponse(data.results[0]);

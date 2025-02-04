@@ -14,13 +14,9 @@ export const getArticlePage = async (
     GetArticlePageDocument,
     {
       locale,
-      filters: {
-        slug: {
-          eq: slug,
-        },
-      },
+      slug,
     }
   )();
 
-  return data.articles[0];
+  return data.article || null;
 };

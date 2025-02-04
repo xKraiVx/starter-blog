@@ -22,12 +22,12 @@ function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   }
 }
 export type GetArticlePageQueryVariables = Types.Exact<{
+  slug: Types.Scalars['String']['input'];
   locale?: Types.InputMaybe<Types.Scalars['I18NLocaleCode']['input']>;
-  filters?: Types.InputMaybe<Types.ArticleFiltersInput>;
 }>;
 
 
-export type GetArticlePageQuery = { __typename?: 'Query', articles: Array<{ __typename?: 'Article', slug?: string | null, title?: string | null } | null> };
+export type GetArticlePageQuery = { __typename?: 'Query', article?: { __typename?: 'Article', slug?: string | null, title?: string | null } | null };
 
 export type ArticleForArticlePageFragment = { __typename?: 'Article', slug?: string | null, title?: string | null };
 
@@ -39,8 +39,8 @@ export const ArticleForArticlePageFragmentDoc = `
 }
     `;
 export const GetArticlePageDocument = `
-    query getArticlePage($locale: I18NLocaleCode, $filters: ArticleFiltersInput) {
-  articles(locale: $locale, filters: $filters) {
+    query getArticlePage($slug: String!, $locale: I18NLocaleCode) {
+  article(slug: $slug, locale: $locale) {
     ...ArticleForArticlePage
   }
 }
@@ -50,13 +50,13 @@ export const useGetArticlePageQuery = <
       TData = GetArticlePageQuery,
       TError = unknown
     >(
-      variables?: GetArticlePageQueryVariables,
+      variables: GetArticlePageQueryVariables,
       options?: Omit<UseQueryOptions<GetArticlePageQuery, TError, TData>, 'queryKey'> & { queryKey?: UseQueryOptions<GetArticlePageQuery, TError, TData>['queryKey'] }
     ) => {
     
     return useQuery<GetArticlePageQuery, TError, TData>(
       {
-    queryKey: variables === undefined ? ['getArticlePage'] : ['getArticlePage', variables],
+    queryKey: ['getArticlePage', variables],
     queryFn: fetcher<GetArticlePageQuery, GetArticlePageQueryVariables>(GetArticlePageDocument, variables),
     ...options
   }

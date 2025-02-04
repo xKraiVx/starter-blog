@@ -1152,8 +1152,9 @@ export type QueryAboutArgs = {
 
 
 export type QueryArticleArgs = {
-  documentId: Scalars['ID']['input'];
+  documentId?: InputMaybe<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  slug: Scalars['String']['input'];
   status?: InputMaybe<PublicationStatus>;
 };
 
