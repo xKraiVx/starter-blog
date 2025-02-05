@@ -122,7 +122,7 @@ export const GetBlogPageDocument = `
   articles(locale: $locale, pagination: $pagination, filters: $filters) {
     ...ArticlesForBlogPage
   }
-  articles_connection(locale: $locale, pagination: $pagination) {
+  articles_connection(locale: $locale, pagination: $pagination, filters: $filters) {
     ...ArticlesConnectionForBlogPage
   }
   categories {

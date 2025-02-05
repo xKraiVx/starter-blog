@@ -6,7 +6,6 @@ import {
 import Blog from "@/ssr-features/pages/blog/Blog";
 import { getBlogPage } from "@/ssr-features/pages/blog/fetchers/getBlogPage";
 import { getCategoriesPagesSlugs } from "@/ssr-features/pages/blog/fetchers/getCategoriesPagesSlugs";
-import { Box } from "@mui/material";
 import { notFound } from "next/navigation";
 import { JSX } from "react";
 
@@ -31,19 +30,11 @@ export default async function Page({
 }: IPageProps<ICategoriesPageParams>): Promise<JSX.Element> {
   const { locale, slug } = await params;
 
-  const data = await getBlogPage(locale, {
-    filter: {
-      categories: {
-        slug: {
-          eq: slug,
-        },
-      },
-    },
-  });
+  const data = await getBlogPage(locale, slug);
 
   if (!data) {
     return notFound();
   }
 
-  return <Box>{slug}</Box>;
+  return <Blog data={data} />;
 }
