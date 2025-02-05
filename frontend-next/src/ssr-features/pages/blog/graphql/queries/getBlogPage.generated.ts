@@ -30,10 +30,11 @@ function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
 export type GetBlogPageQueryVariables = Types.Exact<{
   locale?: Types.InputMaybe<Types.Scalars['I18NLocaleCode']['input']>;
   pagination?: Types.InputMaybe<Types.PaginationArg>;
+  filters?: Types.InputMaybe<Types.ArticleFiltersInput>;
 }>;
 
 
-export type GetBlogPageQuery = { __typename?: 'Query', blog?: { __typename?: 'Blog', title?: string | null, documentId: string, seo?: { __typename?: 'ComponentSharedSeo', canonicalURL?: string | null, id: string, keywords?: string | null, metaDescription: string, metaRobots?: string | null, metaTitle: string, metaViewport?: string | null, metaImage?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, widgets?: Array<{ __typename: 'ComponentWidgetsCallToAction', buttonText?: string | null, description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsGrid', id: string, desktopColumnCount?: Types.Enum_Componentwidgetsgrid_Desktopcolumncount | null, mobileColumnCount?: Types.Enum_Componentwidgetsgrid_Mobilecolumncount | null, tabletColumnCount?: Types.Enum_Componentwidgetsgrid_Tabletcolumncount | null, title?: string | null, item?: Array<{ __typename?: 'ComponentComponentsGridItem', description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null, icon?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | null> | null } | { __typename: 'ComponentWidgetsHero', id: string, title?: string | null, description?: any | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsRecentPosts', title?: string | null, postCount?: number | null, id: string, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null> } | { __typename: 'ComponentWidgetsTextWithImage', id: string, isImageOnLeftSide?: boolean | null, text?: any | null, title?: string | null, image?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename?: 'Error' } | null> | null } | null, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null>, articles_connection?: { __typename?: 'ArticleEntityResponseCollection', pageInfo: { __typename?: 'Pagination', total: number } } | null };
+export type GetBlogPageQuery = { __typename?: 'Query', blog?: { __typename?: 'Blog', title?: string | null, documentId: string, seo?: { __typename?: 'ComponentSharedSeo', canonicalURL?: string | null, id: string, keywords?: string | null, metaDescription: string, metaRobots?: string | null, metaTitle: string, metaViewport?: string | null, metaImage?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, widgets?: Array<{ __typename: 'ComponentWidgetsCallToAction', buttonText?: string | null, description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsGrid', id: string, desktopColumnCount?: Types.Enum_Componentwidgetsgrid_Desktopcolumncount | null, mobileColumnCount?: Types.Enum_Componentwidgetsgrid_Mobilecolumncount | null, tabletColumnCount?: Types.Enum_Componentwidgetsgrid_Tabletcolumncount | null, title?: string | null, item?: Array<{ __typename?: 'ComponentComponentsGridItem', description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null, icon?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | null> | null } | { __typename: 'ComponentWidgetsHero', id: string, title?: string | null, description?: any | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsRecentPosts', title?: string | null, postCount?: number | null, id: string, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null> } | { __typename: 'ComponentWidgetsTextWithImage', id: string, isImageOnLeftSide?: boolean | null, text?: any | null, title?: string | null, image?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename?: 'Error' } | null> | null } | null, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null>, articles_connection?: { __typename?: 'ArticleEntityResponseCollection', pageInfo: { __typename?: 'Pagination', total: number } } | null, categories: Array<{ __typename?: 'Category', name?: string | null, slug?: string | null } | null> };
 
 export type BlogPageDataFragment = { __typename?: 'Blog', title?: string | null, documentId: string, seo?: { __typename?: 'ComponentSharedSeo', canonicalURL?: string | null, id: string, keywords?: string | null, metaDescription: string, metaRobots?: string | null, metaTitle: string, metaViewport?: string | null, metaImage?: { __typename?: 'UploadFile', url: string, width?: number | null, height?: number | null, alternativeText?: string | null } | null } | null, widgets?: Array<{ __typename: 'ComponentWidgetsCallToAction', buttonText?: string | null, description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsGrid', id: string, desktopColumnCount?: Types.Enum_Componentwidgetsgrid_Desktopcolumncount | null, mobileColumnCount?: Types.Enum_Componentwidgetsgrid_Mobilecolumncount | null, tabletColumnCount?: Types.Enum_Componentwidgetsgrid_Tabletcolumncount | null, title?: string | null, item?: Array<{ __typename?: 'ComponentComponentsGridItem', description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null, icon?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | null> | null } | { __typename: 'ComponentWidgetsHero', id: string, title?: string | null, description?: any | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsRecentPosts', title?: string | null, postCount?: number | null, id: string, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null> } | { __typename: 'ComponentWidgetsTextWithImage', id: string, isImageOnLeftSide?: boolean | null, text?: any | null, title?: string | null, image?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename?: 'Error' } | null> | null };
 
@@ -54,6 +55,8 @@ export type WidgetsForBlogPageFragment = WidgetsForBlogPage_ComponentWidgetsCall
 export type ArticlesForBlogPageFragment = { __typename?: 'Article', title?: string | null, slug?: string | null };
 
 export type ArticlesConnectionForBlogPageFragment = { __typename?: 'ArticleEntityResponseCollection', pageInfo: { __typename?: 'Pagination', total: number } };
+
+export type CategoriesForBlogPageFragment = { __typename?: 'Category', name?: string | null, slug?: string | null };
 
 
 export const WidgetsForBlogPageFragmentDoc = `
@@ -105,21 +108,31 @@ export const ArticlesConnectionForBlogPageFragmentDoc = `
   }
 }
     `;
+export const CategoriesForBlogPageFragmentDoc = `
+    fragment CategoriesForBlogPage on Category {
+  name
+  slug
+}
+    `;
 export const GetBlogPageDocument = `
-    query getBlogPage($locale: I18NLocaleCode, $pagination: PaginationArg) {
+    query getBlogPage($locale: I18NLocaleCode, $pagination: PaginationArg, $filters: ArticleFiltersInput) {
   blog(locale: $locale) {
     ...BlogPageData
   }
-  articles(locale: $locale, pagination: $pagination) {
+  articles(locale: $locale, pagination: $pagination, filters: $filters) {
     ...ArticlesForBlogPage
   }
   articles_connection(locale: $locale, pagination: $pagination) {
     ...ArticlesConnectionForBlogPage
   }
+  categories {
+    ...CategoriesForBlogPage
+  }
 }
     ${BlogPageDataFragmentDoc}
 ${ArticlesForBlogPageFragmentDoc}
-${ArticlesConnectionForBlogPageFragmentDoc}`;
+${ArticlesConnectionForBlogPageFragmentDoc}
+${CategoriesForBlogPageFragmentDoc}`;
 
 export const useGetBlogPageQuery = <
       TData = GetBlogPageQuery,

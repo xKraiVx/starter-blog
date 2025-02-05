@@ -1,0 +1,9 @@
+query getCategoriesPagesSlugs($locale: I18NLocaleCode) {
+  categories(locale: $locale) {
+    ...CategoryForArticlesPagesSlugs
+  }
+}
+
+fragment CategoryForArticlesPagesSlugs on Category {
+  slug
+}

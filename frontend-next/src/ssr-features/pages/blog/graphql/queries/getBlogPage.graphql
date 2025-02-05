@@ -1,12 +1,19 @@
-query getBlogPage($locale: I18NLocaleCode, $pagination: PaginationArg) {
+query getBlogPage(
+  $locale: I18NLocaleCode
+  $pagination: PaginationArg
+  $filters: ArticleFiltersInput
+) {
   blog(locale: $locale) {
     ...BlogPageData
   }
-  articles(locale: $locale, pagination: $pagination) {
+  articles(locale: $locale, pagination: $pagination, filters: $filters) {
     ...ArticlesForBlogPage
   }
   articles_connection(locale: $locale, pagination: $pagination) {
     ...ArticlesConnectionForBlogPage
+  }
+  categories {
+    ...CategoriesForBlogPage
   }
 }
 
@@ -48,4 +55,9 @@ fragment ArticlesConnectionForBlogPage on ArticleEntityResponseCollection {
   pageInfo {
     total
   }
+}
+
+fragment CategoriesForBlogPage on Category {
+  name
+  slug
 }

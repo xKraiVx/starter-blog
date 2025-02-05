@@ -7,11 +7,12 @@ import {
 } from "@/ssr-features/pages/blog/graphql/queries/getBlogPage.generated";
 
 export const getBlogPage = async (
-  locale: ELocale
+  locale: ELocale,
+  variables?: GetBlogPageQueryVariables
 ): Promise<GetBlogPageQuery> => {
   const data = await fetcher<GetBlogPageQuery, GetBlogPageQueryVariables>(
     GetBlogPageDocument,
-    { locale }
+    { locale, ...variables }
   )();
 
   return data;

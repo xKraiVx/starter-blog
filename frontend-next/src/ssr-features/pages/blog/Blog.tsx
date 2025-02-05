@@ -8,14 +8,21 @@ interface IBlogProps {
 }
 
 export default function Blog({ data }: IBlogProps): JSX.Element {
-  const { blog, articles, articles_connection } = data;
+  const { blog, articles, articles_connection, categories } = data;
 
   return (
     <Box>
       {blog?.title && <Typography variant="h1">{blog.title}</Typography>}
+      {categories?.map((category) => (
+        <Box key={category?.slug}>
+          <Link component={NextLink} href={`/blog/category/${category?.slug}`}>
+            {category?.name}
+          </Link>
+        </Box>
+      ))}
       {articles?.map((article) => (
         <Box key={article?.slug}>
-          <NextLink href={`/blog/${article?.slug}`}>
+          <NextLink href={`/blog/article/${article?.slug}`}>
             <Typography variant="h2">{article?.title}</Typography>
           </NextLink>
         </Box>
