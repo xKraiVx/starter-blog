@@ -28,17 +28,17 @@ declare module "@mui/material/LinearProgress" {
 }
 
 export const PRIMARY = {
-  main: "#C19A6B", // Camel-like color
-  light: "#DABD8C",
-  dark: "#A17C49",
-  contrastText: "#333",
+  main: "#1E88E5", // Bright blue
+  light: "#6AB7FF",
+  dark: "#005CB2",
+  contrastText: "#FFF",
 };
-// TODO: define what is secondary
+
 export const SECONDARY = {
-  main: "#C3B091", // Khaki color
-  light: "#E4DCC9",
-  dark: "#8F8260",
-  contrastText: "#333",
+  main: "#43A047", // Vibrant green
+  light: "#76D275",
+  dark: "#00701A",
+  contrastText: "#FFF",
 };
 
 export const ACCENT = {

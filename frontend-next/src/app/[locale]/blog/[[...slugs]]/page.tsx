@@ -6,6 +6,7 @@ import {
 import Blog from "@/ssr-features/pages/blog/Blog";
 import { getBlogPage } from "@/ssr-features/pages/blog/fetchers/getBlogPage";
 import { getCategoriesPagesSlugs } from "@/ssr-features/pages/blog/fetchers/getCategoriesPagesSlugs";
+import { getCategoryAndPage } from "@/ssr-features/pages/blog/utils/getCategoryAndPage";
 import { notFound } from "next/navigation";
 import { JSX } from "react";
 
@@ -15,26 +16,35 @@ export async function generateStaticParams({ params }: IStaticParamsArguments) {
   const slugs = await getCategoriesPagesSlugs(locale);
 
   return slugs.map((slug) => ({
-    slug: slug,
-    fallback: false,
+    slugs: [slug],
+    fallback: true,
   }));
 }
 
-interface ICategoriesPageParams {
+interface IBlogPageParams {
   locale: ELocale;
-  slug: string;
+  slugs: string[] | undefined;
 }
 
 export default async function Page({
   params,
-}: IPageProps<ICategoriesPageParams>): Promise<JSX.Element> {
-  const { locale, slug } = await params;
+}: IPageProps<IBlogPageParams>): Promise<JSX.Element> {
+  const { locale, slugs } = await params;
 
-  const data = await getBlogPage(locale, slug);
+  const { pageNumber, categorySlug } = getCategoryAndPage(slugs);
+
+  const data = await getBlogPage({
+    locale,
+    slugs,
+  });
+
+  console.log(data);
 
   if (!data) {
     return notFound();
   }
 
-  return <Blog data={data} />;
+  return (
+    <Blog data={data} pageNumber={pageNumber} categorySlug={categorySlug} />
+  );
 }
