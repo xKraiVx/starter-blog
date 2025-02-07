@@ -1,0 +1,7 @@
+query GetHomePageMeta($locale: I18NLocaleCode) {
+  homePage(locale: $locale) {
+    seo {
+      ...SeoForPage
+    }
+  }
+}
