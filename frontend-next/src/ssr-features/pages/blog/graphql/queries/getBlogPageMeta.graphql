@@ -1,0 +1,7 @@
+query GetBlogPageMeta($locale: I18NLocaleCode) {
+  blog(locale: $locale) {
+    seo {
+      ...SeoForPage
+    }
+  }
+}

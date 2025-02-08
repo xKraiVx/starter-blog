@@ -1,4 +1,4 @@
-query getArticlesPagesSlugs($locale: I18NLocaleCode) {
+query GetArticlesPagesSlugs($locale: I18NLocaleCode) {
   articles(locale: $locale) {
     ...ArticleForArticlesPagesSlugs
   }

@@ -1,4 +1,4 @@
-query getBlogPage(
+query GetBlogPage(
   $locale: I18NLocaleCode
   $pagination: PaginationArg
   $filters: ArticleFiltersInput
@@ -24,9 +24,6 @@ query getBlogPage(
 fragment BlogPageData on Blog {
   title
   documentId
-  seo {
-    ...SeoForPage
-  }
   widgets {
     ...WidgetsForBlogPage
   }

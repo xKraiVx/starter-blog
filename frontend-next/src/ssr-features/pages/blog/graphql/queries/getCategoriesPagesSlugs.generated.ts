@@ -37,7 +37,7 @@ export const CategoryForArticlesPagesSlugsFragmentDoc = `
 }
     `;
 export const GetCategoriesPagesSlugsDocument = `
-    query getCategoriesPagesSlugs($locale: I18NLocaleCode) {
+    query GetCategoriesPagesSlugs($locale: I18NLocaleCode) {
   categories(locale: $locale) {
     ...CategoryForArticlesPagesSlugs
   }
@@ -54,7 +54,7 @@ export const useGetCategoriesPagesSlugsQuery = <
     
     return useQuery<GetCategoriesPagesSlugsQuery, TError, TData>(
       {
-    queryKey: variables === undefined ? ['getCategoriesPagesSlugs'] : ['getCategoriesPagesSlugs', variables],
+    queryKey: variables === undefined ? ['GetCategoriesPagesSlugs'] : ['GetCategoriesPagesSlugs', variables],
     queryFn: fetcher<GetCategoriesPagesSlugsQuery, GetCategoriesPagesSlugsQueryVariables>(GetCategoriesPagesSlugsDocument, variables),
     ...options
   }

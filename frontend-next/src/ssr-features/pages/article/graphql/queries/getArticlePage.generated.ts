@@ -39,7 +39,7 @@ export const ArticleForArticlePageFragmentDoc = `
 }
     `;
 export const GetArticlePageDocument = `
-    query getArticlePage($slug: String!, $locale: I18NLocaleCode) {
+    query GetArticlePage($slug: String!, $locale: I18NLocaleCode) {
   article(slug: $slug, locale: $locale) {
     ...ArticleForArticlePage
   }
@@ -56,7 +56,7 @@ export const useGetArticlePageQuery = <
     
     return useQuery<GetArticlePageQuery, TError, TData>(
       {
-    queryKey: ['getArticlePage', variables],
+    queryKey: ['GetArticlePage', variables],
     queryFn: fetcher<GetArticlePageQuery, GetArticlePageQueryVariables>(GetArticlePageDocument, variables),
     ...options
   }

@@ -1,4 +1,4 @@
-query getArticlePage($slug: String!, $locale: I18NLocaleCode) {
+query GetArticlePage($slug: String!, $locale: I18NLocaleCode) {
   article(slug: $slug, locale: $locale) {
     ...ArticleForArticlePage
   }

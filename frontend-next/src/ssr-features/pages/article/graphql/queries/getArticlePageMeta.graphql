@@ -1,0 +1,7 @@
+query GetArticlePageMeta($slug: String!, $locale: I18NLocaleCode) {
+  article(slug: $slug, locale: $locale) {
+    seo {
+      ...SeoForPage
+    }
+  }
+}
