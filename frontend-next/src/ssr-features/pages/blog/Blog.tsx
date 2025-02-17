@@ -20,7 +20,7 @@ export default function Blog({
 
   const totalPages = articles_connection?.pageInfo.total
     ? Math.ceil(articles_connection.pageInfo.total / ARTICLES_PER_PAGE)
-    : null;
+    : undefined;
 
   return (
     <Box>
@@ -42,13 +42,11 @@ export default function Blog({
       <Typography>
         Articles count {articles_connection?.pageInfo.total}
       </Typography>
-      {totalPages && (
-        <UiPagination
-          count={totalPages}
-          defaultPage={pageNumber}
-          additionalSlug={categorySlug}
-        />
-      )}
+      <UiPagination
+        count={totalPages}
+        defaultPage={pageNumber}
+        additionalSlug={categorySlug}
+      />
     </Box>
   );
 }
