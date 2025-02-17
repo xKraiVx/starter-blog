@@ -1,3 +1,5 @@
+import UiPageContainer from "@/common/components/ui/ui-page-container/UiPageContainer";
+import UiPageTitle from "@/common/components/ui/ui-page-title/UiPageTitle";
 import UiPagination from "@/ssr-features/pages/blog/components/UiPagination";
 import { ARTICLES_PER_PAGE } from "@/ssr-features/pages/blog/constants/articlesPerPage";
 import { GetBlogPageQuery } from "@/ssr-features/pages/blog/graphql/queries/getBlogPage.generated";
@@ -23,8 +25,8 @@ export default function Blog({
     : undefined;
 
   return (
-    <Box>
-      {blog?.title && <Typography variant="h1">{blog.title}</Typography>}
+    <UiPageContainer>
+      <UiPageTitle>{blog?.title}</UiPageTitle>
       {categories?.map((category) => (
         <Box key={category?.slug}>
           <Link component={NextLink} href={`/blog/${category?.slug}`}>
@@ -47,6 +49,6 @@ export default function Blog({
         defaultPage={pageNumber}
         additionalSlug={categorySlug}
       />
-    </Box>
+    </UiPageContainer>
   );
 }

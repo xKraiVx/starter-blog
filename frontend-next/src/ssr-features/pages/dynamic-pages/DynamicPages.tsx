@@ -1,5 +1,6 @@
+import UiPageContainer from "@/common/components/ui/ui-page-container/UiPageContainer";
+import UiPageTitle from "@/common/components/ui/ui-page-title/UiPageTitle";
 import { DynamicPageDataFragment } from "@/ssr-features/pages/dynamic-pages/graphql/queries/getDynamicPage.generated";
-import { Typography } from "@mui/material";
 import { notFound } from "next/navigation";
 import { JSX } from "react";
 
@@ -14,5 +15,9 @@ export default function DynamicPages({
     notFound();
   }
 
-  return <Typography>{data.title}</Typography>;
+  return (
+    <UiPageContainer>
+      <UiPageTitle>{data.title}</UiPageTitle>
+    </UiPageContainer>
+  );
 }

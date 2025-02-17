@@ -1,5 +1,6 @@
 "use client";
 
+import { getBlogHref } from "@/ssr-features/pages/blog/utils/getBlogHref";
 import { Pagination, PaginationItem, PaginationProps } from "@mui/material";
 import NextLink from "next/link";
 import { JSX } from "react";
@@ -7,14 +8,6 @@ import { JSX } from "react";
 interface IUiPaginationProps extends PaginationProps {
   additionalSlug?: string;
 }
-
-const getHref = (pageNumber: number | null, additionalSlug?: string) => {
-  const slug = additionalSlug ? `/${additionalSlug}` : "";
-
-  console.log({ slug });
-
-  return `/blog${slug}/${pageNumber}`;
-};
 
 export default function UiPagination({
   additionalSlug,
@@ -28,6 +21,7 @@ export default function UiPagination({
   return (
     <Pagination
       color="primary"
+      count={count}
       {...props}
       sx={{
         ".Mui-selected": {
@@ -37,7 +31,7 @@ export default function UiPagination({
       renderItem={(item) => (
         <PaginationItem
           component={NextLink}
-          href={getHref(item.page, additionalSlug)}
+          href={getBlogHref(item.page, additionalSlug)}
           shallow
           {...item}
         />

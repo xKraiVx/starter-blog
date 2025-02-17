@@ -1,5 +1,7 @@
+import UiPageContainer from "@/common/components/ui/ui-page-container/UiPageContainer";
+import UiPageTitle from "@/common/components/ui/ui-page-title/UiPageTitle";
 import { GetHomePageQuery } from "@/ssr-features/pages/home/graphql/queries/getHomePage.generated";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { JSX } from "react";
@@ -8,7 +10,7 @@ interface IHomeProps {
   data: GetHomePageQuery;
 }
 
-function Home({ data }: IHomeProps): JSX.Element {
+export default function Home({ data }: IHomeProps): JSX.Element {
   if (!data) {
     notFound();
   }
@@ -16,7 +18,7 @@ function Home({ data }: IHomeProps): JSX.Element {
   const { homePage } = data;
 
   return (
-    <Box>
+    <UiPageContainer>
       <Image
         src="/next.svg"
         alt="Next.js logo"
@@ -24,13 +26,9 @@ function Home({ data }: IHomeProps): JSX.Element {
         height={38}
         priority
       />
-      <Typography variant="h1" color="primary">
-        {homePage?.title}
-      </Typography>
+      <UiPageTitle>{homePage?.title}</UiPageTitle>
       <Typography variant="h2">Hello, World!</Typography>
       <Typography variant="h3">Hello, World!</Typography>
-    </Box>
+    </UiPageContainer>
   );
 }
-
-export default Home;

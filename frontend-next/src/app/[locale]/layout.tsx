@@ -1,7 +1,7 @@
 import { ILayoutProps } from "@/common/types/general-props.type";
 import { routing } from "@/i18n/routing";
 import Providers from "@/providers/Providers";
-import MainLayout from "@/ssr-features/layouts/MainLayout";
+import MainLayout from "@/ssr-features/layouts/main-layout/MainLayout";
 import type { Metadata } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
