@@ -2,7 +2,6 @@ import UiPageContainer from "@/common/components/ui/ui-page-container/UiPageCont
 import UiPageTitle from "@/common/components/ui/ui-page-title/UiPageTitle";
 import { GetHomePageQuery } from "@/ssr-features/pages/home/graphql/queries/getHomePage.generated";
 import { Typography } from "@mui/material";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { JSX } from "react";
 
@@ -19,13 +18,6 @@ export default function Home({ data }: IHomeProps): JSX.Element {
 
   return (
     <UiPageContainer>
-      <Image
-        src="/next.svg"
-        alt="Next.js logo"
-        width={180}
-        height={38}
-        priority
-      />
       <UiPageTitle>{homePage?.title}</UiPageTitle>
       <Typography variant="h2">Hello, World!</Typography>
       <Typography variant="h3">Hello, World!</Typography>

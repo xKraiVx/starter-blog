@@ -5,7 +5,7 @@ import NextLink from "next/link";
 
 export default function Navigation() {
   return (
-    <Box sx={{ display: "flex", gap: 2 }}>
+    <Box component="nav" sx={{ display: "flex", alignItems: "center", gap: 2 }}>
       {NAVIGATION_LIST.map((item) => (
         <NavigationItem key={item.href} component={NextLink} href={item.href}>
           {item.label}
