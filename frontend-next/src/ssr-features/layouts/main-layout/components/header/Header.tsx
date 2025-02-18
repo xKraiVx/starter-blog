@@ -7,7 +7,14 @@ export default function Header() {
   return (
     <Container sx={{ display: "flex", justifyContent: "space-between", py: 4 }}>
       <Logo />
-      <Navigation />
+      <Navigation
+        sx={{
+          display: {
+            md: "flex",
+            xs: "none",
+          },
+        }}
+      />
       <MobileMenu />
     </Container>
   );

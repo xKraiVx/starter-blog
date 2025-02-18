@@ -1,13 +1,30 @@
 import NavigationItem from "@/ssr-features/layouts/main-layout/components/navigation/components/NavigationItem";
 import { NAVIGATION_LIST } from "@/ssr-features/layouts/main-layout/components/navigation/constants/navigationList";
-import { Box, Container } from "@mui/material";
+import { Box, Container, SxProps } from "@mui/material";
 import NextLink from "next/link";
+import { JSX } from "react";
 
-export default function Navigation() {
+interface INavigationProps {
+  sx?: SxProps;
+  onNavigationItemClick?: VoidFunction;
+}
+
+export default function Navigation({
+  sx,
+  onNavigationItemClick,
+}: INavigationProps): JSX.Element {
   return (
-    <Box component="nav" sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+    <Box
+      component="nav"
+      sx={{ display: "flex", alignItems: "center", gap: 2, ...sx }}
+    >
       {NAVIGATION_LIST.map((item) => (
-        <NavigationItem key={item.href} component={NextLink} href={item.href}>
+        <NavigationItem
+          onClick={onNavigationItemClick}
+          key={item.href}
+          component={NextLink}
+          href={item.href}
+        >
           {item.label}
         </NavigationItem>
       ))}
