@@ -1,0 +1,17 @@
+fragment PageBuilderWidgets on HomePageWidgetsDynamicZone {
+  ... on ComponentWidgetsHero {
+    ...HeroWidget
+  }
+  ... on ComponentWidgetsGrid {
+    ...GridWidget
+  }
+  ... on ComponentWidgetsCallToAction {
+    ...CallToActionWidget
+  }
+  ... on ComponentWidgetsRecentPosts {
+    ...RecentPostsWidget
+  }
+  ... on ComponentWidgetsTextWithImage {
+    ...TextWithImageWidget
+  }
+}

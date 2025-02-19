@@ -22,6 +22,10 @@ export default function MobileMenu(): JSX.Element | null {
     <>
       <IconButton
         sx={{
+          display: {
+            xs: "block",
+            md: "none",
+          },
           height: 40,
           width: 40,
         }}

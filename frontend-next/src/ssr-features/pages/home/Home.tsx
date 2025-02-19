@@ -1,5 +1,6 @@
 import UiPageContainer from "@/common/components/ui/ui-page-container/UiPageContainer";
 import UiPageTitle from "@/common/components/ui/ui-page-title/UiPageTitle";
+import PageBuilder from "@/features/page-builder/page-builder";
 import { GetHomePageQuery } from "@/ssr-features/pages/home/graphql/queries/getHomePage.generated";
 import { Typography } from "@mui/material";
 import { notFound } from "next/navigation";
@@ -19,8 +20,7 @@ export default function Home({ data }: IHomeProps): JSX.Element {
   return (
     <UiPageContainer>
       <UiPageTitle>{homePage?.title}</UiPageTitle>
-      <Typography variant="h2">Hello, World!</Typography>
-      <Typography variant="h3">Hello, World!</Typography>
+      <PageBuilder widgets={homePage?.widgets} />
     </UiPageContainer>
   );
 }
