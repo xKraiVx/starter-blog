@@ -1,10 +1,10 @@
-import { PageBuilderWidgets_ComponentWidgetsHero_Fragment } from "@/ssr-features/graphql/fragments/pageBuilderWidgets.generated";
 import { Box, Typography } from "@mui/material";
 import { JSX } from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { HeroWidgetFragment } from "@/ssr-features/graphql/fragments/heroWidget.generated";
 
 interface IHeroWidgetProps {
-  data: PageBuilderWidgets_ComponentWidgetsHero_Fragment;
+  data: HeroWidgetFragment;
 }
 
 export default function HeroWidget({ data }: IHeroWidgetProps): JSX.Element {
