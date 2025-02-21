@@ -13,6 +13,9 @@ export const BaseLine = (): Theme["components"] => ({
           "*::-webkit-scrollbar-track": {
             backgoundColor: "transparent",
           },
+          "*::-webkit-scrollbar-thumb": {
+            backgroundColor: "red",
+          },
         },
       },
     },

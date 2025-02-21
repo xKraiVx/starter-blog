@@ -1,20 +1,14 @@
-import { Container, ContainerProps } from "@mui/material";
+import { Box, BoxProps } from "@mui/material";
 import { JSX } from "react";
 
 export default function UiPageContainer({
   children,
   sx,
   ...props
-}: ContainerProps): JSX.Element {
+}: BoxProps): JSX.Element {
   return (
-    <Container
-      sx={{
-        marginTop: 2,
-        ...sx,
-      }}
-      {...props}
-    >
+    <Box sx={sx} {...props}>
       {children}
-    </Container>
+    </Box>
   );
 }

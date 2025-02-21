@@ -19,7 +19,6 @@ export default function Home({ data }: IHomeProps): JSX.Element {
 
   return (
     <UiPageContainer>
-      <UiPageTitle>{homePage?.title}</UiPageTitle>
       <PageBuilder widgets={homePage?.widgets} />
     </UiPageContainer>
   );
