@@ -3,6 +3,7 @@ import { JSX } from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { HeroWidgetFragment } from "@/ssr-features/graphql/fragments/heroWidget.generated";
 import { getImageUrl } from "@/common/utils/getImageUrl";
+import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
 
 interface IHeroWidgetProps {
   data: HeroWidgetFragment;
@@ -22,19 +23,20 @@ export default function HeroWidget({ data }: IHeroWidgetProps): JSX.Element {
         boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.8)",
       }}
     >
-      <Container
+      <UiSectionContainer
         sx={{
           alignItems: "center",
           display: "flex",
           height: "100%",
           justifyContent: "center",
           flexDirection: "column",
+          textAlign: "center",
           gap: 4,
         }}
       >
         <Typography variant="h2">{title}</Typography>
         <BlocksRenderer content={description} />
-      </Container>
+      </UiSectionContainer>
     </Box>
   );
 }

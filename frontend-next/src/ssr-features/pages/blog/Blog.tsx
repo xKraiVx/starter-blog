@@ -1,4 +1,4 @@
-import UiPageContainer from "@/common/components/ui/ui-page-container/UiPageContainer";
+import UiPageContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
 import UiPageTitle from "@/common/components/ui/ui-page-title/UiPageTitle";
 import UiPagination from "@/ssr-features/pages/blog/components/UiPagination";
 import { ARTICLES_PER_PAGE } from "@/ssr-features/pages/blog/constants/articlesPerPage";
