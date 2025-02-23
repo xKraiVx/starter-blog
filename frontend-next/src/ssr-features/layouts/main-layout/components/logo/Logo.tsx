@@ -6,6 +6,7 @@ export default function Logo() {
   return (
     <Link
       component={NextLink}
+      aria-label="Home"
       sx={{
         transition: "opacity 0.3s",
         "&:hover": { opacity: 0.7 },
