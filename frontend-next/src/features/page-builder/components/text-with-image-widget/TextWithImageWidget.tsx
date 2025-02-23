@@ -12,15 +12,44 @@ interface IHeroWidgetProps {
 export default function TextWithImageWidget({
   data,
 }: IHeroWidgetProps): JSX.Element {
-  const { title, text, image } = data;
+  const { title, text, image, isImageOnLeftSide } = data;
 
   return (
-    <UiSectionContainer component="section" sx={{ display: "flex", gap: 4 }}>
-      <Box>
+    <UiSectionContainer
+      component="section"
+      sx={{
+        display: "flex",
+        gap: 4,
+        justifyContent: "space-between",
+        flexDirection: {
+          xs: "column",
+          md: "row",
+        },
+      }}
+    >
+      <Box
+        sx={{
+          flex: 1,
+        }}
+      >
         <Typography variant="h2">{title}</Typography>
         <BlocksRenderer content={text} />
       </Box>
-      <UiImage data={image} />
+      <UiImage
+        sx={{
+          flex: {
+            md: 1,
+          },
+          order: {
+            md: isImageOnLeftSide ? -1 : 1,
+          },
+          height: {
+            xs: "100vw",
+            md: "unset",
+          },
+        }}
+        data={image}
+      />
     </UiSectionContainer>
   );
 }

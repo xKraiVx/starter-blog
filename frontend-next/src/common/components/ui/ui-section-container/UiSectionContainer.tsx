@@ -7,7 +7,7 @@ export default function UiSectionContainer({
   ...props
 }: ContainerProps): JSX.Element {
   return (
-    <Container maxWidth="xl" sx={sx} {...props}>
+    <Container maxWidth="xl" sx={{ py: { md: 20, xs: 10 }, ...sx }} {...props}>
       {children}
     </Container>
   );
