@@ -24,7 +24,7 @@ export default async function Page({
 }: IPageProps): Promise<JSX.Element> {
   const { locale } = await params;
 
-  const data = await getHomePage(locale);
+  const { data, recentArticles } = await getHomePage(locale);
 
-  return <Home data={data} />;
+  return <Home data={data} recentArticles={recentArticles} />;
 }

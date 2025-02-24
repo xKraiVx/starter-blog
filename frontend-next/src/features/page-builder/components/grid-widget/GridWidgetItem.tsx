@@ -24,7 +24,7 @@ export default function GridWidgetItem({
         backgroundImage: `url(${getImageUrl(backgroundImage?.url)})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        color: "white",
+        color: "common.white",
         boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.7)",
         p: 4,
       }}

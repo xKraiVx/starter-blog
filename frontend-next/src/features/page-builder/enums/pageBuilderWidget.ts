@@ -3,4 +3,5 @@ export enum EPageBuilderWidget {
   TextWithImage = "ComponentWidgetsTextWithImage",
   Grid = "ComponentWidgetsGrid",
   CallToAction = "ComponentWidgetsCallToAction",
+  ResentPosts = "ComponentWidgetsRecentPosts",
 }
