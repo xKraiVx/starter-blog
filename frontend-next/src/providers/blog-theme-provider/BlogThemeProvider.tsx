@@ -1,5 +1,4 @@
 import { SECONDARY } from "@/providers/blog-theme-provider/constants/palette";
-import { overrideComponents } from "@/providers/blog-theme-provider/override-components";
 import { theme } from "@/providers/blog-theme-provider/useDefaultTheme";
 import { getGlobalStyles } from "@/providers/blog-theme-provider/utils/getGlobalStyles";
 import { CssBaseline, GlobalStyles } from "@mui/material";
@@ -13,8 +12,6 @@ interface Props extends PropsWithChildren {
 }
 
 export default function BlogThemeProvider({ children }: Props) {
-  theme.components = overrideComponents();
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles styles={getGlobalStyles(SECONDARY.main)} />

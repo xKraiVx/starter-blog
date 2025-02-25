@@ -1,4 +1,4 @@
-export const AppBar = () => ({
+export const AppBar = {
   MuiAppBar: {
     styleOverrides: {
       root: {
@@ -8,4 +8,4 @@ export const AppBar = () => ({
       },
     },
   },
-});
+};

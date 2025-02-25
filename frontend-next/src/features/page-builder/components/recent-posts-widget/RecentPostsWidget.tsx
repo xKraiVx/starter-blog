@@ -20,13 +20,31 @@ export default function RecentPostsWidget({
     <Box component="section">
       <UiSectionContainer>
         <Typography variant="h2">{title}</Typography>
-        {recentArticles?.articles?.map((article) => (
-          <UiPostPreview
-            key={article?.slug}
-            title={article?.title}
-            slug={article?.slug}
-          />
-        ))}
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+          }}
+        >
+          {recentArticles?.articles?.map((article) => {
+            const { slug, title, description, updatedAt, cover } =
+              article || {};
+
+            return (
+              <UiPostPreview
+                sx={{
+                  flex: 1,
+                }}
+                key={slug}
+                title={title}
+                slug={slug}
+                description={description}
+                image={cover}
+                updatedAt={updatedAt}
+              />
+            );
+          })}
+        </Box>
       </UiSectionContainer>
     </Box>
   );

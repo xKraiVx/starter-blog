@@ -1,1 +1,1 @@
-export type TMayby<T> = T | null | undefined;
+export type TMaybe<T> = T | null | undefined;

@@ -6,6 +6,7 @@ import { GetBlogPageQuery } from "@/ssr-features/pages/blog/graphql/queries/getB
 import { Box, Link, Typography } from "@mui/material";
 import NextLink from "next/link";
 import { JSX } from "react";
+import { getArticleFullPathBySlug } from "@/common/utils/getArticleFullPathBySlug";
 
 interface IBlogProps {
   data: GetBlogPageQuery;
@@ -36,7 +37,7 @@ export default function Blog({
       ))}
       {articles?.map((article) => (
         <Box key={article?.slug}>
-          <NextLink href={`/blog/article/${article?.slug}`}>
+          <NextLink href={getArticleFullPathBySlug(article?.slug)}>
             <Typography variant="h2">{article?.title}</Typography>
           </NextLink>
         </Box>
