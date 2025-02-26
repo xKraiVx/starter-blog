@@ -21,12 +21,10 @@
     "files.exclude": {
       "node_modules": true,
       "dist": true,
-      "build": true,
       "backend": true,
       "frontend-next": true,
       ".vscode": true,
-      ".strapi": true,
-      ".next": true
+      ".strapi": true
     }
   }
 }

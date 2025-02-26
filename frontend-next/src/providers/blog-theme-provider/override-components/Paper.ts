@@ -6,7 +6,7 @@ export const Paper: Theme["components"] = {
     styleOverrides: {
       root: {
         backgroundColor: alpha(GREY[500], 0.1),
-        borderRadius: 2,
+        borderRadius: 8,
       },
     },
   },
