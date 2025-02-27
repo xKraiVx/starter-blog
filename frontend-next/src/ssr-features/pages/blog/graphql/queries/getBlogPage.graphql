@@ -48,8 +48,20 @@ fragment WidgetsForBlogPage on BlogWidgetsDynamicZone {
 }
 
 fragment ArticlesForBlogPage on Article {
-  title
   slug
+  title
+  description
+  slug
+  updatedAt
+  cover {
+    ...ArticleForBlogPageCover
+  }
+}
+
+fragment ArticleForBlogPageCover on UploadFile {
+  url
+  alternativeText
+  size
 }
 
 fragment ArticlesConnectionForBlogPage on ArticleEntityResponseCollection {
