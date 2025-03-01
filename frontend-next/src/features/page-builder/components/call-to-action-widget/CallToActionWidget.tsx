@@ -2,6 +2,8 @@ import { Box, Typography, Button } from "@mui/material";
 import { JSX } from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { CallToActionWidgetFragment } from "@/ssr-features/graphql/fragments/callToActionWidget.generated";
+import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
+import CallToAction from "@/features/call-to-action/CallToAction";
 
 interface ICallToActionWidgetProps {
   data: CallToActionWidgetFragment;
@@ -10,15 +12,18 @@ interface ICallToActionWidgetProps {
 export default function CallToActionWidget({
   data,
 }: ICallToActionWidgetProps): JSX.Element {
-  const { title, description, buttonText } = data;
+  const { title, description } = data;
 
   return (
-    <Box component="section">
+    <UiSectionContainer
+      component="section"
+      sx={{
+        bgcolor: "common.black",
+      }}
+    >
       <Typography variant="h2">{title}</Typography>
       <BlocksRenderer content={description} />
-      <Button variant="contained" color="primary">
-        {buttonText}
-      </Button>
-    </Box>
+      <CallToAction />
+    </UiSectionContainer>
   );
 }

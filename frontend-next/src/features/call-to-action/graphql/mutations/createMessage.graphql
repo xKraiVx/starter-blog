@@ -1,0 +1,9 @@
+mutation CreateMessage($data: MessageInput!) {
+  createMessage(data: $data) {
+    ...MessageFragment
+  }
+}
+
+fragment MessageFragment on Message {
+  uuid
+}
