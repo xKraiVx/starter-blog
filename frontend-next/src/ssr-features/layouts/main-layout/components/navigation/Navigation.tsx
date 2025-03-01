@@ -1,6 +1,9 @@
+"use client";
+
+import { useResponsive } from "@/common/hooks/useResponsive";
 import NavigationItem from "@/ssr-features/layouts/main-layout/components/navigation/components/NavigationItem";
 import { NAVIGATION_LIST } from "@/ssr-features/layouts/main-layout/components/navigation/constants/navigationList";
-import { Box, Container, SxProps } from "@mui/material";
+import { Box, SxProps } from "@mui/material";
 import NextLink from "next/link";
 import { JSX } from "react";
 
@@ -12,7 +15,13 @@ interface INavigationProps {
 export default function Navigation({
   sx,
   onNavigationItemClick,
-}: INavigationProps): JSX.Element {
+}: INavigationProps): JSX.Element | null {
+  const { isDesktop } = useResponsive();
+
+  if (!isDesktop) {
+    return null;
+  }
+
   return (
     <Box
       component="nav"

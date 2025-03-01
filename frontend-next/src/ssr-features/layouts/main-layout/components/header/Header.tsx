@@ -11,18 +11,15 @@ export default function Header() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          py: 4,
+          alignItems: "center",
+          py: {
+            xs: 2,
+            md: 4,
+          },
         }}
       >
         <Logo />
-        <Navigation
-          sx={{
-            display: {
-              md: "flex",
-              xs: "none",
-            },
-          }}
-        />
+        <Navigation />
         <MobileMenu />
       </UiSectionContainer>
     </HeaderWrapper>

@@ -9,11 +9,17 @@ export default function Logo() {
       aria-label="Home"
       sx={{
         transition: "opacity 0.3s",
+        height: { xs: 30, md: 40 },
         "&:hover": { opacity: 0.7 },
       }}
       href="/"
     >
-      <NextLogoIcon sx={{ width: "auto", height: 40 }} />
+      <NextLogoIcon
+        sx={{
+          width: "auto",
+          height: "100%",
+        }}
+      />
     </Link>
   );
 }
