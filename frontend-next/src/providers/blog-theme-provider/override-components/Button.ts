@@ -1,4 +1,4 @@
-export const Button = () => ({
+export const Button = {
   MuiButton: {
     styleOverrides: {
       root: {
@@ -12,4 +12,4 @@ export const Button = () => ({
       },
     },
   },
-});
+};

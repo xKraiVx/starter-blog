@@ -33,7 +33,7 @@ export type GetBlogPageQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetBlogPageQuery = { __typename?: 'Query', blog?: { __typename?: 'Blog', title?: string | null, documentId: string, widgets?: Array<{ __typename: 'ComponentWidgetsCallToAction', buttonText?: string | null, description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsGrid', id: string, desktopColumnCount?: Types.Enum_Componentwidgetsgrid_Desktopcolumncount | null, mobileColumnCount?: Types.Enum_Componentwidgetsgrid_Mobilecolumncount | null, tabletColumnCount?: Types.Enum_Componentwidgetsgrid_Tabletcolumncount | null, title?: string | null, item?: Array<{ __typename?: 'ComponentComponentsGridItem', description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null, icon?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | null> | null } | { __typename: 'ComponentWidgetsHero', id: string, title?: string | null, description?: any | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsRecentPosts', title?: string | null, postCount?: number | null, id: string, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null> } | { __typename: 'ComponentWidgetsTextWithImage', id: string, isImageOnLeftSide?: boolean | null, text?: any | null, title?: string | null, image?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename?: 'Error' } | null> | null } | null, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null>, articles_connection?: { __typename?: 'ArticleEntityResponseCollection', pageInfo: { __typename?: 'Pagination', total: number } } | null, categories: Array<{ __typename?: 'Category', name?: string | null, slug?: string | null } | null> };
+export type GetBlogPageQuery = { __typename?: 'Query', blog?: { __typename?: 'Blog', title?: string | null, documentId: string, widgets?: Array<{ __typename: 'ComponentWidgetsCallToAction', buttonText?: string | null, description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsGrid', id: string, desktopColumnCount?: Types.Enum_Componentwidgetsgrid_Desktopcolumncount | null, mobileColumnCount?: Types.Enum_Componentwidgetsgrid_Mobilecolumncount | null, tabletColumnCount?: Types.Enum_Componentwidgetsgrid_Tabletcolumncount | null, title?: string | null, item?: Array<{ __typename?: 'ComponentComponentsGridItem', description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null, icon?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | null> | null } | { __typename: 'ComponentWidgetsHero', id: string, title?: string | null, description?: any | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsRecentPosts', title?: string | null, postCount?: number | null, id: string, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null> } | { __typename: 'ComponentWidgetsTextWithImage', id: string, isImageOnLeftSide?: boolean | null, text?: any | null, title?: string | null, image?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename?: 'Error' } | null> | null } | null, articles: Array<{ __typename?: 'Article', slug?: string | null, title?: string | null, description?: string | null, updatedAt?: any | null, cover?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, size: number } | null } | null>, articles_connection?: { __typename?: 'ArticleEntityResponseCollection', pageInfo: { __typename?: 'Pagination', total: number } } | null, categories: Array<{ __typename?: 'Category', name?: string | null, slug?: string | null } | null> };
 
 export type BlogPageDataFragment = { __typename?: 'Blog', title?: string | null, documentId: string, widgets?: Array<{ __typename: 'ComponentWidgetsCallToAction', buttonText?: string | null, description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsGrid', id: string, desktopColumnCount?: Types.Enum_Componentwidgetsgrid_Desktopcolumncount | null, mobileColumnCount?: Types.Enum_Componentwidgetsgrid_Mobilecolumncount | null, tabletColumnCount?: Types.Enum_Componentwidgetsgrid_Tabletcolumncount | null, title?: string | null, item?: Array<{ __typename?: 'ComponentComponentsGridItem', description?: any | null, id: string, title?: string | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null, icon?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | null> | null } | { __typename: 'ComponentWidgetsHero', id: string, title?: string | null, description?: any | null, backgroundImage?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename: 'ComponentWidgetsRecentPosts', title?: string | null, postCount?: number | null, id: string, articles: Array<{ __typename?: 'Article', title?: string | null, slug?: string | null } | null> } | { __typename: 'ComponentWidgetsTextWithImage', id: string, isImageOnLeftSide?: boolean | null, text?: any | null, title?: string | null, image?: { __typename?: 'UploadFile', size: number, url: string, alternativeText?: string | null } | null } | { __typename?: 'Error' } | null> | null };
 
@@ -51,7 +51,9 @@ export type WidgetsForBlogPage_Error_Fragment = { __typename?: 'Error' };
 
 export type WidgetsForBlogPageFragment = WidgetsForBlogPage_ComponentWidgetsCallToAction_Fragment | WidgetsForBlogPage_ComponentWidgetsGrid_Fragment | WidgetsForBlogPage_ComponentWidgetsHero_Fragment | WidgetsForBlogPage_ComponentWidgetsRecentPosts_Fragment | WidgetsForBlogPage_ComponentWidgetsTextWithImage_Fragment | WidgetsForBlogPage_Error_Fragment;
 
-export type ArticlesForBlogPageFragment = { __typename?: 'Article', title?: string | null, slug?: string | null };
+export type ArticlesForBlogPageFragment = { __typename?: 'Article', slug?: string | null, title?: string | null, description?: string | null, updatedAt?: any | null, cover?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, size: number } | null };
+
+export type ArticleForBlogPageCoverFragment = { __typename?: 'UploadFile', url: string, alternativeText?: string | null, size: number };
 
 export type ArticlesConnectionForBlogPageFragment = { __typename?: 'ArticleEntityResponseCollection', pageInfo: { __typename?: 'Pagination', total: number } };
 
@@ -90,12 +92,25 @@ export const BlogPageDataFragmentDoc = `
   }
 }
     ${WidgetsForBlogPageFragmentDoc}`;
-export const ArticlesForBlogPageFragmentDoc = `
-    fragment ArticlesForBlogPage on Article {
-  title
-  slug
+export const ArticleForBlogPageCoverFragmentDoc = `
+    fragment ArticleForBlogPageCover on UploadFile {
+  url
+  alternativeText
+  size
 }
     `;
+export const ArticlesForBlogPageFragmentDoc = `
+    fragment ArticlesForBlogPage on Article {
+  slug
+  title
+  description
+  slug
+  updatedAt
+  cover {
+    ...ArticleForBlogPageCover
+  }
+}
+    ${ArticleForBlogPageCoverFragmentDoc}`;
 export const ArticlesConnectionForBlogPageFragmentDoc = `
     fragment ArticlesConnectionForBlogPage on ArticleEntityResponseCollection {
   pageInfo {

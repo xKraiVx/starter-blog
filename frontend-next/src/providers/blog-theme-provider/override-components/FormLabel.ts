@@ -1,6 +1,4 @@
-import { Theme } from "@mui/material";
-
-export const FormLabel = (): Theme["components"] => ({
+export const FormLabel = {
   MuiFormLabel: {
     styleOverrides: {
       root: {
@@ -8,4 +6,4 @@ export const FormLabel = (): Theme["components"] => ({
       },
     },
   },
-});
+};

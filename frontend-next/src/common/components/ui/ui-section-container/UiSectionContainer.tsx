@@ -1,19 +1,13 @@
 import { Container, ContainerProps } from "@mui/material";
 import { JSX } from "react";
 
-export default function UiPageContainer({
+export default function UiSectionContainer({
   children,
   sx,
   ...props
 }: ContainerProps): JSX.Element {
   return (
-    <Container
-      sx={{
-        marginTop: 2,
-        ...sx,
-      }}
-      {...props}
-    >
+    <Container maxWidth="xl" sx={{ py: { md: 20, xs: 10 }, ...sx }} {...props}>
       {children}
     </Container>
   );

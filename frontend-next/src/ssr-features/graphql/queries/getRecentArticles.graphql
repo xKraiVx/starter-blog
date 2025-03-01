@@ -1,0 +1,22 @@
+query GetRecentArticles($pagination: PaginationArg, $locale: I18NLocaleCode) {
+  articles(pagination: $pagination, locale: $locale) {
+    ...ArticleForRecentArticlesWidget
+  }
+}
+
+fragment ArticleForRecentArticlesWidget on Article {
+  slug
+  title
+  description
+  slug
+  updatedAt
+  cover {
+    ...ArticleCover
+  }
+}
+
+fragment ArticleCover on UploadFile {
+  url
+  alternativeText
+  size
+}

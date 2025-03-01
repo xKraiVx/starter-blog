@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 
-export const BaseLine = (): Theme["components"] => ({
+export const BaseLine = {
   MuiCssBaseline: {
     styleOverrides: {
       body: {
@@ -13,8 +13,11 @@ export const BaseLine = (): Theme["components"] => ({
           "*::-webkit-scrollbar-track": {
             backgoundColor: "transparent",
           },
+          "*::-webkit-scrollbar-thumb": {
+            backgroundColor: "red",
+          },
         },
       },
     },
   },
-});
+};
