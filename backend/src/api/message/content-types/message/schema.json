@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "singularName": "message",
+    "pluralName": "messages",
+    "displayName": "Message",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uuid": {
+      "type": "uid"
+    },
+    "firstName": {
+      "type": "string",
+      "required": false
+    },
+    "lastName": {
+      "type": "string",
+      "required": false
+    },
+    "email": {
+      "type": "string",
+      "required": false,
+      "regex": "^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,}$"
+    },
+    "messageType": {
+      "type": "enumeration",
+      "enum": [
+        "question",
+        "bug",
+        "other"
+      ],
+      "required": true,
+      "default": "question"
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "confirmationConditions": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
