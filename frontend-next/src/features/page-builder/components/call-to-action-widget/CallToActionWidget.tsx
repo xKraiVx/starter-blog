@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { JSX } from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { CallToActionWidgetFragment } from "@/ssr-features/graphql/fragments/callToActionWidget.generated";
@@ -15,15 +15,16 @@ export default function CallToActionWidget({
   const { title, description } = data;
 
   return (
-    <UiSectionContainer
-      component="section"
+    <Box
       sx={{
         bgcolor: "common.black",
       }}
     >
-      <Typography variant="h2">{title}</Typography>
-      <BlocksRenderer content={description} />
-      <CallToAction />
-    </UiSectionContainer>
+      <UiSectionContainer component="section">
+        <Typography variant="h2">{title}</Typography>
+        <BlocksRenderer content={description} />
+        <CallToAction />
+      </UiSectionContainer>
+    </Box>
   );
 }
