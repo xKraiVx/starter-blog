@@ -1,12 +1,20 @@
 import { TextField, TextFieldProps } from "@mui/material";
 import { JSX } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
 export default function FeTextField({
   name,
   id,
   ...props
 }: TextFieldProps): JSX.Element {
+  const { control } = useFormContext();
   return (
-    <TextField id={id ?? name} name={name} variant="standard" {...props} />
+    <Controller
+      name={name || ""}
+      control={control}
+      render={({ field }) => (
+        <TextField id={id ?? name} {...field} {...props} />
+      )}
+    />
   );
 }
