@@ -1,57 +1,52 @@
 "use client";
 
-import {
-  useForm,
-  SubmitHandler,
-  Form,
-  Controller,
-  FormProvider,
-} from "react-hook-form";
-import { Button, MenuItem, Select, Stack } from "@mui/material";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { Box, Button, Stack } from "@mui/material";
 import { JSX } from "react";
-import {
-  Enum_Message_Messagetype,
-  MessageInput,
-} from "@/graphql/graphql-generated-types/types";
+import { Enum_Message_Messagetype } from "@/graphql/graphql-generated-types/types";
 import FeTextField from "@/common/components/fe/FeTextField";
 import FeSelect from "@/common/components/fe/FeSelect";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CALL_TO_ACTION_VALIDATION_SCHEMA } from "@/features/call-to-action/constants/callToActionValidationSchema";
+import { ICallToActionInput } from "@/features/call-to-action/types/callToActionInput";
+import FeConfirmationCheckbox from "@/common/components/fe/FeConfirmationCheckbox";
+import { CALL_TO_ACTION_SELECT_OPTIONS } from "@/features/call-to-action/constants/callToActionSelectOptions";
 
 export default function CallToAction(): JSX.Element {
-  const methods = useForm<MessageInput>({
+  const methods = useForm<ICallToActionInput>({
+    resolver: yupResolver(CALL_TO_ACTION_VALIDATION_SCHEMA),
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
       messageType: Enum_Message_Messagetype.Question,
+      confirmationConditions: false,
       text: "",
     },
   });
 
-  const onSubmit: SubmitHandler<MessageInput> = (data) => {
+  const onSubmit: SubmitHandler<ICallToActionInput> = (data) => {
     console.log(data);
   };
 
-  const SELECT_OPTIONS = [
-    { value: Enum_Message_Messagetype.Question, label: "Question" },
-    { value: Enum_Message_Messagetype.Bug, label: "Bug" },
-
-    { value: Enum_Message_Messagetype.Other, label: "Other" },
-  ];
-
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={({ data }) => onSubmit(data)}>
+      <Box component="form" onSubmit={methods.handleSubmit(onSubmit)}>
         <Stack gap={2}>
           <FeTextField label="First Name" name="firstName" />
           <FeTextField label="Last Name" name="lastName" />
           <FeTextField label="Email" name="email" />
-          <FeSelect name="messageType" options={SELECT_OPTIONS} />
-          <FeTextField label="Message" multiline={true} name="message" />
+          <FeSelect
+            name="messageType"
+            options={CALL_TO_ACTION_SELECT_OPTIONS}
+          />
+          <FeTextField label="Message" multiline={true} name="text" />
+          <FeConfirmationCheckbox name="confirmationConditions" />
           <Button variant="contained" color="primary" type="submit">
             Send
           </Button>
         </Stack>
-      </Form>
+      </Box>
     </FormProvider>
   );
 }
