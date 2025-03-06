@@ -5,10 +5,6 @@ import {
 import { Exact, MessageInput } from "@/graphql/graphql-generated-types/types";
 import { UseMutateFunction } from "@tanstack/react-query";
 
-interface IUseCreateMessageArgs {
-  onCompleted?: VoidFunction;
-}
-
 interface IUseCreateMessageResult {
   mutate: UseMutateFunction<
     CreateMessageMutation,
@@ -20,10 +16,10 @@ interface IUseCreateMessageResult {
 }
 
 type TUseCreateMessage = (
-  args: IUseCreateMessageArgs
+  onCompleted?: VoidFunction
 ) => IUseCreateMessageResult;
 
-export const useCreateMessage: TUseCreateMessage = ({ onCompleted }) => {
+export const useCreateMessage: TUseCreateMessage = (onCompleted) => {
   const { mutate, isPending } = useCreateMessageMutation({
     onSuccess() {
       onCompleted?.();

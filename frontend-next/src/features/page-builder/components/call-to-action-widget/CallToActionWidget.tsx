@@ -17,13 +17,31 @@ export default function CallToActionWidget({
   return (
     <Box
       sx={{
-        bgcolor: "common.black",
+        bgcolor: "grey.800",
       }}
     >
       <UiSectionContainer component="section">
         <Typography variant="h2">{title}</Typography>
-        <BlocksRenderer content={description} />
-        <CallToAction />
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            width: "100%",
+            flexDirection: {
+              xs: "column",
+              md: "row",
+            },
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <BlocksRenderer content={description} />
+          </Box>
+          <CallToAction
+            sx={{
+              flex: 1,
+            }}
+          />
+        </Box>
       </UiSectionContainer>
     </Box>
   );

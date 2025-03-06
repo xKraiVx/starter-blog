@@ -23,6 +23,7 @@ export default function FeTextField({
       render={({ field }) => (
         <TextField
           id={id ?? name}
+          variant="filled"
           {...field}
           {...props}
           error={!!errors[name]}
