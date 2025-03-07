@@ -2,6 +2,7 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 import zIndex from "@mui/material/styles/zIndex";
 import { JSX } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
 interface IFeSelectProps {
   id?: string;
@@ -32,6 +33,13 @@ export default function FeSelect({
                 },
               },
             }}
+            IconComponent={(props) =>
+              field.value ? (
+                <ExpandLess {...props} />
+              ) : (
+                <ExpandMore {...props} />
+              )
+            }
             inputProps={{ "aria-label": "Without label" }}
             displayEmpty={true}
             id={id ?? name}
