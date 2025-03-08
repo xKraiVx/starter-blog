@@ -16,6 +16,33 @@ export interface ComponentsGridItem extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsLink extends Struct.ComponentSchema {
+  collectionName: 'components_components_links';
+  info: {
+    description: '';
+    displayName: 'Link';
+    icon: 'link';
+  };
+  attributes: {
+    isTargetBlank: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    path: Schema.Attribute.String & Schema.Attribute.Required;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsSosialLink extends Struct.ComponentSchema {
+  collectionName: 'components_components_sosial_links';
+  info: {
+    displayName: 'Sosial Link';
+    icon: 'link';
+  };
+  attributes: {
+    icon: Schema.Attribute.Enumeration<['linkedin', 'github']> &
+      Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -180,6 +207,8 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'components.grid-item': ComponentsGridItem;
+      'components.link': ComponentsLink;
+      'components.sosial-link': ComponentsSosialLink;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

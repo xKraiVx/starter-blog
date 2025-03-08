@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_components_sosial_links",
+  "info": {
+    "displayName": "Sosial Link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "linkedin",
+        "github"
+      ],
+      "required": true
+    }
+  }
+}
