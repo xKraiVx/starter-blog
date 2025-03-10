@@ -1,6 +1,7 @@
 import { ILayoutProps } from "@/common/types/general-props.type";
 import { routing } from "@/i18n/routing";
 import Providers from "@/providers/Providers";
+import { getMainLayout } from "@/ssr-features/layouts/main-layout/fetchers/getMainLayout";
 import MainLayout from "@/ssr-features/layouts/main-layout/MainLayout";
 import type { Metadata } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -39,13 +40,15 @@ export default async function RootLayout({
 
   const messages = await getMessages();
 
+  const layoutData = await getMainLayout(locale);
+
   setRequestLocale(locale);
 
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers messages={messages}>
-          <MainLayout>{children}</MainLayout>
+          <MainLayout data={layoutData}>{children}</MainLayout>
         </Providers>
       </body>
     </html>

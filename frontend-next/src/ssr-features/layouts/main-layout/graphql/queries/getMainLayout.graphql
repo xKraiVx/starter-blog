@@ -1,0 +1,18 @@
+query GetMainLayoutData($locale: I18NLocaleCode) {
+  footer(locale: $locale) {
+    ...FooterForMainLayout
+  }
+}
+
+fragment FooterForMainLayout on Footer {
+  rights
+  socials {
+    ...SocialForeMainLayout
+  }
+}
+
+fragment SocialForeMainLayout on ComponentComponentsSosialLink {
+  id
+  url
+  icon
+}

@@ -329,6 +329,35 @@ export type ComponentComponentsGridItemFiltersInput = {
   title?: InputMaybe<StringFilterInput>;
 };
 
+export type ComponentComponentsLink = {
+  __typename?: 'ComponentComponentsLink';
+  id: Scalars['ID']['output'];
+  isTargetBlank?: Maybe<Scalars['Boolean']['output']>;
+  path: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentComponentsSosialLink = {
+  __typename?: 'ComponentComponentsSosialLink';
+  icon: Enum_Componentcomponentssosiallink_Icon;
+  id: Scalars['ID']['output'];
+  url: Scalars['String']['output'];
+};
+
+export type ComponentComponentsSosialLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentComponentsSosialLinkFiltersInput>>>;
+  icon?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentComponentsSosialLinkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentComponentsSosialLinkFiltersInput>>>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentComponentsSosialLinkInput = {
+  icon?: InputMaybe<Enum_Componentcomponentssosiallink_Icon>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentSharedMedia = {
   __typename?: 'ComponentSharedMedia';
   file?: Maybe<UploadFile>;
@@ -503,6 +532,11 @@ export type DeleteMutationResponse = {
   documentId: Scalars['ID']['output'];
 };
 
+export enum Enum_Componentcomponentssosiallink_Icon {
+  Github = 'github',
+  Linkedin = 'linkedin'
+}
+
 export enum Enum_Componentwidgetsgrid_Desktopcolumncount {
   Four = 'four',
   One = 'one',
@@ -570,7 +604,38 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type Footer = {
+  __typename?: 'Footer';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<Footer>>;
+  localizations_connection?: Maybe<FooterRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  rights?: Maybe<Scalars['String']['output']>;
+  socials?: Maybe<Array<Maybe<ComponentComponentsSosialLink>>>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type FooterSocialsArgs = {
+  filters?: InputMaybe<ComponentComponentsSosialLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type FooterInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  rights?: InputMaybe<Scalars['String']['input']>;
+  socials?: InputMaybe<Array<InputMaybe<ComponentComponentsSosialLinkInput>>>;
+};
+
+export type FooterRelationResponseCollection = {
+  __typename?: 'FooterRelationResponseCollection';
+  nodes: Array<Footer>;
+};
+
+export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -798,6 +863,7 @@ export type Mutation = {
   deleteAuthor?: Maybe<DeleteMutationResponse>;
   deleteBlog?: Maybe<DeleteMutationResponse>;
   deleteCategory?: Maybe<DeleteMutationResponse>;
+  deleteFooter?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
   deleteHomePage?: Maybe<DeleteMutationResponse>;
   deleteMessage?: Maybe<DeleteMutationResponse>;
@@ -823,6 +889,7 @@ export type Mutation = {
   updateAuthor?: Maybe<Author>;
   updateBlog?: Maybe<Blog>;
   updateCategory?: Maybe<Category>;
+  updateFooter?: Maybe<Footer>;
   updateGlobal?: Maybe<Global>;
   updateHomePage?: Maybe<HomePage>;
   updateMessage?: Maybe<Message>;
@@ -922,6 +989,11 @@ export type MutationDeleteBlogArgs = {
 
 export type MutationDeleteCategoryArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeleteFooterArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -1031,6 +1103,13 @@ export type MutationUpdateBlogArgs = {
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateFooterArgs = {
+  data: FooterInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1194,6 +1273,7 @@ export type Query = {
   categories: Array<Maybe<Category>>;
   categories_connection?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<Category>;
+  footer?: Maybe<Footer>;
   global?: Maybe<Global>;
   homePage?: Maybe<HomePage>;
   i18NLocale?: Maybe<I18NLocale>;
@@ -1304,6 +1384,12 @@ export type QueryCategories_ConnectionArgs = {
 
 export type QueryCategoryArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryFooterArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
