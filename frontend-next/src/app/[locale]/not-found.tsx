@@ -1,14 +1,6 @@
-import { Box, Link, Typography } from "@mui/material";
-import NextLink from "next/link";
+import NotFound from "@/ssr-features/pages/not-found/NotFound";
+import { JSX } from "react";
 
-export default function NotFound() {
-  return (
-    <Box>
-      <Typography variant="h1">Not Found</Typography>
-      <Typography>Could not find requested resource</Typography>
-      <Link component={NextLink} href="/">
-        Return Home
-      </Link>
-    </Box>
-  );
+export default function Page(): JSX.Element {
+  return <NotFound />;
 }

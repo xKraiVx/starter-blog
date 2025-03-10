@@ -40,7 +40,7 @@ export default function UiPostPreview({
 }: IUiPostPreviewProps): JSX.Element {
   return (
     <Card sx={sx} elevation={10}>
-      <CardHeader title={title} subheader={defaultFormatDate(updatedAt)} />
+      <CardHeader subheader={defaultFormatDate(updatedAt)} />
       <CardMedia
         component="img"
         height={200}
