@@ -1,3 +1,4 @@
+import ScrollUpButton from "@/features/scroll-up-button/ScrollUpButton";
 import Footer from "@/ssr-features/layouts/main-layout/components/footer/Footer";
 import Header from "@/ssr-features/layouts/main-layout/components/header/Header";
 import { GetMainLayoutDataQuery } from "@/ssr-features/layouts/main-layout/graphql/queries/getMainLayout.generated";
@@ -17,6 +18,7 @@ export default function MainLayout({
       <Header />
       {children}
       {!!data?.footer && <Footer data={data.footer} />}
+      <ScrollUpButton />
     </Box>
   );
 }
