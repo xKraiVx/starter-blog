@@ -4,6 +4,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { HeroWidgetFragment } from "@/ssr-features/graphql/fragments/heroWidget.generated";
 import { getImageUrl } from "@/common/utils/getImageUrl";
 import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
+import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
 
 interface IHeroWidgetProps {
   data: HeroWidgetFragment;
@@ -34,7 +35,7 @@ export default function HeroWidget({ data }: IHeroWidgetProps): JSX.Element {
           gap: 4,
         }}
       >
-        <Typography variant="h2">{title}</Typography>
+        <UiSectionTitle>{title}</UiSectionTitle>
         <BlocksRenderer content={description} />
       </UiSectionContainer>
     </Box>

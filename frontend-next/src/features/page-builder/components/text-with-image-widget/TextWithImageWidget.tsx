@@ -4,6 +4,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { TextWithImageWidgetFragment } from "@/ssr-features/graphql/fragments/textWithImageWidget.generated";
 import UiImage from "@/common/components/ui/ui-image/UiImage";
 import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
+import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
 
 interface IHeroWidgetProps {
   data: TextWithImageWidgetFragment;
@@ -32,7 +33,7 @@ export default function TextWithImageWidget({
           flex: 1,
         }}
       >
-        <Typography variant="h2">{title}</Typography>
+        <UiSectionTitle>{title}</UiSectionTitle>
         <BlocksRenderer content={text} />
       </Box>
       <UiImage

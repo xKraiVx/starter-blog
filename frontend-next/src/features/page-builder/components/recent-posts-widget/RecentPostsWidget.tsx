@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
 
 interface IRecentPostsWidgetProps {
   data: RecentPostsWidgetFragment;
@@ -33,7 +34,7 @@ export default function RecentPostsWidget({
       }}
     >
       <UiSectionContainer>
-        <Typography variant="h2">{title}</Typography>
+        <UiSectionTitle>{title}</UiSectionTitle>
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={10}

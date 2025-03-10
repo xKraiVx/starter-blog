@@ -13,6 +13,7 @@ import {
   Enum_Componentwidgetsgrid_Mobilecolumncount,
   Enum_Componentwidgetsgrid_Tabletcolumncount,
 } from "@/graphql/graphql-generated-types/types";
+import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
 
 interface IGridWidgetProps {
   data: GridWidgetFragment;
@@ -29,11 +30,7 @@ export default function GridWidget({ data }: IGridWidgetProps): JSX.Element {
 
   return (
     <UiSectionContainer component="section">
-      {title && (
-        <Typography variant="h2" sx={{ mb: 4 }}>
-          {title}
-        </Typography>
-      )}
+      {title && <UiSectionTitle>{title}</UiSectionTitle>}
       <Box
         sx={{
           display: "grid",

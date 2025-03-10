@@ -4,6 +4,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { CallToActionWidgetFragment } from "@/ssr-features/graphql/fragments/callToActionWidget.generated";
 import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
 import CallToAction from "@/features/call-to-action/CallToAction";
+import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
 
 interface ICallToActionWidgetProps {
   data: CallToActionWidgetFragment;
@@ -21,7 +22,7 @@ export default function CallToActionWidget({
       }}
     >
       <UiSectionContainer component="section">
-        <Typography variant="h2">{title}</Typography>
+        <UiSectionTitle>{title}</UiSectionTitle>
         <Box
           sx={{
             display: "flex",
