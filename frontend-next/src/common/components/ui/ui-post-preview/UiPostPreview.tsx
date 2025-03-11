@@ -44,7 +44,7 @@ export default function UiPostPreview({
       <CardMedia
         component="img"
         height={200}
-        image={getImageUrl(image?.url) || undefined}
+        image={getImageUrl(image?.url) || "placeholder.webp"}
         alt={image?.alternativeText || undefined}
       />
       <CardContent>
