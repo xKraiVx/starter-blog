@@ -5,6 +5,7 @@ import { CallToActionWidgetFragment } from "@/ssr-features/graphql/fragments/cal
 import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
 import CallToAction from "@/features/call-to-action/CallToAction";
 import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
+import { getImageUrl } from "@/common/utils/getImageUrl";
 
 interface ICallToActionWidgetProps {
   data: CallToActionWidgetFragment;
@@ -13,12 +14,15 @@ interface ICallToActionWidgetProps {
 export default function CallToActionWidget({
   data,
 }: ICallToActionWidgetProps): JSX.Element {
-  const { title, description } = data;
+  const { title, description, backgroundImage } = data;
 
   return (
     <Box
       sx={{
         bgcolor: "grey.800",
+        backgroundImage: `url(${getImageUrl(backgroundImage?.url)})`,
+        backgroundSize: "cover",
+        boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.8)",
       }}
     >
       <UiSectionContainer component="section">
