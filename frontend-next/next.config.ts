@@ -5,7 +5,10 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["localhost", "strapi"],
+    remotePatterns: [
+      { protocol: "http", hostname: "localhost" },
+      { protocol: "http", hostname: "strapi" },
+    ],
   },
   reactStrictMode: true,
 };

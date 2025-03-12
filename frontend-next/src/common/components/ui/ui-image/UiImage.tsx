@@ -35,7 +35,7 @@ export default function UiImage({
   return (
     <Box sx={{ position: "relative", ...sx }}>
       <Image
-        objectFit="contain"
+        style={{ objectFit: "contain" }}
         src={imageUrl}
         alt={alternativeText || "Image"}
         fill={true}

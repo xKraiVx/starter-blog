@@ -35,6 +35,7 @@ export default function UiSocialLink({
       LinkComponent={NextLink}
       href={href}
       target="_blank"
+      aria-label={type || "link"}
     >
       {icon}
     </IconButton>

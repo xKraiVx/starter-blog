@@ -45,7 +45,7 @@ export default function UiPostPreview({
         component="img"
         height={200}
         image={getImageUrl(image?.url) || "placeholder.webp"}
-        alt={image?.alternativeText || undefined}
+        alt={image?.alternativeText || "placeholder"}
       />
       <CardContent>
         {title && <Typography variant="h3">{title}</Typography>}
