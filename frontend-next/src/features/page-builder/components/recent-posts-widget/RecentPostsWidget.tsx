@@ -12,6 +12,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
+import AnimatedSection from "@/common/components/animated/animated-section/AnimatedSection";
 
 interface IRecentPostsWidgetProps {
   data: RecentPostsWidgetFragment;
@@ -25,53 +26,55 @@ export default function RecentPostsWidget({
   const { title } = data;
 
   return (
-    <Box
-      component="section"
-      sx={{
-        " .swiper-pagination-bullet": {
-          bgcolor: "primary.main",
-        },
-      }}
-    >
-      <UiSectionContainer>
-        <UiSectionTitle>{title}</UiSectionTitle>
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          spaceBetween={10}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
-          loop={true}
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
-        >
-          {recentArticles?.articles?.map((article) => {
-            const { slug, title, description, updatedAt, cover } =
-              article || {};
+    <AnimatedSection>
+      <Box
+        component="section"
+        sx={{
+          " .swiper-pagination-bullet": {
+            bgcolor: "primary.main",
+          },
+        }}
+      >
+        <UiSectionContainer>
+          <UiSectionTitle>{title}</UiSectionTitle>
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={10}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3000 }}
+            loop={true}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+          >
+            {recentArticles?.articles?.map((article) => {
+              const { slug, title, description, updatedAt, cover } =
+                article || {};
 
-            return (
-              <SwiperSlide key={slug}>
-                <UiPostPreview
-                  sx={{
-                    flex: 1,
-                  }}
-                  title={title}
-                  slug={slug}
-                  description={description}
-                  image={cover}
-                  updatedAt={updatedAt}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </UiSectionContainer>
-    </Box>
+              return (
+                <SwiperSlide key={slug}>
+                  <UiPostPreview
+                    sx={{
+                      flex: 1,
+                    }}
+                    title={title}
+                    slug={slug}
+                    description={description}
+                    image={cover}
+                    updatedAt={updatedAt}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </UiSectionContainer>
+      </Box>
+    </AnimatedSection>
   );
 }

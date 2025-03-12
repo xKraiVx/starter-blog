@@ -14,6 +14,7 @@ import {
   Enum_Componentwidgetsgrid_Tabletcolumncount,
 } from "@/graphql/graphql-generated-types/types";
 import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
+import AnimatedSection from "@/common/components/animated/animated-section/AnimatedSection";
 
 interface IGridWidgetProps {
   data: GridWidgetFragment;
@@ -29,38 +30,40 @@ export default function GridWidget({ data }: IGridWidgetProps): JSX.Element {
   } = data;
 
   return (
-    <UiSectionContainer component="section">
-      {title && <UiSectionTitle>{title}</UiSectionTitle>}
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: `repeat(${
-              GRID_WIDGET_MOBILE_COLUMN_COUNT[
-                mobileColumnCount ??
-                  Enum_Componentwidgetsgrid_Mobilecolumncount.Three
-              ]
-            }, 1fr)`,
-            md: `repeat(${
-              GRID_WIDGET_TABLET_COLUMN_COUNT[
-                tabletColumnCount ??
-                  Enum_Componentwidgetsgrid_Tabletcolumncount.Two
-              ]
-            }, 1fr)`,
-            lg: `repeat(${
-              GRID_WIDGET_DESKTOP_COLUMN_COUNT[
-                desktopColumnCount ??
-                  Enum_Componentwidgetsgrid_Desktopcolumncount.One
-              ]
-            }, 1fr)`,
-          },
-          gap: 2,
-        }}
-      >
-        {item?.map((itemData, key) => (
-          <GridWidgetItem key={key} itemData={itemData} />
-        ))}
-      </Box>
-    </UiSectionContainer>
+    <AnimatedSection>
+      <UiSectionContainer component="section">
+        {title && <UiSectionTitle>{title}</UiSectionTitle>}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: `repeat(${
+                GRID_WIDGET_MOBILE_COLUMN_COUNT[
+                  mobileColumnCount ??
+                    Enum_Componentwidgetsgrid_Mobilecolumncount.Three
+                ]
+              }, 1fr)`,
+              md: `repeat(${
+                GRID_WIDGET_TABLET_COLUMN_COUNT[
+                  tabletColumnCount ??
+                    Enum_Componentwidgetsgrid_Tabletcolumncount.Two
+                ]
+              }, 1fr)`,
+              lg: `repeat(${
+                GRID_WIDGET_DESKTOP_COLUMN_COUNT[
+                  desktopColumnCount ??
+                    Enum_Componentwidgetsgrid_Desktopcolumncount.One
+                ]
+              }, 1fr)`,
+            },
+            gap: 2,
+          }}
+        >
+          {item?.map((itemData, key) => (
+            <GridWidgetItem key={key} itemData={itemData} />
+          ))}
+        </Box>
+      </UiSectionContainer>
+    </AnimatedSection>
   );
 }

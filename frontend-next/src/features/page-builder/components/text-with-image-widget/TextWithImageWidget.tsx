@@ -5,6 +5,7 @@ import { TextWithImageWidgetFragment } from "@/ssr-features/graphql/fragments/te
 import UiImage from "@/common/components/ui/ui-image/UiImage";
 import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
 import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
+import AnimatedSection from "@/common/components/animated/animated-section/AnimatedSection";
 
 interface IHeroWidgetProps {
   data: TextWithImageWidgetFragment;
@@ -16,41 +17,43 @@ export default function TextWithImageWidget({
   const { title, text, image, isImageOnLeftSide } = data;
 
   return (
-    <UiSectionContainer
-      component="section"
-      sx={{
-        display: "flex",
-        gap: 4,
-        justifyContent: "space-between",
-        flexDirection: {
-          xs: "column",
-          md: "row",
-        },
-      }}
-    >
-      <Box
+    <AnimatedSection>
+      <UiSectionContainer
+        component="section"
         sx={{
-          flex: 1,
+          display: "flex",
+          gap: 4,
+          justifyContent: "space-between",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
         }}
       >
-        <UiSectionTitle>{title}</UiSectionTitle>
-        <BlocksRenderer content={text} />
-      </Box>
-      <UiImage
-        sx={{
-          flex: {
-            md: 1,
-          },
-          order: {
-            md: isImageOnLeftSide ? -1 : 1,
-          },
-          height: {
-            xs: "100vw",
-            md: "unset",
-          },
-        }}
-        data={image}
-      />
-    </UiSectionContainer>
+        <Box
+          sx={{
+            flex: 1,
+          }}
+        >
+          <UiSectionTitle>{title}</UiSectionTitle>
+          <BlocksRenderer content={text} />
+        </Box>
+        <UiImage
+          sx={{
+            flex: {
+              md: 1,
+            },
+            order: {
+              md: isImageOnLeftSide ? -1 : 1,
+            },
+            height: {
+              xs: "100vw",
+              md: "unset",
+            },
+          }}
+          data={image}
+        />
+      </UiSectionContainer>
+    </AnimatedSection>
   );
 }
