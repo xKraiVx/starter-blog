@@ -16,12 +16,6 @@ export default function Navigation({
   sx,
   onNavigationItemClick,
 }: INavigationProps): JSX.Element | null {
-  const { isDesktop } = useResponsive();
-
-  if (!isDesktop) {
-    return null;
-  }
-
   return (
     <Box
       component="nav"

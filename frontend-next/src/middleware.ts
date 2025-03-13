@@ -1,6 +1,6 @@
 import { routing } from "./i18n/routing";
 
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import createIntlMiddleware from "next-intl/middleware";
 
 // Create middleware with i18n handling

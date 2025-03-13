@@ -3,6 +3,8 @@ import HeaderWrapper from "@/ssr-features/layouts/main-layout/components/header/
 import Logo from "@/ssr-features/layouts/main-layout/components/logo/Logo";
 import MobileMenu from "@/ssr-features/layouts/main-layout/components/mobile-menu/MobileMenu";
 import Navigation from "@/ssr-features/layouts/main-layout/components/navigation/Navigation";
+import UserMenu from "@/ssr-features/layouts/main-layout/components/user-menu/UserMenu";
+import { Box } from "@mui/material";
 
 export default function Header() {
   return (
@@ -19,8 +21,18 @@ export default function Header() {
         }}
       >
         <Logo />
-        <Navigation />
-        <MobileMenu />
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Navigation
+            sx={{
+              display: {
+                xs: "none",
+                md: "flex",
+              },
+            }}
+          />
+          <MobileMenu />
+          <UserMenu />
+        </Box>
       </UiSectionContainer>
     </HeaderWrapper>
   );
