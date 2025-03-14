@@ -11,6 +11,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { useLogin } from "@/features/login-modal/hooks/useLogin";
 
 interface ILoginModalProps {
   isOpen: boolean;
@@ -25,21 +26,11 @@ export default function LoginModal({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const { login } = useLogin();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
-
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-
-    if (result?.error) {
-      setError("Invalid credentials");
-    } else {
-      onClose(); // Close modal on successful login
-    }
+    login({ input: { identifier: email, password } });
   };
 
   return (

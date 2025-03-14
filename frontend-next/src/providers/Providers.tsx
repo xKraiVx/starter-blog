@@ -1,4 +1,5 @@
 import BlogThemeProvider from "@/providers/blog-theme-provider/BlogThemeProvider";
+import ReactModalProvider from "@/providers/react-modal-provider/ReactModalProvider";
 import { ReactQueryProvider } from "@/providers/react-query-provider/ReactQueryProvider";
 import { ScrollTriggerProvider } from "@/providers/scroll-trigger-provider/ScrollTriggerProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
@@ -15,7 +16,9 @@ function Providers({ children, messages }: IProvidersProps): JSX.Element {
       <AppRouterCacheProvider options={{ key: "css" }}>
         <BlogThemeProvider options={{ key: "mui", prepend: true }}>
           <ReactQueryProvider>
-            <ScrollTriggerProvider>{children}</ScrollTriggerProvider>
+            <ReactModalProvider>
+              <ScrollTriggerProvider>{children}</ScrollTriggerProvider>
+            </ReactModalProvider>
           </ReactQueryProvider>
         </BlogThemeProvider>
       </AppRouterCacheProvider>
