@@ -1,6 +1,9 @@
 import FeTextField from "@/common/components/fe/FeTextField";
+import { LOGIN_DEFAULT_VALUES } from "@/features/login-modal/constants/loginDefaultValues";
+import { LOGIN_VALIDATION_SCHEMA } from "@/features/login-modal/constants/loginValidationSchema";
 import { useLogin } from "@/features/login-modal/hooks/useLogin";
 import { UsersPermissionsLoginInput } from "@/graphql/graphql-generated-types/types";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack } from "@mui/material";
 import { JSX } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
@@ -11,10 +14,8 @@ interface LoginFormProps {
 
 export default function LoginForm({ onClose }: LoginFormProps): JSX.Element {
   const methods = useForm<UsersPermissionsLoginInput>({
-    defaultValues: {
-      identifier: "",
-      password: "",
-    },
+    resolver: yupResolver(LOGIN_VALIDATION_SCHEMA),
+    defaultValues: LOGIN_DEFAULT_VALUES,
   });
 
   const { reset } = methods;
