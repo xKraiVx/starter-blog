@@ -1,33 +1,26 @@
 import FeTextField from "@/common/components/fe/FeTextField";
 import { LOGIN_DEFAULT_VALUES } from "@/features/login-modal/constants/loginDefaultValues";
 import { LOGIN_VALIDATION_SCHEMA } from "@/features/login-modal/constants/loginValidationSchema";
-import { useLogin } from "@/features/login-modal/hooks/useLogin";
 import { UsersPermissionsLoginInput } from "@/graphql/graphql-generated-types/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack } from "@mui/material";
 import { JSX } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { useSession } from "@/providers/session-provider/hooks/useSession";
 
 interface LoginFormProps {
   onClose: VoidFunction;
 }
 
 export default function LoginForm({ onClose }: LoginFormProps): JSX.Element {
+  const { signIn, isLoading } = useSession();
   const methods = useForm<UsersPermissionsLoginInput>({
     resolver: yupResolver(LOGIN_VALIDATION_SCHEMA),
     defaultValues: LOGIN_DEFAULT_VALUES,
   });
 
-  const { reset } = methods;
-  const onCompleted = () => {
-    reset();
-    onClose();
-  };
-
-  const { login, isLoading } = useLogin(onCompleted);
-
   const onSubmit: SubmitHandler<UsersPermissionsLoginInput> = (data) => {
-    login({ input: data });
+    signIn(data);
   };
 
   return (

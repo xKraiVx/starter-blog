@@ -6,6 +6,7 @@ import MainLayout from "@/ssr-features/layouts/main-layout/MainLayout";
 import type { Metadata } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { JSX } from "react";
 
@@ -38,6 +39,12 @@ export default async function RootLayout({
     notFound();
   }
 
+  const serverCookies = await cookies();
+
+  const token = serverCookies.get("jwt")?.value;
+
+  console.log("token", token);
+
   const messages = await getMessages();
 
   const layoutData = await getMainLayout(locale);
@@ -47,7 +54,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Providers messages={messages}>
+        <Providers messages={messages} token={token}>
           <MainLayout data={layoutData}>{children}</MainLayout>
         </Providers>
       </body>
