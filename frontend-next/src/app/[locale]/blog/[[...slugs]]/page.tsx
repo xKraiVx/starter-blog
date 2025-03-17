@@ -53,8 +53,6 @@ export default async function Page({
     slugs,
   });
 
-  console.log(data);
-
   if (!data) {
     return notFound();
   }

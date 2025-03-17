@@ -43,8 +43,6 @@ export default async function RootLayout({
 
   const token = serverCookies.get("jwt")?.value;
 
-  console.log("token", token);
-
   const messages = await getMessages();
 
   const layoutData = await getMainLayout(locale);

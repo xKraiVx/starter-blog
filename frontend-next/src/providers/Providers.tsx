@@ -22,7 +22,7 @@ function Providers({
       <AppRouterCacheProvider options={{ key: "css" }}>
         <BlogThemeProvider options={{ key: "mui", prepend: true }}>
           <ReactQueryProvider>
-            <SessionProvider>
+            <SessionProvider token={token}>
               <ReactModalProvider>
                 <ScrollTriggerProvider>{children}</ScrollTriggerProvider>
               </ReactModalProvider>

@@ -13,7 +13,7 @@ export const setAuthCookies = async (token: string) => {
 
   try {
     cookieStore.set(SESSION_KEY, token, {
-      expires: SESSION_EXPIRATION_IN_SECONDS * 1000,
+      expires: Date.now() + SESSION_EXPIRATION_IN_SECONDS * 1000,
       httpOnly: true,
       secure: true,
       sameSite: "lax",

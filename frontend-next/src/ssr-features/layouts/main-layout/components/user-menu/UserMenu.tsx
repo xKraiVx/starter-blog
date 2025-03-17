@@ -9,11 +9,11 @@ import { JSX } from "react";
 export default function UserMenu(): JSX.Element {
   const [show] = useLoginModal();
 
-  const { isAuthenticated, signOut } = useSession();
+  const { isAuthenticated } = useSession();
 
   if (isAuthenticated) {
     return (
-      <IconButton color="inherit" aria-label="user menu" onClick={signOut}>
+      <IconButton color="inherit" aria-label="user menu">
         <Person />
       </IconButton>
     );
