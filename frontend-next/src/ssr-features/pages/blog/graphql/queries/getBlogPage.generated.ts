@@ -6,26 +6,7 @@ import { CallToActionWidgetFragmentDoc } from '../../../../graphql/fragments/cal
 import { RecentPostsWidgetFragmentDoc } from '../../../../graphql/fragments/recentPostsWidget.generated';
 import { TextWithImageWidgetFragmentDoc } from '../../../../graphql/fragments/textWithImageWidget.generated';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
-  return async (): Promise<TData> => {
-    const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL as string, {
-    method: "POST",
-    ...({"headers":{"content-type":"application/json"}}),
-      body: JSON.stringify({ query, variables }),
-    });
-
-    const json = await res.json();
-
-    if (json.errors) {
-      const { message } = json.errors[0];
-
-      throw new Error(message);
-    }
-
-    return json.data;
-  }
-}
+import { useFetcher } from '@/graphql/useFetcher';
 export type GetBlogPageQueryVariables = Types.Exact<{
   locale?: Types.InputMaybe<Types.Scalars['I18NLocaleCode']['input']>;
   pagination?: Types.InputMaybe<Types.PaginationArg>;
@@ -155,7 +136,7 @@ export const useGetBlogPageQuery = <
     return useQuery<GetBlogPageQuery, TError, TData>(
       {
     queryKey: variables === undefined ? ['GetBlogPage'] : ['GetBlogPage', variables],
-    queryFn: fetcher<GetBlogPageQuery, GetBlogPageQueryVariables>(GetBlogPageDocument, variables),
+    queryFn: useFetcher<GetBlogPageQuery, GetBlogPageQueryVariables>(GetBlogPageDocument).bind(null, variables),
     ...options
   }
     )};

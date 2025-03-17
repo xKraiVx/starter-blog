@@ -2,9 +2,9 @@
 
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
-interface ISessionContext {
+export interface ISessionContext {
   isAuthenticated: boolean;
-  isLoading: boolean;
+  token?: string;
 }
 
 export const SessionContext = createContext<ISessionContext | undefined>(
@@ -23,15 +23,12 @@ export default function SessionProvider({
     Omit<ISessionContext, "signIn" | "signOut">
   >({
     isAuthenticated: !!token,
-    isLoading: false,
+    token,
   });
 
   useEffect(() => {
     if (token) {
-      setValue({
-        isAuthenticated: true,
-        isLoading: false,
-      });
+      setValue({ token, isAuthenticated: !!token });
     }
   }, [token]);
 

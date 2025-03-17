@@ -1,6 +1,6 @@
 import { ELocale } from "@/common/enums/locale.enum";
 import { EPageBuilderWidget } from "@/features/page-builder/enums/pageBuilderWidget";
-import fetcher from "@/graphql/fetcher";
+import { fetcher } from "@/graphql/fetcher";
 import {
   GetRecentArticlesDocument,
   GetRecentArticlesQuery,

@@ -21,12 +21,8 @@ const config: CodegenConfig = {
       plugins: ["typescript-operations", "typescript-react-query"],
       config: {
         fetcher: {
-          endpoint: "process.env.NEXT_PUBLIC_GRAPHQL",
-          fetchParams: {
-            headers: {
-              "content-type": "application/json",
-            },
-          },
+          func: "@/graphql/useFetcher#useFetcher",
+          isReactHook: true,
         },
         reactQueryVersion: 5,
       },

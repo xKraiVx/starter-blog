@@ -1,5 +1,5 @@
 import { ELocale } from "@/common/enums/locale.enum";
-import fetcher from "@/graphql/fetcher";
+import { fetcher } from "@/graphql/fetcher";
 import { ARTICLES_PER_PAGE } from "@/ssr-features/pages/blog/constants/articlesPerPage";
 import {
   GetBlogPageDocument,

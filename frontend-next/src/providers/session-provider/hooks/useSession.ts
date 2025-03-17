@@ -1,17 +1,20 @@
+import {
+  ISessionContext,
+  SessionContext,
+} from "@/providers/session-provider/SessionProvider";
 import { useContext } from "react";
-import { SessionContext } from "../SessionProvider";
 
-export const useSession = () => {
+export const useSession = (): ISessionContext => {
   const session = useContext(SessionContext);
 
   if (!session) {
     throw new Error("useSession must be used within a SessionProvider");
   }
 
-  const { isAuthenticated, isLoading } = session;
+  const { isAuthenticated, token } = session;
 
   return {
     isAuthenticated,
-    isLoading,
+    token,
   };
 };

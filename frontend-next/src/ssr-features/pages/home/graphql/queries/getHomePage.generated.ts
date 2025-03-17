@@ -2,26 +2,7 @@ import * as Types from '../../../../../graphql/graphql-generated-types/types';
 
 import { PageBuilderWidgetsFragmentDoc } from '../../../../graphql/fragments/pageBuilderWidgets.generated';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
-  return async (): Promise<TData> => {
-    const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL as string, {
-    method: "POST",
-    ...({"headers":{"content-type":"application/json"}}),
-      body: JSON.stringify({ query, variables }),
-    });
-
-    const json = await res.json();
-
-    if (json.errors) {
-      const { message } = json.errors[0];
-
-      throw new Error(message);
-    }
-
-    return json.data;
-  }
-}
+import { useFetcher } from '@/graphql/useFetcher';
 export type GetHomePageQueryVariables = Types.Exact<{
   locale?: Types.InputMaybe<Types.Scalars['I18NLocaleCode']['input']>;
 }>;
@@ -54,7 +35,7 @@ export const useGetHomePageQuery = <
     return useQuery<GetHomePageQuery, TError, TData>(
       {
     queryKey: variables === undefined ? ['GetHomePage'] : ['GetHomePage', variables],
-    queryFn: fetcher<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, variables),
+    queryFn: useFetcher<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument).bind(null, variables),
     ...options
   }
     )};

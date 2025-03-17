@@ -1,7 +1,7 @@
-export default function fetcher<TData, TVariables>(
+export const fetcher = <TData, TVariables>(
   query: string,
   variables?: TVariables
-) {
+) => {
   return async (): Promise<TData> => {
     const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL as string, {
       method: "POST",
@@ -21,4 +21,4 @@ export default function fetcher<TData, TVariables>(
 
     return json.data;
   };
-}
+};

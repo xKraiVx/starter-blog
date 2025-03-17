@@ -1,5 +1,5 @@
 import { ELocale } from "@/common/enums/locale.enum";
-import fetcher from "@/graphql/fetcher";
+import { fetcher } from "@/graphql/fetcher";
 import { SeoForPageFragment } from "@/ssr-features/graphql/fragments/seoForPage.generated";
 
 import {

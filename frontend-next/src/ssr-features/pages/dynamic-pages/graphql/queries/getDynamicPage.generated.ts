@@ -7,26 +7,7 @@ import { CallToActionWidgetFragmentDoc } from '../../../../graphql/fragments/cal
 import { RecentPostsWidgetFragmentDoc } from '../../../../graphql/fragments/recentPostsWidget.generated';
 import { TextWithImageWidgetFragmentDoc } from '../../../../graphql/fragments/textWithImageWidget.generated';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
-  return async (): Promise<TData> => {
-    const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL as string, {
-    method: "POST",
-    ...({"headers":{"content-type":"application/json"}}),
-      body: JSON.stringify({ query, variables }),
-    });
-
-    const json = await res.json();
-
-    if (json.errors) {
-      const { message } = json.errors[0];
-
-      throw new Error(message);
-    }
-
-    return json.data;
-  }
-}
+import { useFetcher } from '@/graphql/useFetcher';
 export type GetDynamicPageQueryVariables = Types.Exact<{
   filters?: Types.InputMaybe<Types.PageFiltersInput>;
   locale?: Types.InputMaybe<Types.Scalars['I18NLocaleCode']['input']>;
@@ -108,7 +89,7 @@ export const useGetDynamicPageQuery = <
     return useQuery<GetDynamicPageQuery, TError, TData>(
       {
     queryKey: variables === undefined ? ['GetDynamicPage'] : ['GetDynamicPage', variables],
-    queryFn: fetcher<GetDynamicPageQuery, GetDynamicPageQueryVariables>(GetDynamicPageDocument, variables),
+    queryFn: useFetcher<GetDynamicPageQuery, GetDynamicPageQueryVariables>(GetDynamicPageDocument).bind(null, variables),
     ...options
   }
     )};

@@ -1,6 +1,5 @@
-import fetcher from "@/graphql/fetcher";
+import { fetcher } from "@/graphql/fetcher";
 import {
-  FooterForMainLayoutFragment,
   GetMainLayoutDataDocument,
   GetMainLayoutDataQuery,
   GetMainLayoutDataQueryVariables,

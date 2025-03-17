@@ -1,9 +1,5 @@
-import fetcher from "@/graphql/fetcher";
-import {
-  GetArticlePageDocument,
-  GetArticlePageQuery,
-  GetArticlePageQueryVariables,
-} from "@/ssr-features/pages/article/graphql/queries/getArticlePage.generated";
+import { fetcher } from "@/graphql/fetcher";
+
 import {
   GetArticlesPagesSlugsDocument,
   GetArticlesPagesSlugsQuery,
