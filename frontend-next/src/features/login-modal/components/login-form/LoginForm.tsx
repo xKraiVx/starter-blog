@@ -6,21 +6,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack } from "@mui/material";
 import { JSX } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useSession } from "@/providers/session-provider/hooks/useSession";
+import { useLogin } from "@/features/login-modal/hooks/useLogin";
 
 interface LoginFormProps {
   onClose: VoidFunction;
 }
 
 export default function LoginForm({ onClose }: LoginFormProps): JSX.Element {
-  const { signIn, isLoading } = useSession();
   const methods = useForm<UsersPermissionsLoginInput>({
     resolver: yupResolver(LOGIN_VALIDATION_SCHEMA),
     defaultValues: LOGIN_DEFAULT_VALUES,
   });
 
+  const { login, isLoading } = useLogin(onClose);
+
   const onSubmit: SubmitHandler<UsersPermissionsLoginInput> = (data) => {
-    signIn(data);
+    login({ input: data });
   };
 
   return (

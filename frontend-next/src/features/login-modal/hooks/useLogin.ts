@@ -6,7 +6,8 @@ import { UseMutateFunction } from "@tanstack/react-query";
 import {
   LoginMutation,
   useLoginMutation,
-} from "@/providers/session-provider/graphql/mutations/login.generated";
+} from "@/features/login-modal/graphql/mutations/login.generated";
+import { setAuthCookies } from "@/app/auth/actions";
 
 interface UseLoginResult {
   login: UseMutateFunction<
@@ -25,6 +26,7 @@ type TUseLogin = (
 export const useLogin: TUseLogin = (onCompleted) => {
   const { mutate, isPending } = useLoginMutation({
     onSuccess: async (data) => {
+      setAuthCookies(String(data.login.jwt));
       onCompleted?.(data);
     },
   });

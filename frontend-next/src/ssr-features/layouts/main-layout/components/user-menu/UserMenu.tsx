@@ -2,7 +2,7 @@
 
 import { useLoginModal } from "@/features/login-modal/hooks/useLoginModal";
 import { useSession } from "@/providers/session-provider/hooks/useSession";
-import { LoginRounded, LogoutRounded } from "@mui/icons-material";
+import { LoginRounded, LogoutRounded, Person } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { JSX } from "react";
 
@@ -14,14 +14,14 @@ export default function UserMenu(): JSX.Element {
   if (isAuthenticated) {
     return (
       <IconButton color="inherit" aria-label="user menu" onClick={signOut}>
-        <LogoutRounded />
+        <Person />
       </IconButton>
     );
   }
 
   return (
     <IconButton color="inherit" aria-label="user menu" onClick={show}>
-      <LoginRounded />
+      <LogoutRounded />
     </IconButton>
   );
 }

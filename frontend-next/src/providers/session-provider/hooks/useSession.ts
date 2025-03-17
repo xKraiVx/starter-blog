@@ -8,12 +8,10 @@ export const useSession = () => {
     throw new Error("useSession must be used within a SessionProvider");
   }
 
-  const { isAuthenticated, signIn, signOut, isLoading } = session;
+  const { isAuthenticated, isLoading } = session;
 
   return {
     isAuthenticated,
-    signIn,
-    signOut,
     isLoading,
   };
 };
