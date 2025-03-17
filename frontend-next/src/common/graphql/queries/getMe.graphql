@@ -1,0 +1,18 @@
+query getMe {
+  me {
+    ...UserForMe
+  }
+}
+
+fragment UserForMe on UsersPermissionsMe {
+  email
+  id
+  role {
+    ...RoleForMe
+  }
+}
+
+fragment RoleForMe on UsersPermissionsMeRole {
+  name
+  type
+}
