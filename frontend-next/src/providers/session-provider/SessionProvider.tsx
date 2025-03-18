@@ -1,10 +1,11 @@
 "use client";
 
+import { TMaybe } from "@/common/types/general-types.type";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
 export interface ISessionContext {
   isAuthenticated: boolean;
-  token?: string;
+  token: TMaybe<string>;
 }
 
 export const SessionContext = createContext<ISessionContext | undefined>(
@@ -27,9 +28,7 @@ export default function SessionProvider({
   });
 
   useEffect(() => {
-    if (token) {
-      setValue({ token, isAuthenticated: !!token });
-    }
+    setValue({ token: token || null, isAuthenticated: !!token });
   }, [token]);
 
   return (

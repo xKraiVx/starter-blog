@@ -1,9 +1,9 @@
 import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
+import HeaderActions from "@/ssr-features/layouts/main-layout/components/header/HeaderActions";
 import HeaderWrapper from "@/ssr-features/layouts/main-layout/components/header/HeaderWrapper";
 import Logo from "@/ssr-features/layouts/main-layout/components/logo/Logo";
 import MobileMenu from "@/ssr-features/layouts/main-layout/components/mobile-menu/MobileMenu";
 import Navigation from "@/ssr-features/layouts/main-layout/components/navigation/Navigation";
-import UserMenu from "@/ssr-features/layouts/main-layout/components/user-menu/UserMenu";
 import { Box } from "@mui/material";
 
 export default function Header() {
@@ -31,7 +31,7 @@ export default function Header() {
             }}
           />
           <MobileMenu />
-          <UserMenu />
+          <HeaderActions />
         </Box>
       </UiSectionContainer>
     </HeaderWrapper>

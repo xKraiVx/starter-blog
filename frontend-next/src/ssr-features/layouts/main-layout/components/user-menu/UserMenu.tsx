@@ -1,32 +1,46 @@
 "use client";
 
-import { useGetMe } from "@/common/hooks/useGetMe";
-import { useLoginModal } from "@/features/login-modal/hooks/useLoginModal";
-import { useSession } from "@/providers/session-provider/hooks/useSession";
-import { LogoutRounded, Person } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import { JSX } from "react";
+import { logout } from "@/common/utils/logout";
+import { Person } from "@mui/icons-material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import { JSX, useState } from "react";
 
 export default function UserMenu(): JSX.Element {
-  const [show] = useLoginModal();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const { data } = useGetMe();
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  console.log({ data });
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  const { isAuthenticated } = useSession();
+  const open = Boolean(anchorEl);
+  const id = open ? "user-menu-popover" : undefined;
 
-  if (isAuthenticated) {
-    return (
-      <IconButton color="inherit" aria-label="user menu">
-        <Person />
-      </IconButton>
-    );
-  }
+  const handleLogout = () => {
+    logout();
+    handleClose();
+  };
 
   return (
-    <IconButton color="inherit" aria-label="user menu" onClick={show}>
-      <LogoutRounded />
-    </IconButton>
+    <>
+      <IconButton color="inherit" aria-label="user menu" onClick={handleClick}>
+        <Person />
+      </IconButton>
+      <Menu
+        id={id}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      </Menu>
+    </>
   );
 }
