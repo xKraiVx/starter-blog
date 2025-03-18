@@ -1,9 +1,18 @@
 "use client";
 
 import { logout } from "@/common/utils/logout";
-import { Person } from "@mui/icons-material";
+import {
+  AccountBoxOutlined,
+  LogoutOutlined,
+  Person,
+} from "@mui/icons-material";
 import { IconButton, Menu, MenuItem } from "@mui/material";
+import NextLink from "next/link";
 import { JSX, useState } from "react";
+
+const MENU_ITEM_SX = {
+  gap: 1,
+};
 
 export default function UserMenu(): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -38,8 +47,19 @@ export default function UserMenu(): JSX.Element {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem
+          sx={MENU_ITEM_SX}
+          component={NextLink}
+          onClick={handleClose}
+          href="/profile"
+        >
+          <AccountBoxOutlined />
+          Profile
+        </MenuItem>
+        <MenuItem sx={MENU_ITEM_SX} onClick={handleLogout}>
+          <LogoutOutlined />
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );

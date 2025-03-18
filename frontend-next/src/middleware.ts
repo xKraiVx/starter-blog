@@ -2,11 +2,27 @@ import { routing } from "./i18n/routing";
 
 import { NextRequest, NextResponse } from "next/server";
 import createIntlMiddleware from "next-intl/middleware";
+import { PRIVAT_PATHS } from "@/common/constants/privatPaths";
+import { getPrivatPathnamesWithLocale } from "@/common/utils/getPrivatPathnamesWithLocale";
 
 // Create middleware with i18n handling
 const intlMiddleware = createIntlMiddleware(routing);
 
 export function middleware(request: NextRequest) {
+  // create redirection if has jwt token in server cookies from profile page to home page
+
+  const serverCookies = request.cookies;
+  const token = serverCookies.get("jwt")?.value;
+  const locale = request.cookies.get("NEXT_LOCALE")?.value;
+
+  const privatPathnames = getPrivatPathnamesWithLocale(locale);
+
+  const homePathname = `/${locale}`;
+
+  if (privatPathnames.includes(request.nextUrl.pathname) && !token) {
+    return NextResponse.redirect(new URL(homePathname, request.nextUrl));
+  }
+
   return intlMiddleware(request);
 }
 
