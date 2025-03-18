@@ -2,7 +2,6 @@ import { routing } from "./i18n/routing";
 
 import { NextRequest, NextResponse } from "next/server";
 import createIntlMiddleware from "next-intl/middleware";
-import { PRIVAT_PATHS } from "@/common/constants/privatPaths";
 import { getPrivatPathnamesWithLocale } from "@/common/utils/getPrivatPathnamesWithLocale";
 
 // Create middleware with i18n handling
