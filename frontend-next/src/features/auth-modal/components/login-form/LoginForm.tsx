@@ -1,12 +1,12 @@
 import FeTextField from "@/common/components/fe/FeTextField";
-import { LOGIN_DEFAULT_VALUES } from "@/features/login-modal/constants/loginDefaultValues";
-import { LOGIN_VALIDATION_SCHEMA } from "@/features/login-modal/constants/loginValidationSchema";
+import { LOGIN_DEFAULT_VALUES } from "@/features/auth-modal/constants/loginDefaultValues";
+import { LOGIN_VALIDATION_SCHEMA } from "@/features/auth-modal/constants/loginValidationSchema";
 import { UsersPermissionsLoginInput } from "@/graphql/graphql-generated-types/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack } from "@mui/material";
 import { JSX } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useLogin } from "@/features/login-modal/hooks/useLogin";
+import { useLogin } from "@/features/auth-modal/hooks/useLogin";
 
 interface LoginFormProps {
   onClose: VoidFunction;

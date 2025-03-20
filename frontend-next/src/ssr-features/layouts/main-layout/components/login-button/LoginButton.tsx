@@ -1,10 +1,10 @@
-import { useLoginModal } from "@/features/login-modal/hooks/useLoginModal";
+import { useAuthModal } from "@/features/auth-modal/hooks/useAuthModal";
 import { LoginOutlined } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { JSX } from "react";
 
 export default function LoginButton(): JSX.Element {
-  const [show] = useLoginModal();
+  const [show] = useAuthModal();
 
   return (
     <Button variant="outlined" onClick={show}>

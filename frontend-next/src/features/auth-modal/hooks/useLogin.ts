@@ -6,7 +6,7 @@ import { UseMutateFunction } from "@tanstack/react-query";
 import {
   LoginMutation,
   useLoginMutation,
-} from "@/features/login-modal/graphql/mutations/login.generated";
+} from "@/features/auth-modal/graphql/mutations/login.generated";
 import { setAuthCookies } from "@/app/auth/actions";
 
 interface UseLoginResult {

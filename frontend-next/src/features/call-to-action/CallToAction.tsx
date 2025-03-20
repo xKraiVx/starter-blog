@@ -42,8 +42,6 @@ export default function CallToAction({ sx }: ICallToActionProps): JSX.Element {
     mutate({ data });
   };
 
-  //get email from current form state
-
   const email = methods.watch("email");
 
   useEffect(() => {
