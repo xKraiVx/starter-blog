@@ -6,21 +6,3 @@ mutation Login($input: UsersPermissionsLoginInput!) {
     }
   }
 }
-
-fragment Me on UsersPermissionsMe {
-  id
-  documentId
-  username
-  email
-  confirmed
-  blocked
-  role {
-    ...RoleForLogin
-  }
-}
-
-fragment RoleForLogin on UsersPermissionsMeRole {
-  name
-  type
-  description
-}

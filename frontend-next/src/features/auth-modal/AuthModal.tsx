@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import LoginForm from "@/features/auth-modal/components/login-form/LoginForm";
 import { TAuthModalMode } from "@/features/auth-modal/types/authModalMode";
+import RegisterForm from "@/features/auth-modal/components/register-form/RegisterForm";
 
 interface IAuthModalProps {
   isOpen: boolean;
@@ -53,7 +54,11 @@ export default function AuthModal({
         </Button>
       </Box>
       <DialogContent>
-        <LoginForm onClose={onClose} />
+        {mode === "signUp" ? (
+          <RegisterForm onClose={onClose} />
+        ) : (
+          <LoginForm onClose={onClose} />
+        )}
       </DialogContent>
     </Dialog>
   );

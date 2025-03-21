@@ -1,0 +1,13 @@
+fragment Me on UsersPermissionsMe {
+  id
+  documentId
+  username
+  email
+  confirmed
+  blocked
+  role {
+    name
+    type
+    description
+  }
+}
