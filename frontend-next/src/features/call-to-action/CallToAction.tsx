@@ -42,8 +42,6 @@ export default function CallToAction({ sx }: ICallToActionProps): JSX.Element {
     mutate({ data });
   };
 
-  const email = methods.watch("email");
-
   useEffect(() => {
     if (data?.email) {
       methods.setValue("email", data.email);
@@ -62,7 +60,7 @@ export default function CallToAction({ sx }: ICallToActionProps): JSX.Element {
           <Stack gap={2}>
             <FeTextField label="First Name" name="firstName" />
             <FeTextField label="Last Name" name="lastName" />
-            {!data?.email && <FeTextField label="Email" name="email" />}
+            {!isAuthenticated && <FeTextField label="Email" name="email" />}
             <FeSelect
               name="messageType"
               label="Message Type"

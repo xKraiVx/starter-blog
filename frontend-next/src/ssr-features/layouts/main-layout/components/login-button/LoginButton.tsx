@@ -7,7 +7,7 @@ export default function LoginButton(): JSX.Element {
   const [show] = useAuthModal();
 
   return (
-    <Button variant="outlined" onClick={show}>
+    <Button variant="outlined" sx={{ gap: 1 }} onClick={show}>
       <LoginOutlined />
       Login
     </Button>
