@@ -12,10 +12,14 @@ interface RegisterFormProps {
   onClose: VoidFunction;
 }
 
+interface IRegisterFormFields extends UsersPermissionsRegisterInput {
+  passwordConfirm: string;
+}
+
 export default function RegisterForm({
   onClose,
 }: RegisterFormProps): JSX.Element {
-  const methods = useForm<UsersPermissionsRegisterInput>({
+  const methods = useForm<IRegisterFormFields>({
     resolver: yupResolver(REGISTER_VALIDATION_SCHEMA),
     defaultValues: REGISTER_DEFAULT_VALUES,
   });
@@ -26,8 +30,12 @@ export default function RegisterForm({
 
   const { register, isLoading } = useRegister(onClose);
 
-  const onSubmit: SubmitHandler<UsersPermissionsRegisterInput> = (data) => {
-    register({ input: data });
+  const onSubmit: SubmitHandler<IRegisterFormFields> = ({
+    email,
+    password,
+    username,
+  }) => {
+    register({ input: { email, password, username } });
   };
 
   useEffect(() => {
@@ -43,6 +51,11 @@ export default function RegisterForm({
         <Stack gap={2}>
           <FeTextField label="Email" name="email" />
           <FeTextField label="Password" name="password" type="password" />
+          <FeTextField
+            label="Confirm password"
+            name="passwordConfirm"
+            type="password"
+          />
           <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}>
             <Button onClick={onClose} variant="outlined" color="primary">
               Cancel
@@ -53,7 +66,7 @@ export default function RegisterForm({
               type="submit"
               loading={isLoading}
             >
-              Login
+              Sign Up
             </Button>
           </Box>
         </Stack>

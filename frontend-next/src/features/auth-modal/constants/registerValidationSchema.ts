@@ -16,4 +16,8 @@ export const REGISTER_VALIDATION_SCHEMA = yup.object().shape({
       /(?=.*[A-Z])/,
       "Password must contain at least one uppercase letter"
     ),
+  passwordConfirm: yup
+    .string()
+    .oneOf([yup.ref("password"), ""], "Passwords must match")
+    .required("Confirm password is required"),
 });

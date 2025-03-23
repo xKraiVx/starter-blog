@@ -24,7 +24,7 @@ export default function UiImage({
     return null;
   }
 
-  const { url, alternativeText, size } = data;
+  const { url, alternativeText } = data;
 
   const imageUrl = getImageUrl(url);
 
