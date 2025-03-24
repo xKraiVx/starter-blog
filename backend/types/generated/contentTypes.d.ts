@@ -387,7 +387,13 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
+      [
+        'widgets.text-with-image',
+        'widgets.recent-posts',
+        'widgets.hero',
+        'widgets.grid',
+        'widgets.call-to-action',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
