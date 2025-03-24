@@ -386,20 +386,6 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<
-      [
-        'widgets.text-with-image',
-        'widgets.recent-posts',
-        'widgets.hero',
-        'widgets.grid',
-        'widgets.call-to-action',
-      ]
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -421,6 +407,20 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    widgets: Schema.Attribute.DynamicZone<
+      [
+        'widgets.text-with-image',
+        'widgets.recent-posts',
+        'widgets.hero',
+        'widgets.grid',
+        'widgets.call-to-action',
+      ]
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 

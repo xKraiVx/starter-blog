@@ -24,7 +24,7 @@
         }
       }
     },
-    "blocks": {
+    "widgets": {
       "type": "dynamiczone",
       "components": [
         "widgets.text-with-image",

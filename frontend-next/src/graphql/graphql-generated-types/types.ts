@@ -12,7 +12,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  AboutBlocksDynamicZoneInput: { input: any; output: any; }
+  AboutWidgetsDynamicZoneInput: { input: any; output: any; }
   ArticleBlocksDynamicZoneInput: { input: any; output: any; }
   BlogWidgetsDynamicZoneInput: { input: any; output: any; }
   DateTime: { input: any; output: any; }
@@ -24,7 +24,6 @@ export type Scalars = {
 
 export type About = {
   __typename?: 'About';
-  blocks?: Maybe<Array<Maybe<AboutBlocksDynamicZone>>>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
   locale?: Maybe<Scalars['String']['output']>;
@@ -34,21 +33,22 @@ export type About = {
   seo?: Maybe<ComponentSharedSeo>;
   title?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  widgets?: Maybe<Array<Maybe<AboutWidgetsDynamicZone>>>;
 };
 
-export type AboutBlocksDynamicZone = ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSlider | Error;
-
 export type AboutInput = {
-  blocks?: InputMaybe<Array<Scalars['AboutBlocksDynamicZoneInput']['input']>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
   title?: InputMaybe<Scalars['String']['input']>;
+  widgets?: InputMaybe<Array<Scalars['AboutWidgetsDynamicZoneInput']['input']>>;
 };
 
 export type AboutRelationResponseCollection = {
   __typename?: 'AboutRelationResponseCollection';
   nodes: Array<About>;
 };
+
+export type AboutWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
 
 export type Article = {
   __typename?: 'Article';

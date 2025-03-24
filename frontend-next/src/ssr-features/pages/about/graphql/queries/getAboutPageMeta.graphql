@@ -1,0 +1,7 @@
+query GetAboutPageMeta($locale: I18NLocaleCode) {
+  about(locale: $locale) {
+    seo {
+      ...SeoForPage
+    }
+  }
+}

@@ -3,7 +3,25 @@ query GetHomePage($locale: I18NLocaleCode) {
     title
     documentId
     widgets {
-      ...PageBuilderWidgets
+      ...HomeBuilderWidgets
     }
+  }
+}
+
+fragment HomeBuilderWidgets on HomePageWidgetsDynamicZone {
+  ... on ComponentWidgetsHero {
+    ...HeroWidget
+  }
+  ... on ComponentWidgetsGrid {
+    ...GridWidget
+  }
+  ... on ComponentWidgetsCallToAction {
+    ...CallToActionWidget
+  }
+  ... on ComponentWidgetsRecentPosts {
+    ...RecentPostsWidget
+  }
+  ... on ComponentWidgetsTextWithImage {
+    ...TextWithImageWidget
   }
 }

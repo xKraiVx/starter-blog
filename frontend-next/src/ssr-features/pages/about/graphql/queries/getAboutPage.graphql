@@ -1,4 +1,14 @@
-fragment PageBuilderWidgets on HomePageWidgetsDynamicZone {
+query GetAboutPage($locale: I18NLocaleCode) {
+  about(locale: $locale) {
+    title
+    documentId
+    widgets {
+      ...AboutPageBuilderWidgets
+    }
+  }
+}
+
+fragment AboutPageBuilderWidgets on AboutWidgetsDynamicZone {
   ... on ComponentWidgetsHero {
     ...HeroWidget
   }
