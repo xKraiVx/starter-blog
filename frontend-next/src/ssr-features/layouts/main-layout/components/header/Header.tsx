@@ -1,6 +1,7 @@
 import UiSectionContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
 import HeaderActions from "@/ssr-features/layouts/main-layout/components/header/HeaderActions";
 import HeaderWrapper from "@/ssr-features/layouts/main-layout/components/header/HeaderWrapper";
+import LocaleSwitcher from "@/ssr-features/layouts/main-layout/components/locale-switcher/LocaleSwitcher";
 import Logo from "@/ssr-features/layouts/main-layout/components/logo/Logo";
 import MobileMenu from "@/ssr-features/layouts/main-layout/components/mobile-menu/MobileMenu";
 import Navigation from "@/ssr-features/layouts/main-layout/components/navigation/Navigation";
@@ -30,6 +31,7 @@ export default function Header() {
               },
             }}
           />
+          <LocaleSwitcher />
           <MobileMenu />
           <HeaderActions />
         </Box>

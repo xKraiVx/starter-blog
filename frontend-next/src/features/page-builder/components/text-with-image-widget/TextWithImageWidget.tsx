@@ -16,8 +16,6 @@ export default function TextWithImageWidget({
 }: IHeroWidgetProps): JSX.Element {
   const { title, text, image, isImageOnLeftSide } = data;
 
-  console.log({ data });
-
   return (
     <AnimatedSection>
       <UiSectionContainer

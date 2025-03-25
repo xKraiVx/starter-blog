@@ -28,8 +28,6 @@ export default function CallToAction({ sx }: ICallToActionProps): JSX.Element {
   const { isAuthenticated } = useSession();
   const { data } = useGetMe();
 
-  console.log(data);
-
   const { reset } = methods;
 
   const onCompleted = () => {
