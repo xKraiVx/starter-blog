@@ -41,14 +41,34 @@ export default function UiPostPreview({
   return (
     <Card sx={sx} elevation={10}>
       <CardHeader subheader={defaultFormatDate(updatedAt)} />
-      <CardMedia
-        component="img"
-        height={200}
-        image={getImageUrl(image?.url) || "/placeholder.webp"}
-        alt={image?.alternativeText || "placeholder"}
-      />
+      <NextLink href={getArticleFullPathBySlug(slug)} passHref>
+        <CardMedia
+          component="img"
+          height={200}
+          image={getImageUrl(image?.url) || "/placeholder.webp"}
+          alt={image?.alternativeText || "placeholder"}
+        />
+      </NextLink>
       <CardContent>
-        {title && <Typography variant="h3">{title}</Typography>}
+        {title && (
+          <Typography
+            variant="h3"
+            sx={{
+              "& a": {
+                color: "inherit",
+                textDecoration: "none",
+                transition: "opacity 0.3s",
+                ":hover": {
+                  opacity: 0.8,
+                },
+              },
+            }}
+          >
+            <NextLink href={getArticleFullPathBySlug(slug)} passHref>
+              {title}
+            </NextLink>
+          </Typography>
+        )}
         {description && <Typography>{description}</Typography>}
       </CardContent>
       <CardActions>
