@@ -26,6 +26,7 @@
       "dist": true,
       "backend": true,
       "frontend-next": true,
+      "frontend-nuxt": true,
       ".vscode": true,
       ".strapi": true
     }
