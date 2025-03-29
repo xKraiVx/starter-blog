@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-const { data: homePageData, refresh } = await useFetch(
+const { data: homePageData, refresh } = useFetch(
   getEndpoint("/home-page?populate=*"),
   {
     transform: (response) => {
