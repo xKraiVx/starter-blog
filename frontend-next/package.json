@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen:local": "graphql-codegen"
+    "codegen:local": "graphql-codegen",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
