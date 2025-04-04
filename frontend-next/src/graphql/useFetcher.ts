@@ -1,5 +1,4 @@
 import { useSession } from "@/providers/session-provider/hooks/useSession";
-import { useTheme } from "@mui/material";
 
 export const useFetcher = <TData, TVariables>(
   query: string,

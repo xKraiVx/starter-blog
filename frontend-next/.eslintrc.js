@@ -12,8 +12,15 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
+    "plugin:testing-library/react",
   ],
-  plugins: ["@typescript-eslint", "prettier", "react-hooks", "import"],
+  plugins: [
+    "@typescript-eslint",
+    "prettier",
+    "react-hooks",
+    "import",
+    "testing-library",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2018,
@@ -34,6 +41,10 @@ module.exports = {
     "**/graphql-generated-types/types.ts",
   ],
   rules: {
+    "testing-library/await-async-queries": "error",
+    "testing-library/no-await-sync-queries": "error",
+    "testing-library/no-debugging-utils": "warn",
+    "testing-library/no-dom-import": "off",
     "no-console": ["warn", { allow: ["warn", "error"] }],
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-var-requires": "off",
@@ -163,6 +174,6 @@ module.exports = {
       rules: {
         "@typescript-eslint/explicit-function-return-type": "warn",
       },
-    }
+    },
   ],
 };

@@ -4,11 +4,13 @@ import { Controller, useFormContext } from "react-hook-form";
 
 interface FeTextFieldProps extends Omit<TextFieldProps, "name"> {
   name: string;
+  dataTestId?: string;
 }
 
 export default function FeTextField({
   name,
   id,
+  dataTestId,
   ...props
 }: FeTextFieldProps): JSX.Element {
   const {
@@ -24,6 +26,7 @@ export default function FeTextField({
         <TextField
           id={id ?? name}
           variant="filled"
+          inputProps={{ "data-testid": name }}
           {...field}
           {...props}
           error={!!errors[name]}

@@ -9,7 +9,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useLogin } from "@/features/auth-modal/hooks/useLogin";
 
 interface LoginFormProps {
-  onClose: VoidFunction;
+  onClose?: VoidFunction;
 }
 
 export default function LoginForm({ onClose }: LoginFormProps): JSX.Element {
@@ -39,6 +39,7 @@ export default function LoginForm({ onClose }: LoginFormProps): JSX.Element {
               color="primary"
               type="submit"
               loading={isLoading}
+              data-testid="submit-button"
             >
               Login
             </Button>
