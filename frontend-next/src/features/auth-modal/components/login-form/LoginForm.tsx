@@ -10,9 +10,13 @@ import { useLogin } from "@/features/auth-modal/hooks/useLogin";
 
 interface LoginFormProps {
   onClose?: VoidFunction;
+  onSubmit?: (data: UsersPermissionsLoginInput) => void;
 }
 
-export default function LoginForm({ onClose }: LoginFormProps): JSX.Element {
+export default function LoginForm({
+  onClose,
+  onSubmit,
+}: LoginFormProps): JSX.Element {
   const methods = useForm<UsersPermissionsLoginInput>({
     resolver: yupResolver(LOGIN_VALIDATION_SCHEMA),
     defaultValues: LOGIN_DEFAULT_VALUES,
@@ -20,13 +24,17 @@ export default function LoginForm({ onClose }: LoginFormProps): JSX.Element {
 
   const { login, isLoading } = useLogin(onClose);
 
-  const onSubmit: SubmitHandler<UsersPermissionsLoginInput> = (data) => {
-    login({ input: data });
+  const onLogin: SubmitHandler<UsersPermissionsLoginInput> = (data) => {
+    if (!onSubmit) {
+      login({ input: data });
+      return;
+    }
+    onSubmit?.(data);
   };
 
   return (
     <FormProvider {...methods}>
-      <Box component="form" onSubmit={methods.handleSubmit(onSubmit)}>
+      <Box component="form" onSubmit={methods.handleSubmit(onLogin)}>
         <Stack gap={2}>
           <FeTextField label="Email" name="identifier" />
           <FeTextField label="Password" name="password" type="password" />
