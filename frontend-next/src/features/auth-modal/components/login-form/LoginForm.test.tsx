@@ -1,30 +1,16 @@
 import "@testing-library/jest-dom";
 import LoginForm from "@/features/auth-modal/components/login-form/LoginForm";
-import SessionProvider from "@/providers/session-provider/SessionProvider";
-import { ReactQueryProvider } from "@/providers/react-query-provider/ReactQueryProvider";
 import { render, fireEvent } from "@testing-library/react";
 
 describe("LoginForm", () => {
   it("should render the login form", () => {
-    const { container } = render(
-      <ReactQueryProvider>
-        <SessionProvider>
-          <LoginForm />
-        </SessionProvider>
-      </ReactQueryProvider>
-    );
+    const { container } = render(<LoginForm onSubmit={() => {}} />);
 
     expect(container).toBeInTheDocument();
   });
 
   it("should have fields and submit button", () => {
-    const { getByTestId } = render(
-      <ReactQueryProvider>
-        <SessionProvider>
-          <LoginForm />
-        </SessionProvider>
-      </ReactQueryProvider>
-    );
+    const { getByTestId } = render(<LoginForm onSubmit={() => {}} />);
 
     expect(getByTestId("identifier")).toBeInTheDocument();
     expect(getByTestId("password")).toBeInTheDocument();
@@ -32,13 +18,7 @@ describe("LoginForm", () => {
   });
 
   it("should have appropriate types", () => {
-    const { getByTestId } = render(
-      <ReactQueryProvider>
-        <SessionProvider>
-          <LoginForm />
-        </SessionProvider>
-      </ReactQueryProvider>
-    );
+    const { getByTestId } = render(<LoginForm onSubmit={() => {}} />);
 
     const identifierInput = getByTestId("identifier");
     const passwordInput = getByTestId("password");
@@ -51,11 +31,7 @@ describe("LoginForm", () => {
     const handleClose = jest.fn();
 
     const { getByText } = render(
-      <ReactQueryProvider>
-        <SessionProvider>
-          <LoginForm onClose={handleClose} />
-        </SessionProvider>
-      </ReactQueryProvider>
+      <LoginForm onClose={handleClose} onSubmit={() => {}} />
     );
 
     const cancelButton = getByText("Cancel");
@@ -67,11 +43,7 @@ describe("LoginForm", () => {
 
   it("should show validation errors when fields are empty", async () => {
     const { getByTestId, findByText } = render(
-      <ReactQueryProvider>
-        <SessionProvider>
-          <LoginForm />
-        </SessionProvider>
-      </ReactQueryProvider>
+      <LoginForm onSubmit={() => {}} />
     );
 
     const submitButton = getByTestId("submit-button");
@@ -93,13 +65,7 @@ describe("LoginForm", () => {
       });
     });
 
-    const { getByTestId } = render(
-      <ReactQueryProvider>
-        <SessionProvider>
-          <LoginForm onSubmit={handleSubmit} />
-        </SessionProvider>
-      </ReactQueryProvider>
-    );
+    const { getByTestId } = render(<LoginForm onSubmit={handleSubmit} />);
 
     const identifierInput = getByTestId("identifier");
     const passwordInput = getByTestId("password");

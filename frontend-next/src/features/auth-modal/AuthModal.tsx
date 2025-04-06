@@ -12,6 +12,7 @@ import {
 import LoginForm from "@/features/auth-modal/components/login-form/LoginForm";
 import { TAuthModalMode } from "@/features/auth-modal/types/authModalMode";
 import RegisterForm from "@/features/auth-modal/components/register-form/RegisterForm";
+import { useLogin } from "@/features/auth-modal/hooks/useLogin";
 
 interface IAuthModalProps {
   isOpen: boolean;
@@ -31,6 +32,7 @@ export default function AuthModal({
   defaultMode = "signIn",
 }: IAuthModalProps): JSX.Element {
   const [mode, setMode] = useState<TAuthModalMode>(defaultMode);
+  const { login, isLoading: isLoginLoading } = useLogin(onClose);
 
   const title = mode === "signIn" ? "Sign In" : "Sign Up";
 
@@ -57,7 +59,11 @@ export default function AuthModal({
         {mode === "signUp" ? (
           <RegisterForm onClose={onClose} />
         ) : (
-          <LoginForm onClose={onClose} />
+          <LoginForm
+            onSubmit={login}
+            isLoading={isLoginLoading}
+            onClose={onClose}
+          />
         )}
       </DialogContent>
     </Dialog>

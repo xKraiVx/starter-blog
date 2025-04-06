@@ -10,12 +10,7 @@ import {
 import { setAuthCookies } from "@/app/auth/actions";
 
 interface UseLoginResult {
-  login: UseMutateFunction<
-    LoginMutation,
-    unknown,
-    Exact<{ input: UsersPermissionsLoginInput }>,
-    unknown
-  >;
+  login: (data: UsersPermissionsLoginInput) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -31,8 +26,16 @@ export const useLogin: TUseLogin = (onCompleted) => {
     },
   });
 
+  const login = async (input: UsersPermissionsLoginInput) => {
+    const response = await mutate({
+      input,
+    });
+
+    return response;
+  };
+
   return {
-    login: mutate,
+    login,
     isLoading: isPending,
   };
 };

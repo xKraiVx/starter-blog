@@ -9,27 +9,23 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useLogin } from "@/features/auth-modal/hooks/useLogin";
 
 interface LoginFormProps {
+  onSubmit: (data: UsersPermissionsLoginInput) => void;
+  isLoading?: boolean;
   onClose?: VoidFunction;
-  onSubmit?: (data: UsersPermissionsLoginInput) => void;
 }
 
 export default function LoginForm({
-  onClose,
+  isLoading,
   onSubmit,
+  onClose,
 }: LoginFormProps): JSX.Element {
   const methods = useForm<UsersPermissionsLoginInput>({
     resolver: yupResolver(LOGIN_VALIDATION_SCHEMA),
     defaultValues: LOGIN_DEFAULT_VALUES,
   });
 
-  const { login, isLoading } = useLogin(onClose);
-
   const onLogin: SubmitHandler<UsersPermissionsLoginInput> = (data) => {
-    if (!onSubmit) {
-      login({ input: data });
-      return;
-    }
-    onSubmit?.(data);
+    onSubmit(data);
   };
 
   return (
