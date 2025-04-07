@@ -1,8 +1,4 @@
-import {
-  Exact,
-  UsersPermissionsLoginInput,
-} from "@/graphql/graphql-generated-types/types";
-import { UseMutateFunction } from "@tanstack/react-query";
+import { UsersPermissionsLoginInput } from "@/graphql/graphql-generated-types/types";
 import {
   LoginMutation,
   useLoginMutation,

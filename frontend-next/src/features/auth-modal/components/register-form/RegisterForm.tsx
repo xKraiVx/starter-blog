@@ -4,12 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack } from "@mui/material";
 import { JSX, useEffect } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useRegister } from "@/features/auth-modal/hooks/useRegister";
 import { REGISTER_DEFAULT_VALUES } from "@/features/auth-modal/constants/registerDefaultValues";
 import { REGISTER_VALIDATION_SCHEMA } from "@/features/auth-modal/constants/registerValidationSchema";
 
 interface RegisterFormProps {
-  onClose: VoidFunction;
+  onSubmit: (data: UsersPermissionsRegisterInput) => void;
+  isLoading?: boolean;
+  onClose?: VoidFunction;
 }
 
 interface IRegisterFormFields extends UsersPermissionsRegisterInput {
@@ -17,6 +18,8 @@ interface IRegisterFormFields extends UsersPermissionsRegisterInput {
 }
 
 export default function RegisterForm({
+  isLoading,
+  onSubmit,
   onClose,
 }: RegisterFormProps): JSX.Element {
   const methods = useForm<IRegisterFormFields>({
@@ -28,14 +31,12 @@ export default function RegisterForm({
 
   const email = watch("email");
 
-  const { register, isLoading } = useRegister(onClose);
-
-  const onSubmit: SubmitHandler<IRegisterFormFields> = ({
+  const onRegister: SubmitHandler<IRegisterFormFields> = ({
     email,
     password,
     username,
   }) => {
-    register({ input: { email, password, username } });
+    onSubmit({ email, password, username });
   };
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function RegisterForm({
 
   return (
     <FormProvider {...methods}>
-      <Box component="form" onSubmit={methods.handleSubmit(onSubmit)}>
+      <Box component="form" onSubmit={methods.handleSubmit(onRegister)}>
         <Stack gap={2}>
           <FeTextField label="Email" name="email" />
           <FeTextField label="Password" name="password" type="password" />

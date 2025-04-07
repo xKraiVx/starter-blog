@@ -1,8 +1,4 @@
-import {
-  Exact,
-  UsersPermissionsRegisterInput,
-} from "@/graphql/graphql-generated-types/types";
-import { UseMutateFunction } from "@tanstack/react-query";
+import { UsersPermissionsRegisterInput } from "@/graphql/graphql-generated-types/types";
 import { setAuthCookies } from "@/app/auth/actions";
 import {
   RegisterMutation,
@@ -10,12 +6,7 @@ import {
 } from "@/features/auth-modal/graphql/mutations/register.generated";
 
 interface UseRegisterResult {
-  register: UseMutateFunction<
-    RegisterMutation,
-    unknown,
-    Exact<{ input: UsersPermissionsRegisterInput }>,
-    unknown
-  >;
+  register: (data: UsersPermissionsRegisterInput) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -31,8 +22,16 @@ export const useRegister: TUseRegister = (onCompleted) => {
     },
   });
 
+  const register = async (data: UsersPermissionsRegisterInput) => {
+    const response = await mutate({
+      input: data,
+    });
+
+    return response;
+  };
+
   return {
-    register: mutate,
+    register,
     isLoading: isPending,
   };
 };
