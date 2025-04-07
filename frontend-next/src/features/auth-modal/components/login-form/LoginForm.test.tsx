@@ -2,6 +2,21 @@ import "@testing-library/jest-dom";
 import LoginForm from "@/features/auth-modal/components/login-form/LoginForm";
 import { render, fireEvent } from "@testing-library/react";
 
+const TEST_IDS = {
+  identifier: "identifier",
+  password: "password",
+  submitButton: "submit-button",
+};
+
+const BUTTON_TEXT = {
+  cancel: "Cancel",
+};
+
+const VALIDATION_ERRORS = {
+  emailRequired: "Email is required",
+  passwordRequired: "Password is required",
+};
+
 describe("LoginForm", () => {
   it("should render the login form", () => {
     const { container } = render(<LoginForm onSubmit={() => {}} />);
@@ -12,16 +27,16 @@ describe("LoginForm", () => {
   it("should have fields and submit button", () => {
     const { getByTestId } = render(<LoginForm onSubmit={() => {}} />);
 
-    expect(getByTestId("identifier")).toBeInTheDocument();
-    expect(getByTestId("password")).toBeInTheDocument();
-    expect(getByTestId("submit-button")).toBeInTheDocument();
+    expect(getByTestId(TEST_IDS.identifier)).toBeInTheDocument();
+    expect(getByTestId(TEST_IDS.password)).toBeInTheDocument();
+    expect(getByTestId(TEST_IDS.submitButton)).toBeInTheDocument();
   });
 
   it("should have appropriate types", () => {
     const { getByTestId } = render(<LoginForm onSubmit={() => {}} />);
 
-    const identifierInput = getByTestId("identifier");
-    const passwordInput = getByTestId("password");
+    const identifierInput = getByTestId(TEST_IDS.identifier);
+    const passwordInput = getByTestId(TEST_IDS.password);
 
     expect(identifierInput).toHaveAttribute("type", "text");
     expect(passwordInput).toHaveAttribute("type", "password");
@@ -34,7 +49,7 @@ describe("LoginForm", () => {
       <LoginForm onClose={handleClose} onSubmit={() => {}} />
     );
 
-    const cancelButton = getByText("Cancel");
+    const cancelButton = getByText(BUTTON_TEXT.cancel);
 
     fireEvent.click(cancelButton);
 
@@ -46,12 +61,16 @@ describe("LoginForm", () => {
       <LoginForm onSubmit={() => {}} />
     );
 
-    const submitButton = getByTestId("submit-button");
+    const submitButton = getByTestId(TEST_IDS.submitButton);
 
     fireEvent.click(submitButton);
 
-    expect(await findByText("Email is required")).toBeInTheDocument();
-    expect(await findByText("Password is required")).toBeInTheDocument();
+    expect(
+      await findByText(VALIDATION_ERRORS.emailRequired)
+    ).toBeInTheDocument();
+    expect(
+      await findByText(VALIDATION_ERRORS.passwordRequired)
+    ).toBeInTheDocument();
   });
 
   it("should call onSubmit with correct data", () => {
@@ -67,9 +86,9 @@ describe("LoginForm", () => {
 
     const { getByTestId } = render(<LoginForm onSubmit={handleSubmit} />);
 
-    const identifierInput = getByTestId("identifier");
-    const passwordInput = getByTestId("password");
-    const submitButton = getByTestId("submit-button");
+    const identifierInput = getByTestId(TEST_IDS.identifier);
+    const passwordInput = getByTestId(TEST_IDS.password);
+    const submitButton = getByTestId(TEST_IDS.submitButton);
 
     fireEvent.change(identifierInput, { target: { value: identifier } });
     fireEvent.change(passwordInput, { target: { value: password } });

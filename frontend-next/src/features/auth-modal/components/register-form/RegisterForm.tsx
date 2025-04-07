@@ -50,7 +50,7 @@ export default function RegisterForm({
     <FormProvider {...methods}>
       <Box component="form" onSubmit={methods.handleSubmit(onRegister)}>
         <Stack gap={2}>
-          <FeTextField label="Email" name="email" />
+          <FeTextField label="Email" name="email" type="email" />
           <FeTextField label="Password" name="password" type="password" />
           <FeTextField
             label="Confirm password"
@@ -65,6 +65,7 @@ export default function RegisterForm({
               variant="contained"
               color="primary"
               type="submit"
+              data-testid="submit-button"
               loading={isLoading}
             >
               Sign Up
