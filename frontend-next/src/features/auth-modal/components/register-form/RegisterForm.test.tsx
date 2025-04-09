@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import RegisterForm from "@/features/auth-modal/components/register-form/RegisterForm";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, act } from "@testing-library/react";
 
 const TEST_IDS = {
   email: "email",
@@ -54,7 +54,9 @@ describe("RegisterForm", () => {
 
     const cancelButton = getByText(TEST_IDS.cancelButton);
 
-    fireEvent.click(cancelButton);
+    act(() => {
+      fireEvent.click(cancelButton);
+    });
 
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
@@ -66,7 +68,9 @@ describe("RegisterForm", () => {
 
     const submitButton = getByTestId(TEST_IDS.submitButton);
 
-    fireEvent.click(submitButton);
+    act(() => {
+      fireEvent.click(submitButton);
+    });
 
     expect(
       await findByText(VALIDATION_MESSAGES.emailRequired)
@@ -99,28 +103,38 @@ describe("RegisterForm", () => {
     const confirmPasswordInput = getByTestId(TEST_IDS.passwordConfirm);
     const submitButton = getByTestId(TEST_IDS.submitButton);
 
-    fireEvent.change(emailInput, { target: { value: email } });
-    fireEvent.change(passwordInput, { target: { value: password } });
-    fireEvent.change(confirmPasswordInput, { target: { value: password } });
+    act(() => {
+      fireEvent.change(emailInput, { target: { value: email } });
+      fireEvent.change(passwordInput, { target: { value: password } });
+      fireEvent.change(confirmPasswordInput, { target: { value: password } });
+    });
 
-    fireEvent.click(submitButton);
+    act(() => {
+      fireEvent.click(submitButton);
+    });
   });
 
   it("should show error if passwords do not match", async () => {
+    const handleSubmit = jest.fn();
+
     const { getByTestId, findByText } = render(
-      <RegisterForm onSubmit={() => {}} />
+      <RegisterForm onSubmit={handleSubmit} />
     );
 
     const passwordInput = getByTestId(TEST_IDS.password);
     const confirmPasswordInput = getByTestId(TEST_IDS.passwordConfirm);
     const submitButton = getByTestId(TEST_IDS.submitButton);
 
-    fireEvent.change(passwordInput, { target: { value: "Password123" } });
-    fireEvent.change(confirmPasswordInput, {
-      target: { value: "Password456" },
+    act(() => {
+      fireEvent.change(passwordInput, { target: { value: "Password123" } });
+      fireEvent.change(confirmPasswordInput, {
+        target: { value: "Password456" },
+      });
     });
 
-    fireEvent.click(submitButton);
+    act(() => {
+      fireEvent.click(submitButton);
+    });
 
     expect(
       await findByText(VALIDATION_MESSAGES.passwordsDoNotMatch)

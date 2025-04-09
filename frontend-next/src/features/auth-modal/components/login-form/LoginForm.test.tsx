@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import LoginForm from "@/features/auth-modal/components/login-form/LoginForm";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, act } from "@testing-library/react";
 
 const TEST_IDS = {
   identifier: "identifier",
@@ -51,7 +51,9 @@ describe("LoginForm", () => {
 
     const cancelButton = getByText(BUTTON_TEXT.cancel);
 
-    fireEvent.click(cancelButton);
+    act(() => {
+      fireEvent.click(cancelButton);
+    });
 
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
@@ -63,7 +65,9 @@ describe("LoginForm", () => {
 
     const submitButton = getByTestId(TEST_IDS.submitButton);
 
-    fireEvent.click(submitButton);
+    act(() => {
+      fireEvent.click(submitButton);
+    });
 
     expect(
       await findByText(VALIDATION_ERRORS.emailRequired)
@@ -90,9 +94,13 @@ describe("LoginForm", () => {
     const passwordInput = getByTestId(TEST_IDS.password);
     const submitButton = getByTestId(TEST_IDS.submitButton);
 
-    fireEvent.change(identifierInput, { target: { value: identifier } });
-    fireEvent.change(passwordInput, { target: { value: password } });
+    act(() => {
+      fireEvent.change(identifierInput, { target: { value: identifier } });
+      fireEvent.change(passwordInput, { target: { value: password } });
+    });
 
-    fireEvent.click(submitButton);
+    act(() => {
+      fireEvent.click(submitButton);
+    });
   });
 });
