@@ -13,7 +13,7 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   AboutWidgetsDynamicZoneInput: { input: any; output: any; }
-  ArticleBlocksDynamicZoneInput: { input: any; output: any; }
+  ArticleWidgetsDynamicZoneInput: { input: any; output: any; }
   BlogWidgetsDynamicZoneInput: { input: any; output: any; }
   DateTime: { input: any; output: any; }
   HomePageWidgetsDynamicZoneInput: { input: any; output: any; }
@@ -53,7 +53,6 @@ export type AboutWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWi
 export type Article = {
   __typename?: 'Article';
   author?: Maybe<Author>;
-  blocks?: Maybe<Array<Maybe<ArticleBlocksDynamicZone>>>;
   category?: Maybe<Category>;
   cover?: Maybe<UploadFile>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -67,6 +66,7 @@ export type Article = {
   slug?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  widgets?: Maybe<Array<Maybe<ArticleWidgetsDynamicZone>>>;
 };
 
 
@@ -82,8 +82,6 @@ export type ArticleLocalizations_ConnectionArgs = {
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
-
-export type ArticleBlocksDynamicZone = ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSlider | Error;
 
 export type ArticleEntityResponseCollection = {
   __typename?: 'ArticleEntityResponseCollection';
@@ -111,7 +109,6 @@ export type ArticleFiltersInput = {
 
 export type ArticleInput = {
   author?: InputMaybe<Scalars['ID']['input']>;
-  blocks?: InputMaybe<Array<Scalars['ArticleBlocksDynamicZoneInput']['input']>>;
   category?: InputMaybe<Scalars['ID']['input']>;
   cover?: InputMaybe<Scalars['ID']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -119,12 +116,15 @@ export type ArticleInput = {
   seo?: InputMaybe<ComponentSharedSeoInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  widgets?: InputMaybe<Array<Scalars['ArticleWidgetsDynamicZoneInput']['input']>>;
 };
 
 export type ArticleRelationResponseCollection = {
   __typename?: 'ArticleRelationResponseCollection';
   nodes: Array<Article>;
 };
+
+export type ArticleWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
 
 export type Author = {
   __typename?: 'Author';

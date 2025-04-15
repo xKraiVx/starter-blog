@@ -1,12 +1,12 @@
 import { JSX } from "react";
 import { Box, Typography } from "@mui/material";
 import { EPageBuilderWidget } from "@/features/page-builder/enums/pageBuilderWidget";
-import { PageBuilderWidgetsFragment } from "@/ssr-features/graphql/fragments/pageBuilderWidgets.generated";
 import { PAGE_BUILDER_WIDGET } from "@/features/page-builder/constants/pageBuilderWidgets";
 import { GetRecentArticlesQuery } from "@/ssr-features/graphql/queries/getRecentArticles.generated";
+import { HomeBuilderWidgetsFragment } from "@/ssr-features/pages/home/graphql/queries/getHomePage.generated";
 
 interface IPageBuilderProps {
-  widgets: (PageBuilderWidgetsFragment | null)[] | null | undefined;
+  widgets: (HomeBuilderWidgetsFragment | null)[] | null | undefined;
   recentArticles?: GetRecentArticlesQuery;
 }
 

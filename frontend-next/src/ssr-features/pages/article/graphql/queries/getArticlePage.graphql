@@ -7,4 +7,25 @@ query GetArticlePage($slug: String!, $locale: I18NLocaleCode) {
 fragment ArticleForArticlePage on Article {
   slug
   title
+  widgets {
+    ...ArticleBuilderWidgets
+  }
+}
+
+fragment ArticleBuilderWidgets on ArticleWidgetsDynamicZone {
+  ... on ComponentWidgetsHero {
+    ...HeroWidget
+  }
+  ... on ComponentWidgetsGrid {
+    ...GridWidget
+  }
+  ... on ComponentWidgetsCallToAction {
+    ...CallToActionWidget
+  }
+  ... on ComponentWidgetsRecentPosts {
+    ...RecentPostsWidget
+  }
+  ... on ComponentWidgetsTextWithImage {
+    ...TextWithImageWidget
+  }
 }
