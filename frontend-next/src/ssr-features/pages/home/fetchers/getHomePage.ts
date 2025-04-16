@@ -1,6 +1,7 @@
 import { ELocale } from "@/common/enums/locale.enum";
 import { EPageBuilderWidget } from "@/features/page-builder/enums/pageBuilderWidget";
 import { fetcher } from "@/graphql/fetcher";
+import { getRecentArticles } from "@/ssr-features/graphql/fetchers/getRecentArticles";
 import {
   GetRecentArticlesDocument,
   GetRecentArticlesQuery,
@@ -29,16 +30,7 @@ export const getHomePage = async (locale: ELocale): TGetHomePageReturn => {
   );
 
   if (recentPostWidget) {
-    const recentArticles = await fetcher<
-      GetRecentArticlesQuery,
-      GetRecentArticlesQueryVariables
-    >(GetRecentArticlesDocument, {
-      locale,
-      pagination: {
-        page: 1,
-        pageSize: recentPostWidget.postCount || 5,
-      },
-    })();
+    const recentArticles = await getRecentArticles(locale, recentPostWidget);
 
     return {
       data,
