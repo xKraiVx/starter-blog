@@ -445,6 +445,14 @@ export type ComponentWidgetsCallToAction = {
   title?: Maybe<Scalars['String']['output']>;
 };
 
+export type ComponentWidgetsCallToActionInput = {
+  backgroundImage?: InputMaybe<Scalars['ID']['input']>;
+  buttonText?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentWidgetsGrid = {
   __typename?: 'ComponentWidgetsGrid';
   desktopColumnCount?: Maybe<Enum_Componentwidgetsgrid_Desktopcolumncount>;
@@ -500,6 +508,30 @@ export type ComponentWidgetsTextWithImage = {
   isImageOnLeftSide?: Maybe<Scalars['Boolean']['output']>;
   text?: Maybe<Scalars['JSON']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ContactUs = {
+  __typename?: 'ContactUs';
+  contactUsSection?: Maybe<ComponentWidgetsCallToAction>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<ContactUs>>;
+  localizations_connection?: Maybe<ContactUsRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo?: Maybe<ComponentSharedSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type ContactUsInput = {
+  contactUsSection?: InputMaybe<ComponentWidgetsCallToActionInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+};
+
+export type ContactUsRelationResponseCollection = {
+  __typename?: 'ContactUsRelationResponseCollection';
+  nodes: Array<ContactUs>;
 };
 
 export type DateTimeFilterInput = {
@@ -635,7 +667,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | ContactUs | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -863,6 +895,7 @@ export type Mutation = {
   deleteAuthor?: Maybe<DeleteMutationResponse>;
   deleteBlog?: Maybe<DeleteMutationResponse>;
   deleteCategory?: Maybe<DeleteMutationResponse>;
+  deleteContactUs?: Maybe<DeleteMutationResponse>;
   deleteFooter?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
   deleteHomePage?: Maybe<DeleteMutationResponse>;
@@ -889,6 +922,7 @@ export type Mutation = {
   updateAuthor?: Maybe<Author>;
   updateBlog?: Maybe<Blog>;
   updateCategory?: Maybe<Category>;
+  updateContactUs?: Maybe<ContactUs>;
   updateFooter?: Maybe<Footer>;
   updateGlobal?: Maybe<Global>;
   updateHomePage?: Maybe<HomePage>;
@@ -989,6 +1023,11 @@ export type MutationDeleteBlogArgs = {
 
 export type MutationDeleteCategoryArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeleteContactUsArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -1103,6 +1142,13 @@ export type MutationUpdateBlogArgs = {
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateContactUsArgs = {
+  data: ContactUsInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1273,6 +1319,7 @@ export type Query = {
   categories: Array<Maybe<Category>>;
   categories_connection?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<Category>;
+  contactUs?: Maybe<ContactUs>;
   footer?: Maybe<Footer>;
   global?: Maybe<Global>;
   homePage?: Maybe<HomePage>;
@@ -1384,6 +1431,12 @@ export type QueryCategories_ConnectionArgs = {
 
 export type QueryCategoryArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryContactUsArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };

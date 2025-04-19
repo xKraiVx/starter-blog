@@ -2,11 +2,7 @@ import { ELocale } from "@/common/enums/locale.enum";
 import { EPageBuilderWidget } from "@/features/page-builder/enums/pageBuilderWidget";
 import { fetcher } from "@/graphql/fetcher";
 import { getRecentArticles } from "@/ssr-features/graphql/fetchers/getRecentArticles";
-import {
-  GetRecentArticlesDocument,
-  GetRecentArticlesQuery,
-  GetRecentArticlesQueryVariables,
-} from "@/ssr-features/graphql/queries/getRecentArticles.generated";
+import { GetRecentArticlesQuery } from "@/ssr-features/graphql/queries/getRecentArticles.generated";
 
 import {
   GetHomePageDocument,

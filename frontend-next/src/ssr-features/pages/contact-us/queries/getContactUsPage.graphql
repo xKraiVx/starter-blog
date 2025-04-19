@@ -1,0 +1,7 @@
+query GetContactUsPage($locale: I18NLocaleCode) {
+  contactUs(locale: $locale) {
+    contactUsSection {
+      ...CallToActionWidget
+    }
+  }
+}
