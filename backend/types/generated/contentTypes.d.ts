@@ -490,6 +490,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         'widgets.hero',
         'widgets.grid',
         'widgets.call-to-action',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -535,6 +536,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
 export interface ApiBlogBlog extends Struct.SingleTypeSchema {
   collectionName: 'blogs';
   info: {
+    description: '';
     displayName: 'Blog';
     pluralName: 'blogs';
     singularName: 'blog';
@@ -576,6 +578,7 @@ export interface ApiBlogBlog extends Struct.SingleTypeSchema {
         'widgets.hero',
         'widgets.grid',
         'widgets.call-to-action',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -816,6 +819,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'widgets.grid',
         'widgets.call-to-action',
         'widgets.recent-posts',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -917,6 +921,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'widgets.grid',
         'widgets.call-to-action',
         'widgets.recent-posts',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

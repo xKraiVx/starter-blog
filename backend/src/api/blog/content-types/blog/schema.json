@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "Blog"
+    "displayName": "Blog",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -35,7 +36,8 @@
         "widgets.recent-posts",
         "widgets.hero",
         "widgets.grid",
-        "widgets.call-to-action"
+        "widgets.call-to-action",
+        "widgets.text-editor"
       ]
     },
     "seo": {
