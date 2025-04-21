@@ -13,6 +13,8 @@ export default function Article({
   data,
   recentArticles,
 }: IArticleProps): JSX.Element {
+  console.log("Article data", data);
+
   return (
     <PageBuilder widgets={data?.widgets} recentArticles={recentArticles} />
   );

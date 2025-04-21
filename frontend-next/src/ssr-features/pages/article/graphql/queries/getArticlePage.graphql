@@ -28,4 +28,7 @@ fragment ArticleBuilderWidgets on ArticleWidgetsDynamicZone {
   ... on ComponentWidgetsTextWithImage {
     ...TextWithImageWidget
   }
+  ... on ComponentWidgetsTextEditor {
+    ...TextEditorWidget
+  }
 }

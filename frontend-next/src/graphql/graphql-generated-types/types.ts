@@ -124,7 +124,7 @@ export type ArticleRelationResponseCollection = {
   nodes: Array<Article>;
 };
 
-export type ArticleWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
+export type ArticleWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type Author = {
   __typename?: 'Author';
@@ -206,7 +206,7 @@ export type BlogRelationResponseCollection = {
   nodes: Array<Blog>;
 };
 
-export type BlogWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
+export type BlogWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -501,6 +501,13 @@ export type ComponentWidgetsRecentPostsArticles_ConnectionArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ComponentWidgetsTextEditor = {
+  __typename?: 'ComponentWidgetsTextEditor';
+  editor?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type ComponentWidgetsTextWithImage = {
   __typename?: 'ComponentWidgetsTextWithImage';
   id: Scalars['ID']['output'];
@@ -667,7 +674,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | ContactUs | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | ContactUs | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -721,7 +728,7 @@ export type HomePageRelationResponseCollection = {
   nodes: Array<HomePage>;
 };
 
-export type HomePageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
+export type HomePageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -1284,7 +1291,7 @@ export type PageRelationResponseCollection = {
   nodes: Array<Page>;
 };
 
-export type PageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
+export type PageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type Pagination = {
   __typename?: 'Pagination';
