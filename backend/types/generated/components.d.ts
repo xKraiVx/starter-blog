@@ -192,11 +192,20 @@ export interface WidgetsRecentPosts extends Struct.ComponentSchema {
 export interface WidgetsTextEditor extends Struct.ComponentSchema {
   collectionName: 'components_widgets_text_editors';
   info: {
+    description: '';
     displayName: 'TextEditor';
     icon: 'bulletList';
   };
   attributes: {
-    editor: Schema.Attribute.RichText;
+    editor: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDY1NzU5OTksImp0aSI6IjAyMGJmNjY5LTdiZWMtNDczNS1hYTVkLTI2MjM5ZWU0NWM0NiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6Ijg3NDg0MWZmIn0.6Afy9i91jAupzJa-9t6pHjOa1ArKe0MBjfZ1e3_-MPbMGRq2CHDn6ik5NwPnPUsZS--DkYzrqiwg03tTBFLhWg';
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
     title: Schema.Attribute.String;
   };
 }

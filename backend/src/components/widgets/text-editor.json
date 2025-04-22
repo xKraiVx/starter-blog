@@ -2,7 +2,8 @@
   "collectionName": "components_widgets_text_editors",
   "info": {
     "displayName": "TextEditor",
-    "icon": "bulletList"
+    "icon": "bulletList",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,7 +11,13 @@
       "type": "string"
     },
     "editor": {
-      "type": "richtext"
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich",
+        "licenseKey": "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDY1NzU5OTksImp0aSI6IjAyMGJmNjY5LTdiZWMtNDczNS1hYTVkLTI2MjM5ZWU0NWM0NiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6Ijg3NDg0MWZmIn0.6Afy9i91jAupzJa-9t6pHjOa1ArKe0MBjfZ1e3_-MPbMGRq2CHDn6ik5NwPnPUsZS--DkYzrqiwg03tTBFLhWg"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }
