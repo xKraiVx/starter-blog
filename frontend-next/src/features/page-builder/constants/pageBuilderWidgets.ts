@@ -2,6 +2,7 @@ import CallToActionWidget from "@/features/page-builder/components/call-to-actio
 import GridWidget from "@/features/page-builder/components/grid-widget/GridWidget";
 import HeroWidget from "@/features/page-builder/components/hero-widget/HeroWidget";
 import RecentPostsWidget from "@/features/page-builder/components/recent-posts-widget/RecentPostsWidget";
+import TextEditorWidget from "@/features/page-builder/components/text-editor-widget/TextEditorWidget";
 import TextWithImageWidget from "@/features/page-builder/components/text-with-image-widget/TextWithImageWidget";
 import { EPageBuilderWidget } from "@/features/page-builder/enums/pageBuilderWidget";
 import { ComponentType } from "react";
@@ -15,4 +16,5 @@ export const PAGE_BUILDER_WIDGET: Record<
   [EPageBuilderWidget.Grid]: GridWidget,
   [EPageBuilderWidget.TextWithImage]: TextWithImageWidget,
   [EPageBuilderWidget.ResentPosts]: RecentPostsWidget,
+  [EPageBuilderWidget.TextEditor]: TextEditorWidget,
 };

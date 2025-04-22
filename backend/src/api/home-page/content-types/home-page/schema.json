@@ -46,7 +46,8 @@
         "widgets.hero",
         "widgets.grid",
         "widgets.call-to-action",
-        "widgets.recent-posts"
+        "widgets.recent-posts",
+        "widgets.text-editor"
       ]
     }
   }

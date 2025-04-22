@@ -490,6 +490,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         'widgets.hero',
         'widgets.grid',
         'widgets.call-to-action',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -535,6 +536,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
 export interface ApiBlogBlog extends Struct.SingleTypeSchema {
   collectionName: 'blogs';
   info: {
+    description: '';
     displayName: 'Blog';
     pluralName: 'blogs';
     singularName: 'blog';
@@ -576,6 +578,7 @@ export interface ApiBlogBlog extends Struct.SingleTypeSchema {
         'widgets.hero',
         'widgets.grid',
         'widgets.call-to-action',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -626,6 +629,52 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       }>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiContactUsContactUs extends Struct.SingleTypeSchema {
+  collectionName: 'contact_uses';
+  info: {
+    displayName: 'Contact Us';
+    pluralName: 'contact-uses';
+    singularName: 'contact-us';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    contactUsSection: Schema.Attribute.Component<
+      'widgets.call-to-action',
+      false
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-us.contact-us'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -770,6 +819,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'widgets.grid',
         'widgets.call-to-action',
         'widgets.recent-posts',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -871,6 +921,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'widgets.grid',
         'widgets.call-to-action',
         'widgets.recent-posts',
+        'widgets.text-editor',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -1395,6 +1446,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
+      'api::contact-us.contact-us': ApiContactUsContactUs;
       'api::footer.footer': ApiFooterFooter;
       'api::global.global': ApiGlobalGlobal;
       'api::home-page.home-page': ApiHomePageHomePage;

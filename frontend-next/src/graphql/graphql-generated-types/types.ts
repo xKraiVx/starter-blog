@@ -13,7 +13,7 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   AboutWidgetsDynamicZoneInput: { input: any; output: any; }
-  ArticleBlocksDynamicZoneInput: { input: any; output: any; }
+  ArticleWidgetsDynamicZoneInput: { input: any; output: any; }
   BlogWidgetsDynamicZoneInput: { input: any; output: any; }
   DateTime: { input: any; output: any; }
   HomePageWidgetsDynamicZoneInput: { input: any; output: any; }
@@ -53,7 +53,6 @@ export type AboutWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWi
 export type Article = {
   __typename?: 'Article';
   author?: Maybe<Author>;
-  blocks?: Maybe<Array<Maybe<ArticleBlocksDynamicZone>>>;
   category?: Maybe<Category>;
   cover?: Maybe<UploadFile>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -67,6 +66,7 @@ export type Article = {
   slug?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  widgets?: Maybe<Array<Maybe<ArticleWidgetsDynamicZone>>>;
 };
 
 
@@ -82,8 +82,6 @@ export type ArticleLocalizations_ConnectionArgs = {
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
-
-export type ArticleBlocksDynamicZone = ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSlider | Error;
 
 export type ArticleEntityResponseCollection = {
   __typename?: 'ArticleEntityResponseCollection';
@@ -111,7 +109,6 @@ export type ArticleFiltersInput = {
 
 export type ArticleInput = {
   author?: InputMaybe<Scalars['ID']['input']>;
-  blocks?: InputMaybe<Array<Scalars['ArticleBlocksDynamicZoneInput']['input']>>;
   category?: InputMaybe<Scalars['ID']['input']>;
   cover?: InputMaybe<Scalars['ID']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -119,12 +116,15 @@ export type ArticleInput = {
   seo?: InputMaybe<ComponentSharedSeoInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  widgets?: InputMaybe<Array<Scalars['ArticleWidgetsDynamicZoneInput']['input']>>;
 };
 
 export type ArticleRelationResponseCollection = {
   __typename?: 'ArticleRelationResponseCollection';
   nodes: Array<Article>;
 };
+
+export type ArticleWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type Author = {
   __typename?: 'Author';
@@ -206,7 +206,7 @@ export type BlogRelationResponseCollection = {
   nodes: Array<Blog>;
 };
 
-export type BlogWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
+export type BlogWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -445,6 +445,14 @@ export type ComponentWidgetsCallToAction = {
   title?: Maybe<Scalars['String']['output']>;
 };
 
+export type ComponentWidgetsCallToActionInput = {
+  backgroundImage?: InputMaybe<Scalars['ID']['input']>;
+  buttonText?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ComponentWidgetsGrid = {
   __typename?: 'ComponentWidgetsGrid';
   desktopColumnCount?: Maybe<Enum_Componentwidgetsgrid_Desktopcolumncount>;
@@ -493,6 +501,13 @@ export type ComponentWidgetsRecentPostsArticles_ConnectionArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ComponentWidgetsTextEditor = {
+  __typename?: 'ComponentWidgetsTextEditor';
+  editor?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type ComponentWidgetsTextWithImage = {
   __typename?: 'ComponentWidgetsTextWithImage';
   id: Scalars['ID']['output'];
@@ -500,6 +515,30 @@ export type ComponentWidgetsTextWithImage = {
   isImageOnLeftSide?: Maybe<Scalars['Boolean']['output']>;
   text?: Maybe<Scalars['JSON']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ContactUs = {
+  __typename?: 'ContactUs';
+  contactUsSection?: Maybe<ComponentWidgetsCallToAction>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<ContactUs>>;
+  localizations_connection?: Maybe<ContactUsRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo?: Maybe<ComponentSharedSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type ContactUsInput = {
+  contactUsSection?: InputMaybe<ComponentWidgetsCallToActionInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+};
+
+export type ContactUsRelationResponseCollection = {
+  __typename?: 'ContactUsRelationResponseCollection';
+  nodes: Array<ContactUs>;
 };
 
 export type DateTimeFilterInput = {
@@ -635,7 +674,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | ContactUs | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -689,7 +728,7 @@ export type HomePageRelationResponseCollection = {
   nodes: Array<HomePage>;
 };
 
-export type HomePageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
+export type HomePageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -863,6 +902,7 @@ export type Mutation = {
   deleteAuthor?: Maybe<DeleteMutationResponse>;
   deleteBlog?: Maybe<DeleteMutationResponse>;
   deleteCategory?: Maybe<DeleteMutationResponse>;
+  deleteContactUs?: Maybe<DeleteMutationResponse>;
   deleteFooter?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
   deleteHomePage?: Maybe<DeleteMutationResponse>;
@@ -889,6 +929,7 @@ export type Mutation = {
   updateAuthor?: Maybe<Author>;
   updateBlog?: Maybe<Blog>;
   updateCategory?: Maybe<Category>;
+  updateContactUs?: Maybe<ContactUs>;
   updateFooter?: Maybe<Footer>;
   updateGlobal?: Maybe<Global>;
   updateHomePage?: Maybe<HomePage>;
@@ -989,6 +1030,11 @@ export type MutationDeleteBlogArgs = {
 
 export type MutationDeleteCategoryArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeleteContactUsArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -1103,6 +1149,13 @@ export type MutationUpdateBlogArgs = {
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateContactUsArgs = {
+  data: ContactUsInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };
@@ -1238,7 +1291,7 @@ export type PageRelationResponseCollection = {
   nodes: Array<Page>;
 };
 
-export type PageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextWithImage | Error;
+export type PageWidgetsDynamicZone = ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | Error;
 
 export type Pagination = {
   __typename?: 'Pagination';
@@ -1273,6 +1326,7 @@ export type Query = {
   categories: Array<Maybe<Category>>;
   categories_connection?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<Category>;
+  contactUs?: Maybe<ContactUs>;
   footer?: Maybe<Footer>;
   global?: Maybe<Global>;
   homePage?: Maybe<HomePage>;
@@ -1384,6 +1438,12 @@ export type QueryCategories_ConnectionArgs = {
 
 export type QueryCategoryArgs = {
   documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryContactUsArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
 };

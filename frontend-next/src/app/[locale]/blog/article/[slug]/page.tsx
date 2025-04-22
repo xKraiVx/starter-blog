@@ -43,8 +43,7 @@ export default async function Page({
   params,
 }: IPageProps<IArticlePageParams>): Promise<JSX.Element> {
   const { locale, slug } = await params;
+  const { data, recentArticles } = await getArticlePage(locale, slug);
 
-  const data = await getArticlePage(locale, slug);
-
-  return <Article data={data} />;
+  return <Article data={data} recentArticles={recentArticles} />;
 }

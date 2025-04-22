@@ -1,16 +1,21 @@
-import UiPageContainer from "@/common/components/ui/ui-section-container/UiSectionContainer";
-import UiPageTitle from "@/common/components/ui/ui-page-title/UiPageTitle";
 import { ArticleForArticlePageFragment } from "@/ssr-features/pages/article/graphql/queries/getArticlePage.generated";
 import { JSX } from "react";
+import PageBuilder from "@/features/page-builder/page-builder";
+import { TMaybe } from "@/common/types/general-types.type";
+import { GetRecentArticlesQuery } from "@/ssr-features/graphql/queries/getRecentArticles.generated";
 
 interface IArticleProps {
-  data: ArticleForArticlePageFragment | null;
+  data: TMaybe<ArticleForArticlePageFragment>;
+  recentArticles?: GetRecentArticlesQuery;
 }
 
-export default function Article({ data }: IArticleProps): JSX.Element {
+export default function Article({
+  data,
+  recentArticles,
+}: IArticleProps): JSX.Element {
+  console.log("Article data", data);
+
   return (
-    <UiPageContainer>
-      <UiPageTitle>{data?.title}</UiPageTitle>
-    </UiPageContainer>
+    <PageBuilder widgets={data?.widgets} recentArticles={recentArticles} />
   );
 }

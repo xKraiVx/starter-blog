@@ -1,0 +1,6 @@
+fragment TextEditorWidget on ComponentWidgetsTextEditor {
+  __typename
+  id
+  title
+  editor
+}

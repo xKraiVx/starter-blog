@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_widgets_text_editors",
+  "info": {
+    "displayName": "TextEditor",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "editor": {
+      "type": "richtext"
+    }
+  }
+}

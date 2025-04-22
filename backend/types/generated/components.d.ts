@@ -189,6 +189,18 @@ export interface WidgetsRecentPosts extends Struct.ComponentSchema {
   };
 }
 
+export interface WidgetsTextEditor extends Struct.ComponentSchema {
+  collectionName: 'components_widgets_text_editors';
+  info: {
+    displayName: 'TextEditor';
+    icon: 'bulletList';
+  };
+  attributes: {
+    editor: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface WidgetsTextWithImage extends Struct.ComponentSchema {
   collectionName: 'components_widgets_text_with_images';
   info: {
@@ -218,6 +230,7 @@ declare module '@strapi/strapi' {
       'widgets.grid': WidgetsGrid;
       'widgets.hero': WidgetsHero;
       'widgets.recent-posts': WidgetsRecentPosts;
+      'widgets.text-editor': WidgetsTextEditor;
       'widgets.text-with-image': WidgetsTextWithImage;
     }
   }
