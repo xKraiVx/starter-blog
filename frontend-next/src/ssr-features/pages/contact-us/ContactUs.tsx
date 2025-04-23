@@ -9,9 +9,16 @@ interface IContactUsProps {
 
 export default function ContactUs({ data }: IContactUsProps): JSX.Element {
   return (
-    <UiPageContainer>
+    <UiPageContainer fullWidth={true}>
       {data.contactUs?.contactUsSection && (
-        <CallToActionWidget data={data.contactUs.contactUsSection} />
+        <CallToActionWidget
+          data={data.contactUs.contactUsSection}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            minHeight: "calc(100vh - 104px)",
+          }}
+        />
       )}
     </UiPageContainer>
   );
