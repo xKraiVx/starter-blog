@@ -1,4 +1,4 @@
-import FeTextEditor from "@/common/components/fe/FeTextEditor";
+import FeTextEditor from "@/common/components/fe/fe-text-editor/FeTextEditor";
 import { Box, Typography } from "@mui/material";
 import { JSX } from "react";
 
