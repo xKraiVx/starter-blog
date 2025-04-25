@@ -22,7 +22,7 @@ export default function TextEditorToolbar({
 
   return (
     <>
-      <ButtonGroup variant="outlined" size="small" sx={{ mb: 2 }}>
+      <ButtonGroup variant="outlined" size="small" sx={{ mb: 2, gap: 1 }}>
         <Button
           onClick={() => editor.chain().focus().toggleBold().run()}
           variant={editor.isActive("bold") ? "contained" : "outlined"}
@@ -36,6 +36,18 @@ export default function TextEditorToolbar({
           Italic
         </Button>
         <Button onClick={handleMenuClick}>Typography</Button>
+        <Button
+          onClick={() => editor.chain().focus().undo().run()}
+          disabled={!editor.can().chain().focus().undo().run()}
+        >
+          Undo
+        </Button>
+        <Button
+          onClick={() => editor.chain().focus().redo().run()}
+          disabled={!editor.can().chain().focus().redo().run()}
+        >
+          Redo
+        </Button>
       </ButtonGroup>
 
       <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
