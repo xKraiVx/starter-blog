@@ -15,7 +15,6 @@ export default function FeSelect({
   id,
   name,
   options,
-  label,
 }: IFeSelectProps): JSX.Element {
   const { control } = useFormContext();
 

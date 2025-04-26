@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, SxProps, Typography } from "@mui/material";
 import { JSX } from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { CallToActionWidgetFragment } from "@/ssr-features/graphql/fragments/callToActionWidget.generated";
@@ -10,9 +10,11 @@ import AnimatedSection from "@/common/components/animated/animated-section/Anima
 
 interface ICallToActionWidgetProps {
   data: CallToActionWidgetFragment;
+  sx?: SxProps;
 }
 
 export default function CallToActionWidget({
+  sx,
   data,
 }: ICallToActionWidgetProps): JSX.Element {
   const { title, description, backgroundImage } = data;
@@ -25,6 +27,7 @@ export default function CallToActionWidget({
           backgroundImage: `url(${getImageUrl(backgroundImage?.url)})`,
           backgroundSize: "cover",
           boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.8)",
+          ...sx,
         }}
       >
         <UiSectionContainer component="section">
