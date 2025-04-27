@@ -1,4 +1,5 @@
 import type { Core } from "@strapi/strapi";
+import { text } from "stream/consumers";
 
 export default {
   /**
@@ -10,7 +11,7 @@ export default {
   register({ strapi }: { strapi: Core.Strapi }) {
     const extensionService = strapi.plugin("graphql").service("extension");
 
-    extensionService.use(({ strapi }) => ({
+    const articleBySlugExtension = ({ nexus }) => ({
       typeDefs: `
         type Query {
           article(slug: String!, documentId: ID): Article
@@ -35,7 +36,42 @@ export default {
           },
         },
       },
-    }));
+    });
+
+    extensionService.use(articleBySlugExtension);
+
+    const getArticleCommentsExtension = ({ nexus }) => ({
+      typeDefs: `
+        type Query {
+          getArticleComments(slug: String!): [Comment]!
+        }
+      `,
+      resolvers: {
+        Query: {
+          getArticleComments: {
+            resolve: async (parent, args, context) => {
+              const { toEntityResponse } = strapi.service(
+                "plugin::graphql.format"
+              ).returnTypes;
+              const data = await strapi.services["api::article.article"].find({
+                filters: { slug: args.slug, locale: args.locale || "en" },
+                populate: {
+                  comments: {
+                    populate: "*",
+                  },
+                },
+              });
+
+              const response = toEntityResponse(data.results[0].comments);
+
+              return response.value;
+            },
+          },
+        },
+      },
+    });
+
+    extensionService.use(getArticleCommentsExtension);
   },
 
   /**

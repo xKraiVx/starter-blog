@@ -1,7 +1,17 @@
 export default () => ({
-  ckeditor: {
-    enabled: true,
-    resolve: "./src/plugins/strapi-plugin-ckeditor",
+  graphql: {
+    config: {
+      endpoint: "/graphql",
+      shadowCRUD: true,
+      landingPage: false,
+      depthLimit: 7,
+      amountLimit: 100,
+      playgroundAlways: true,
+      introspection: true,
+      apolloServer: {
+        tracing: false,
+      },
+    },
   },
   seo: {
     enabled: true,
