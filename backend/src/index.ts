@@ -1,5 +1,7 @@
-import type { Core } from "@strapi/strapi";
-import { text } from "stream/consumers";
+import { RegisterArguments } from "../types/custom/core.types";
+import { articleBySlugExtension } from "./graphql-extensions/article/getArticleBySlugExtension";
+import { getArticleCommentsExtension } from "./graphql-extensions/article/getArticleCommentsExtension";
+import { createCommentExtension } from "./graphql-extensions/comment/createCommentExtension";
 
 export default {
   /**
@@ -8,123 +10,13 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register({ strapi }: { strapi: Core.Strapi }) {
+  register({ strapi }: RegisterArguments) {
     const extensionService = strapi.plugin("graphql").service("extension");
 
-    const articleBySlugExtension = ({ nexus }) => ({
-      typeDefs: `
-        type Query {
-          article(slug: String!, documentId: ID): Article
-        }
-      `,
-      resolvers: {
-        Query: {
-          article: {
-            resolve: async (parent, args, context) => {
-              const { toEntityResponse } = strapi.service(
-                "plugin::graphql.format"
-              ).returnTypes;
-
-              const data = await strapi.services["api::article.article"].find({
-                filters: { slug: args.slug, locale: args.locale || "en" },
-              });
-
-              const response = toEntityResponse(data.results[0]);
-
-              return response.value;
-            },
-          },
-        },
-      },
-    });
-
+    //Article extensions
     extensionService.use(articleBySlugExtension);
-
-    const getArticleCommentsExtension = ({ nexus }) => ({
-      typeDefs: `
-        type Query {
-          getArticleComments(slug: String!): [Comment]!
-        }
-      `,
-      resolvers: {
-        Query: {
-          getArticleComments: {
-            resolve: async (parent, args, context) => {
-              const { toEntityResponse } = strapi.service(
-                "plugin::graphql.format"
-              ).returnTypes;
-              const data = await strapi.services["api::article.article"].find({
-                filters: { slug: args.slug, locale: args.locale || "en" },
-                populate: {
-                  comments: {
-                    populate: "*",
-                  },
-                },
-              });
-
-              const response = toEntityResponse(data.results[0].comments);
-
-              return response.value;
-            },
-          },
-        },
-      },
-    });
-
     extensionService.use(getArticleCommentsExtension);
-
-    const createCommentExtension = ({ nexus }) => ({
-      typeDefs: `
-        input CommentBySlugInput {
-          text: String!
-          articleSlug: String!
-        }
-
-        type Mutation {
-          createComment(data: CommentBySlugInput!): Comment
-        }
-      `,
-      resolvers: {
-        Mutation: {
-          createComment: {
-            resolve: async (parent, args, context) => {
-              const { toEntityResponse } = strapi.service(
-                "plugin::graphql.format"
-              ).returnTypes;
-
-              const { articleSlug, text } = args.data;
-              const user = context.state.user;
-
-              const articlesData = await strapi.services[
-                "api::article.article"
-              ].find({
-                filters: {
-                  slug: articleSlug,
-                  locale: args.locale || "en",
-                },
-              });
-
-              const article = articlesData.results[0];
-
-              const commentData = await strapi.services[
-                "api::comment.comment"
-              ].create({
-                data: {
-                  text,
-                  article,
-                  author: user,
-                },
-              });
-
-              const response = toEntityResponse(commentData);
-
-              return response.value;
-            },
-          },
-        },
-      },
-    });
-
+    //Comment extensions
     extensionService.use(createCommentExtension);
   },
 
