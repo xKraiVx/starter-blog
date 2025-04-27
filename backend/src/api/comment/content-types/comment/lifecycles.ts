@@ -4,8 +4,6 @@ export default {
   beforeCreate: async (event) => {
     const data = event.params.data;
 
-    console.log({ data });
-
     const uuid = uuidv4();
 
     data.uuid = uuid;
