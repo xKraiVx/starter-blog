@@ -1,4 +1,5 @@
 import { RegisterArguments } from "../../../types/custom/core.types";
+import { castToArray } from "../../utils/castToArray";
 
 export const getArticleCommentsExtension = ({ strapi }: RegisterArguments) => ({
   typeDefs: `
@@ -10,19 +11,20 @@ export const getArticleCommentsExtension = ({ strapi }: RegisterArguments) => ({
     Query: {
       getArticleComments: {
         resolve: async (parent, args, context) => {
+          const { slug, locale } = args;
+
           const { toEntityResponse } = strapi.service(
             "plugin::graphql.format"
           ).returnTypes;
-          const data = await strapi.services["api::article.article"].find({
-            filters: { slug: args.slug, locale: args.locale || "en" },
-            populate: {
-              comments: {
-                populate: "*",
-              },
-            },
+
+          const data = await strapi.services[
+            "api::article.article"
+          ].findOneBySlug({
+            slug,
+            locale: locale || "en",
           });
 
-          const response = toEntityResponse(data.results[0].comments);
+          const response = toEntityResponse(castToArray(data?.comments));
 
           return response.value;
         },
