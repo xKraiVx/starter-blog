@@ -1,4 +1,5 @@
 import { RegisterArguments } from "../../../types/custom/core.types";
+import { getLocale } from "../../utils/getLocale";
 
 export const createCommentExtension = ({ strapi }: RegisterArguments) => ({
   typeDefs: `
@@ -22,13 +23,12 @@ export const createCommentExtension = ({ strapi }: RegisterArguments) => ({
           const { articleSlug, text } = args.data;
           const user = context.state.user;
 
+          //TODO: Make for all locales (now just for the default locale)
           const articlesData = await strapi.services[
             "api::article.article"
-          ].find({
-            filters: {
-              slug: articleSlug,
-              locale: args.locale || "en",
-            },
+          ].findOneBySlug({
+            slug: articleSlug,
+            locale: getLocale(),
           });
 
           const article = articlesData.results[0];

@@ -1,4 +1,5 @@
 import { RegisterArguments } from "../../../types/custom/core.types";
+import { getLocale } from "../../utils/getLocale";
 
 export const articleBySlugExtension = ({ strapi }: RegisterArguments) => ({
   typeDefs: `
@@ -14,8 +15,13 @@ export const articleBySlugExtension = ({ strapi }: RegisterArguments) => ({
             "plugin::graphql.format"
           ).returnTypes;
 
-          const data = await strapi.services["api::article.article"].find({
-            filters: { slug: args.slug, locale: args.locale || "en" },
+          const { slug, locale } = args;
+
+          const data = await strapi.services[
+            "api::article.article"
+          ].findOneBySlug({
+            slug,
+            locale: getLocale(locale),
           });
 
           const response = toEntityResponse(data.results[0]);
