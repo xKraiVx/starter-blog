@@ -1,0 +1,5 @@
+mutation CreateComment($data: CommentBySlugInput!) {
+  createComment(data: $data) {
+    uuid
+  }
+}

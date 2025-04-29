@@ -24,7 +24,7 @@ export const articleBySlugExtension = ({ strapi }: RegisterArguments) => ({
             locale: getLocale(locale),
           });
 
-          const response = toEntityResponse(data.results[0]);
+          const response = toEntityResponse(data);
 
           return response.value;
         },
