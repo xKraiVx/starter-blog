@@ -1,4 +1,7 @@
-import type { Core } from "@strapi/strapi";
+import { RegisterArguments } from "../types/custom/core.types";
+import { articleBySlugExtension } from "./graphql-extensions/article/getArticleBySlugExtension";
+import { getArticleCommentsExtension } from "./graphql-extensions/article/getArticleCommentsExtension";
+import { createCommentExtension } from "./graphql-extensions/comment/createCommentExtension";
 
 export default {
   /**
@@ -7,35 +10,14 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register({ strapi }: { strapi: Core.Strapi }) {
+  register({ strapi }: RegisterArguments) {
     const extensionService = strapi.plugin("graphql").service("extension");
 
-    extensionService.use(({ strapi }) => ({
-      typeDefs: `
-        type Query {
-          article(slug: String!, documentId: ID): Article
-        }
-      `,
-      resolvers: {
-        Query: {
-          article: {
-            resolve: async (parent, args, context) => {
-              const { toEntityResponse } = strapi.service(
-                "plugin::graphql.format"
-              ).returnTypes;
-
-              const data = await strapi.services["api::article.article"].find({
-                filters: { slug: args.slug, locale: args.locale || "en" },
-              });
-
-              const response = toEntityResponse(data.results[0]);
-
-              return response.value;
-            },
-          },
-        },
-      },
-    }));
+    //Article extensions
+    extensionService.use(articleBySlugExtension);
+    extensionService.use(getArticleCommentsExtension);
+    //Comment extensions
+    extensionService.use(createCommentExtension);
   },
 
   /**

@@ -89,6 +89,12 @@
         "widgets.call-to-action",
         "widgets.text-editor"
       ]
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "article"
     }
   }
 }
