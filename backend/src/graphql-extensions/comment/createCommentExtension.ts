@@ -24,14 +24,12 @@ export const createCommentExtension = ({ strapi }: RegisterArguments) => ({
           const user = context.state.user;
 
           //TODO: Make for all locales (now just for the default locale)
-          const articlesData = await strapi.services[
+          const article = await strapi.services[
             "api::article.article"
           ].findOneBySlug({
             slug: articleSlug,
             locale: getLocale(),
           });
-
-          const article = articlesData.results[0];
 
           const commentData = await strapi.services[
             "api::comment.comment"

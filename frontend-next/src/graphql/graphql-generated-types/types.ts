@@ -54,6 +54,8 @@ export type Article = {
   __typename?: 'Article';
   author?: Maybe<Author>;
   category?: Maybe<Category>;
+  comments: Array<Maybe<Comment>>;
+  comments_connection?: Maybe<CommentRelationResponseCollection>;
   cover?: Maybe<UploadFile>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -67,6 +69,20 @@ export type Article = {
   title?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   widgets?: Maybe<Array<Maybe<ArticleWidgetsDynamicZone>>>;
+};
+
+
+export type ArticleCommentsArgs = {
+  filters?: InputMaybe<CommentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ArticleComments_ConnectionArgs = {
+  filters?: InputMaybe<CommentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
@@ -93,6 +109,7 @@ export type ArticleFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>;
   author?: InputMaybe<AuthorFiltersInput>;
   category?: InputMaybe<CategoryFiltersInput>;
+  comments?: InputMaybe<CommentFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
@@ -110,6 +127,7 @@ export type ArticleFiltersInput = {
 export type ArticleInput = {
   author?: InputMaybe<Scalars['ID']['input']>;
   category?: InputMaybe<Scalars['ID']['input']>;
+  comments?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   cover?: InputMaybe<Scalars['ID']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -312,6 +330,54 @@ export type CategoryRelationResponseCollection = {
   nodes: Array<Category>;
 };
 
+export type Comment = {
+  __typename?: 'Comment';
+  article?: Maybe<Article>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  isMyComment: Scalars['Boolean']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  uuid?: Maybe<Scalars['String']['output']>;
+};
+
+export type CommentBySlugInput = {
+  articleSlug: Scalars['String']['input'];
+  text: Scalars['String']['input'];
+};
+
+export type CommentEntityResponseCollection = {
+  __typename?: 'CommentEntityResponseCollection';
+  nodes: Array<Comment>;
+  pageInfo: Pagination;
+};
+
+export type CommentFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CommentFiltersInput>>>;
+  article?: InputMaybe<ArticleFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CommentFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CommentFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  text?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  uuid?: InputMaybe<StringFilterInput>;
+};
+
+export type CommentInput = {
+  article?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  uuid?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CommentRelationResponseCollection = {
+  __typename?: 'CommentRelationResponseCollection';
+  nodes: Array<Comment>;
+};
+
 export type ComponentComponentsGridItem = {
   __typename?: 'ComponentComponentsGridItem';
   backgroundImage?: Maybe<UploadFile>;
@@ -503,7 +569,7 @@ export type ComponentWidgetsRecentPostsArticles_ConnectionArgs = {
 
 export type ComponentWidgetsTextEditor = {
   __typename?: 'ComponentWidgetsTextEditor';
-  editor?: Maybe<Scalars['String']['output']>;
+  editor?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -674,7 +740,7 @@ export type FooterRelationResponseCollection = {
   nodes: Array<Footer>;
 };
 
-export type GenericMorph = About | Article | Author | Blog | Category | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | ContactUs | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Article | Author | Blog | Category | Comment | ComponentComponentsGridItem | ComponentComponentsLink | ComponentComponentsSosialLink | ComponentSharedMedia | ComponentSharedQuote | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSlider | ComponentWidgetsCallToAction | ComponentWidgetsGrid | ComponentWidgetsHero | ComponentWidgetsRecentPosts | ComponentWidgetsTextEditor | ComponentWidgetsTextWithImage | ContactUs | Footer | Global | HomePage | I18NLocale | Message | Page | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -889,6 +955,7 @@ export type Mutation = {
   createArticle?: Maybe<Article>;
   createAuthor?: Maybe<Author>;
   createCategory?: Maybe<Category>;
+  createComment?: Maybe<Comment>;
   createMessage?: Maybe<Message>;
   createPage?: Maybe<Page>;
   createReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
@@ -902,6 +969,7 @@ export type Mutation = {
   deleteAuthor?: Maybe<DeleteMutationResponse>;
   deleteBlog?: Maybe<DeleteMutationResponse>;
   deleteCategory?: Maybe<DeleteMutationResponse>;
+  deleteComment?: Maybe<DeleteMutationResponse>;
   deleteContactUs?: Maybe<DeleteMutationResponse>;
   deleteFooter?: Maybe<DeleteMutationResponse>;
   deleteGlobal?: Maybe<DeleteMutationResponse>;
@@ -929,6 +997,7 @@ export type Mutation = {
   updateAuthor?: Maybe<Author>;
   updateBlog?: Maybe<Blog>;
   updateCategory?: Maybe<Category>;
+  updateComment?: Maybe<Comment>;
   updateContactUs?: Maybe<ContactUs>;
   updateFooter?: Maybe<Footer>;
   updateGlobal?: Maybe<Global>;
@@ -968,6 +1037,12 @@ export type MutationCreateAuthorArgs = {
 export type MutationCreateCategoryArgs = {
   data: CategoryInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationCreateCommentArgs = {
+  data: CommentBySlugInput;
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1031,6 +1106,11 @@ export type MutationDeleteBlogArgs = {
 export type MutationDeleteCategoryArgs = {
   documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+};
+
+
+export type MutationDeleteCommentArgs = {
+  documentId: Scalars['ID']['input'];
 };
 
 
@@ -1150,6 +1230,13 @@ export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateCommentArgs = {
+  data: CommentInput;
+  documentId: Scalars['ID']['input'];
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -1326,8 +1413,12 @@ export type Query = {
   categories: Array<Maybe<Category>>;
   categories_connection?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<Category>;
+  comment?: Maybe<Comment>;
+  comments: Array<Maybe<Comment>>;
+  comments_connection?: Maybe<CommentEntityResponseCollection>;
   contactUs?: Maybe<ContactUs>;
   footer?: Maybe<Footer>;
+  getArticleComments: Array<Maybe<Comment>>;
   global?: Maybe<Global>;
   homePage?: Maybe<HomePage>;
   i18NLocale?: Maybe<I18NLocale>;
@@ -1443,6 +1534,28 @@ export type QueryCategoryArgs = {
 };
 
 
+export type QueryCommentArgs = {
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryCommentsArgs = {
+  filters?: InputMaybe<CommentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryComments_ConnectionArgs = {
+  filters?: InputMaybe<CommentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type QueryContactUsArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
@@ -1452,6 +1565,11 @@ export type QueryContactUsArgs = {
 export type QueryFooterArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryGetArticleCommentsArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
@@ -1985,6 +2103,8 @@ export type UsersPermissionsUpdateRolePayload = {
 export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
   blocked?: Maybe<Scalars['Boolean']['output']>;
+  comments: Array<Maybe<Comment>>;
+  comments_connection?: Maybe<CommentRelationResponseCollection>;
   confirmed?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
@@ -1994,6 +2114,20 @@ export type UsersPermissionsUser = {
   role?: Maybe<UsersPermissionsRole>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   username: Scalars['String']['output'];
+};
+
+
+export type UsersPermissionsUserCommentsArgs = {
+  filters?: InputMaybe<CommentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type UsersPermissionsUserComments_ConnectionArgs = {
+  filters?: InputMaybe<CommentFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type UsersPermissionsUserEntityResponse = {
@@ -2010,6 +2144,7 @@ export type UsersPermissionsUserEntityResponseCollection = {
 export type UsersPermissionsUserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   blocked?: InputMaybe<BooleanFilterInput>;
+  comments?: InputMaybe<CommentFiltersInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
@@ -2025,6 +2160,7 @@ export type UsersPermissionsUserFiltersInput = {
 
 export type UsersPermissionsUserInput = {
   blocked?: InputMaybe<Scalars['Boolean']['input']>;
+  comments?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   confirmed?: InputMaybe<Scalars['Boolean']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;

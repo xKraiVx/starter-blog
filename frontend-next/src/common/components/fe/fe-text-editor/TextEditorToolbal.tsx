@@ -22,7 +22,7 @@ export default function TextEditorToolbar({
 
   return (
     <>
-      <ButtonGroup variant="outlined" size="small" sx={{ mb: 2, gap: 1 }}>
+      <ButtonGroup variant="outlined" size="small" sx={{ mb: 2 }}>
         <Button
           onClick={() => editor.chain().focus().toggleBold().run()}
           variant={editor.isActive("bold") ? "contained" : "outlined"}
