@@ -636,6 +636,35 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiChatMessageChatMessage extends Struct.CollectionTypeSchema {
+  collectionName: 'chat_messages';
+  info: {
+    displayName: 'Chat message';
+    pluralName: 'chat-messages';
+    singularName: 'chat-message';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::chat-message.chat-message'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.String;
+  };
+}
+
 export interface ApiCommentComment extends Struct.CollectionTypeSchema {
   collectionName: 'comments';
   info: {
@@ -1484,6 +1513,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
+      'api::chat-message.chat-message': ApiChatMessageChatMessage;
       'api::comment.comment': ApiCommentComment;
       'api::contact-us.contact-us': ApiContactUsContactUs;
       'api::footer.footer': ApiFooterFooter;
