@@ -14,7 +14,7 @@ interface IChatProps {
 
 export interface IMessage {
   user: string;
-  message: string;
+  message?: string;
 }
 
 export interface IMessages {
@@ -28,8 +28,6 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
   const [message, setMessage] = useState<string>("");
   const [users] = useState<string[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null); // Store socket instance
-
-  console.log({ id });
 
   useEffect(() => {
     // Initialize socket connection
@@ -54,7 +52,7 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
       try {
         const res = await fetch(`${BASE_URL}/api/chat-messages`);
         const response = (await res.json()) as IMessages;
-        const allMessages = response.data.map((one) => one.attributes);
+        const allMessages = response.data.map((one) => one?.attributes);
         setMessages((prev) => [...prev, ...allMessages]);
       } catch (err) {
         console.error("Error fetching messages:", err);
@@ -63,11 +61,13 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
 
     // Listen for "message" event
     ioInstance.on("message", async () => {
+      console.log("response", id);
+
       try {
         const res = await fetch(`${BASE_URL}/api/chat-messages`);
         const response = (await res.json()) as IMessages;
 
-        const allMessages = response.data.map((one) => one.attributes);
+        const allMessages = response.data.map((one) => one?.attributes);
         setMessages(allMessages);
       } catch (err: unknown) {
         console.error("Error fetching new messages:", err);

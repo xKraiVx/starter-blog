@@ -7,7 +7,6 @@ import CallToAction from "@/features/call-to-action/CallToAction";
 import UiSectionTitle from "@/common/components/ui/ui-section-title/UiSectionTitle";
 import { getImageUrl } from "@/common/utils/getImageUrl";
 import AnimatedSection from "@/common/components/animated/animated-section/AnimatedSection";
-import Chat from "@/features/chat/Chat";
 
 interface ICallToActionWidgetProps {
   data: CallToActionWidgetFragment;
@@ -54,7 +53,6 @@ export default function CallToActionWidget({
             />
           </Box>
         </UiSectionContainer>
-        <Chat username="TEST" id="test" />
       </Box>
     </AnimatedSection>
   );

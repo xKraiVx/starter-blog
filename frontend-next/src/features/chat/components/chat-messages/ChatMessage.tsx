@@ -21,10 +21,10 @@ export default function ChatMessage({
       }}
     >
       <Typography variant="body1" color="text.primary">
-        {message.message}
+        {message?.message}
       </Typography>
       <Typography variant="caption" color="text.secondary">
-        {message.user === username ? "You" : message.user}
+        {message?.user === username ? "You" : message?.user}
       </Typography>
     </Box>
   );

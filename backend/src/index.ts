@@ -3,6 +3,7 @@ import { RegisterArguments } from "../types/custom/core.types";
 import { articleBySlugExtension } from "./graphql-extensions/article/getArticleBySlugExtension";
 import { getArticleCommentsExtension } from "./graphql-extensions/article/getArticleCommentsExtension";
 import { createCommentExtension } from "./graphql-extensions/comment/createCommentExtension";
+import { Core } from "@strapi/strapi";
 
 export default {
   /**
@@ -28,7 +29,7 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {
+  async bootstrap({ strapi }: RegisterArguments) {
     const io = new Server(strapi.server.httpServer, {
       cors: {
         origin: "http://localhost:3000",
@@ -63,10 +64,18 @@ export default {
           },
         };
 
+        // try {
+        //   strapi
+        //     .documents("api::chat-messages.chat-messages")
+        //     .create(strapiData);
+        // } catch (e) {
+        //   console.log("error:", e.message);
+        // }
+
         await axios
           .post("http://localhost:1337/api/chat-messages", strapiData)
           .then(() => {
-            socket.broadcast.to("group").emit("message", {
+            socket.broadcast.emit("message", {
               user: data.username,
               text: data.message,
             });
