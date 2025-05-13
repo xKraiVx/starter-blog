@@ -30,16 +30,13 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
   const [socket, setSocket] = useState<Socket | null>(null); // Store socket instance
 
   useEffect(() => {
-    // Initialize socket connection
     const ioInstance = io(BASE_URL);
     setSocket(ioInstance);
 
-    // Handle "join" event
     ioInstance.emit("join", { username }, (error: unknown) => {
       if (error) alert(error);
     });
 
-    // Listen for "welcome" event
     ioInstance.on("welcome", async (data) => {
       const welcomeMessage = {
         user: data.user,
@@ -47,38 +44,18 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
       };
 
       setMessages((prev) => [welcomeMessage, ...prev]);
-
-      // Fetch all messages from Strapi
-      try {
-        const res = await fetch(`${BASE_URL}/api/chat-messages`);
-        const response = (await res.json()) as IMessages;
-        const allMessages = response.data.map((one) => one?.attributes);
-        setMessages((prev) => [...prev, ...allMessages]);
-      } catch (err) {
-        console.error("Error fetching messages:", err);
-      }
     });
 
-    // Listen for "message" event
-    ioInstance.on("message", async () => {
-      console.log("response", id);
+    ioInstance.on("message", async ({ data }) => {
+      console.log("response", data);
 
-      try {
-        const res = await fetch(`${BASE_URL}/api/chat-messages`);
-        const response = (await res.json()) as IMessages;
-
-        const allMessages = response.data.map((one) => one?.attributes);
-        setMessages(allMessages);
-      } catch (err: unknown) {
-        console.error("Error fetching new messages:", err);
-      }
+      setMessages((prev) => [data, ...prev]);
     });
 
-    // Clean up on component unmount
     return () => {
       ioInstance.disconnect();
     };
-  }, [username]);
+  }, [id, username]);
 
   const sendMessage = () => {
     if (!message.trim()) {

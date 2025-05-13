@@ -64,6 +64,8 @@ export default {
           },
         };
 
+        socket.emit("message", strapiData);
+
         // try {
         //   strapi
         //     .documents("api::chat-messages.chat-messages")

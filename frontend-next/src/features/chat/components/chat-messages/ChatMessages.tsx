@@ -14,6 +14,8 @@ export default function ChatMessages({
 }: IChatMessagesProps): JSX.Element {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  console.log({ messages });
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
