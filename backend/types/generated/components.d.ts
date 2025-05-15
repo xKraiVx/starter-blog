@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ChatChatMessage extends Struct.ComponentSchema {
+  collectionName: 'components_chat_chat_messages';
+  info: {
+    description: '';
+    displayName: 'ChatMessage';
+    icon: 'brush';
+  };
+  attributes: {
+    message: Schema.Attribute.String;
+  };
+}
+
 export interface ComponentsGridItem extends Struct.ComponentSchema {
   collectionName: 'components_components_grid_items';
   info: {
@@ -219,6 +231,7 @@ export interface WidgetsTextWithImage extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'chat.chat-message': ChatChatMessage;
       'components.grid-item': ComponentsGridItem;
       'components.link': ComponentsLink;
       'components.sosial-link': ComponentsSosialLink;

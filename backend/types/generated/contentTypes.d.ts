@@ -639,6 +639,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiChatMessageChatMessage extends Struct.CollectionTypeSchema {
   collectionName: 'chat_messages';
   info: {
+    description: '';
     displayName: 'Chat message';
     pluralName: 'chat-messages';
     singularName: 'chat-message';
@@ -647,6 +648,10 @@ export interface ApiChatMessageChatMessage extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    chat_message_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -656,12 +661,11 @@ export interface ApiChatMessageChatMessage extends Struct.CollectionTypeSchema {
       'api::chat-message.chat-message'
     > &
       Schema.Attribute.Private;
-    message: Schema.Attribute.String;
+    message: Schema.Attribute.Component<'chat.chat-message', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.String;
   };
 }
 
@@ -1457,6 +1461,10 @@ export interface PluginUsersPermissionsUser
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    chat_message: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::chat-message.chat-message'
+    >;
     comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_chat_chat_messages",
+  "info": {
+    "displayName": "ChatMessage",
+    "icon": "brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "message": {
+      "type": "string"
+    }
+  }
+}

@@ -70,6 +70,12 @@
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "author"
+    },
+    "chat_message": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chat-message.chat-message",
+      "mappedBy": "chat_message_user"
     }
   }
 }

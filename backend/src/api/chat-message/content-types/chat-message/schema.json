@@ -4,18 +4,24 @@
   "info": {
     "singularName": "chat-message",
     "pluralName": "chat-messages",
-    "displayName": "Chat message"
+    "displayName": "Chat message",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "user": {
-      "type": "string"
+    "chat_message_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "chat_message"
     },
     "message": {
-      "type": "string"
+      "type": "component",
+      "repeatable": true,
+      "component": "chat.chat-message"
     }
   }
 }

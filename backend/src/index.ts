@@ -74,15 +74,15 @@ export default {
         //   console.log("error:", e.message);
         // }
 
-        await axios
-          .post("http://localhost:1337/api/chat-messages", strapiData)
-          .then(() => {
-            socket.broadcast.emit("message", {
-              user: data.username,
-              text: data.message,
-            });
-          })
-          .catch((e) => console.log("error", e.message));
+        // await axios
+        //   .post("http://localhost:1337/api/chat-messages", strapiData)
+        //   .then(() => {
+        //     socket.broadcast.emit("message", {
+        //       user: data.username,
+        //       text: data.message,
+        //     });
+        //   })
+        //   .catch((e) => console.log("error", e.message));
       });
     });
   },
