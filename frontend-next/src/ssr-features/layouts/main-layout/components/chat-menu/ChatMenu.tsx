@@ -45,6 +45,14 @@ export default function ChatMenu(): JSX.Element | null {
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
+        slotProps={{
+          paper: {
+            sx: {
+              width: 300,
+              height: 400,
+            },
+          },
+        }}
         anchorOrigin={{
           vertical: "top",
           horizontal: "right",

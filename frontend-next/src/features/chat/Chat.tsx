@@ -1,8 +1,10 @@
 "use client";
 
+import FeTextField from "@/common/components/fe/FeTextField";
 import ChatMessages from "@/features/chat/components/chat-messages/ChatMessages";
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { JSX, SetStateAction, useEffect, useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import { JSX, useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { io, Socket } from "socket.io-client";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND;
@@ -23,11 +25,23 @@ export interface IMessages {
   }[];
 }
 
+export interface IFormValues {
+  message: string;
+}
+
+const DEFAULT_VALUE = {
+  message: "",
+};
+
 export default function Chat({ username, id }: IChatProps): JSX.Element {
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const [message, setMessage] = useState<string>("");
   const [users] = useState<string[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null); // Store socket instance
+  const methods = useForm<IFormValues>({
+    defaultValues: DEFAULT_VALUE,
+  });
+
+  const { reset } = methods;
 
   useEffect(() => {
     const ioInstance = io(BASE_URL);
@@ -57,9 +71,8 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
     };
   }, [id, username]);
 
-  const sendMessage = () => {
-    if (!message.trim()) {
-      alert("Message can't be empty");
+  const sendMessage = (message: string) => {
+    if (!message) {
       return;
     }
 
@@ -71,17 +84,15 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
           if (error) alert(error);
         }
       );
-      setMessage("");
     }
+
+    reset(DEFAULT_VALUE);
   };
 
-  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setMessage(e.target.value);
+  const submit = (data: IFormValues) => {
+    sendMessage(data.message);
   };
 
-  const handleClick = () => {
-    sendMessage();
-  };
   return (
     <Box>
       <Typography variant="h4">Chat</Typography>
@@ -91,13 +102,16 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
         </Typography>
       ))}
       <ChatMessages messages={messages} username={username} />
-      <TextField
-        type="text"
-        placeholder="Type your message"
-        value={message}
-        onChange={handleChange}
-      />
-      <Button onClick={handleClick}>Send</Button>
+      <FormProvider {...methods}>
+        <Box component="form" onSubmit={methods.handleSubmit(submit)}>
+          <FeTextField
+            label="message"
+            placeholder="Type your message"
+            name="message"
+          />
+          <Button type="submit">Send</Button>
+        </Box>
+      </FormProvider>
     </Box>
   );
 }
