@@ -10,5 +10,5 @@ export const theme = createTheme({
   palette: {
     ...palette,
   },
-  components: overrideComponents,
+  components: overrideComponents(palette),
 });

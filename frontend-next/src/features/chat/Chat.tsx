@@ -2,7 +2,7 @@
 
 import FeTextField from "@/common/components/fe/FeTextField";
 import ChatMessages from "@/features/chat/components/chat-messages/ChatMessages";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { JSX, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { io, Socket } from "socket.io-client";
@@ -63,7 +63,7 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
     ioInstance.on("message", async ({ data }) => {
       console.log("response", data);
 
-      setMessages((prev) => [data, ...prev]);
+      setMessages((prev) => [...prev, data]);
     });
 
     return () => {
@@ -94,7 +94,15 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
   };
 
   return (
-    <Box>
+    <Box
+      sx={{
+        padding: 2,
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        gap: 1,
+      }}
+    >
       <Typography variant="h4">Chat</Typography>
       {users.map((user, i) => (
         <Typography key={i} variant="body1">
@@ -103,14 +111,22 @@ export default function Chat({ username, id }: IChatProps): JSX.Element {
       ))}
       <ChatMessages messages={messages} username={username} />
       <FormProvider {...methods}>
-        <Box component="form" onSubmit={methods.handleSubmit(submit)}>
+        <Stack
+          component="form"
+          onSubmit={methods.handleSubmit(submit)}
+          sx={{
+            gap: 1,
+          }}
+        >
           <FeTextField
             label="message"
             placeholder="Type your message"
             name="message"
           />
-          <Button type="submit">Send</Button>
-        </Box>
+          <Button variant="contained" type="submit">
+            Send
+          </Button>
+        </Stack>
       </FormProvider>
     </Box>
   );

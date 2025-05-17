@@ -5,13 +5,14 @@ import { BaseLine } from "@/providers/blog-theme-provider/override-components/Ba
 import { Paper } from "@/providers/blog-theme-provider/override-components/Paper";
 import { Select } from "@/providers/blog-theme-provider/override-components/Select";
 import { TextField } from "@/providers/blog-theme-provider/override-components/TextField";
+import { PaletteOptions } from "@mui/material";
 
-export const overrideComponents = {
+export const overrideComponents = (palette: PaletteOptions) => ({
   ...AppBar,
   ...Button,
   ...FormLabel,
-  ...BaseLine,
+  ...BaseLine(palette),
   ...Paper,
   ...Select,
   ...TextField,
-};
+});

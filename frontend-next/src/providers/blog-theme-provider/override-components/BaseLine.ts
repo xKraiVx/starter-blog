@@ -1,6 +1,6 @@
-import { Theme } from "@mui/material";
+import { PaletteOptions } from "@mui/material/styles/createPalette";
 
-export const BaseLine = {
+export const BaseLine = (palette: PaletteOptions) => ({
   MuiCssBaseline: {
     styleOverrides: {
       body: {
@@ -14,10 +14,10 @@ export const BaseLine = {
             backgoundColor: "transparent",
           },
           "*::-webkit-scrollbar-thumb": {
-            backgroundColor: "red",
+            backgroundColor: palette?.primary?.main,
           },
         },
       },
     },
   },
-};
+});
