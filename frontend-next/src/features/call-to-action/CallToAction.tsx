@@ -44,7 +44,7 @@ export default function CallToAction({ sx }: ICallToActionProps): JSX.Element {
     if (data?.email) {
       methods.setValue("email", data.email);
     }
-  }, [data]);
+  }, [data, methods]);
 
   return (
     <FormProvider {...methods}>

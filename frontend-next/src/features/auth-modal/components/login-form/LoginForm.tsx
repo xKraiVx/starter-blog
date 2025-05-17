@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack } from "@mui/material";
 import { JSX } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useLogin } from "@/features/auth-modal/hooks/useLogin";
 
 interface LoginFormProps {
   onSubmit: (data: UsersPermissionsLoginInput) => void;

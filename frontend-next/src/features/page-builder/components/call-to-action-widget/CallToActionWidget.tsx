@@ -1,4 +1,4 @@
-import { Box, SxProps, Typography } from "@mui/material";
+import { Box, SxProps } from "@mui/material";
 import { JSX } from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { CallToActionWidgetFragment } from "@/ssr-features/graphql/fragments/callToActionWidget.generated";

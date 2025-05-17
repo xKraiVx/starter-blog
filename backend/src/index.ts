@@ -1,3 +1,4 @@
+import { Server } from "socket.io";
 import { RegisterArguments } from "../types/custom/core.types";
 import { articleBySlugExtension } from "./graphql-extensions/article/getArticleBySlugExtension";
 import { getArticleCommentsExtension } from "./graphql-extensions/article/getArticleCommentsExtension";
@@ -27,5 +28,38 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap({ strapi }: RegisterArguments) {
+    const io = new Server(strapi.server.httpServer, {
+      cors: {
+        origin: ["http://localhost:3000", "http://192.168.33.5:3000"],
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true,
+      },
+    });
+
+    io.on("connection", function (socket) {
+      socket.on("join", ({ username }) => {
+        if (username) {
+          socket.emit("welcome", {
+            user: "bot",
+            text: `${username}, Welcome to the group chat`,
+            userData: username,
+          });
+        }
+      });
+
+      socket.on("sendMessage", async (data) => {
+        const strapiData = {
+          data: {
+            user: data.user,
+            message: data.message,
+          },
+        };
+
+        socket.broadcast.emit("message", strapiData);
+        socket.emit("message", strapiData);
+      });
+    });
+  },
 };
